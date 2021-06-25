@@ -9,7 +9,7 @@
 
 ## ⚡️ Fast Implementation
 **Step 1**: Clone Vibe bot with git by running:
-```
+```zsh
 git clone https://github.com/jebediah47/vibe-bot-ts
 ```
 
@@ -22,12 +22,12 @@ git clone https://github.com/jebediah47/vibe-bot-ts
 ```
 
 **Step 3**: Install all the required dependencies by running:
-```
+```zsh
 npm install
 ```
 
 **Step 4**: Run the bot by running:
-```
+```zsh
 npm run dev
 ```
 
