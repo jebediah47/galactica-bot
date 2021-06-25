@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/MQQr1et.png" height="168"></a></p>
+<p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/hT0HQF0.gif" height="165"></a></p>
 
 <h1 align="center">vibe-bot-ts</h1>
 
@@ -13,12 +13,20 @@
 git clone https://github.com/jebediah47/vibe-bot-ts
 ```
 
-**Step 2**: Install all the required dependencies by running:
+**Step 2**: Edit the `config.json` file and change:
+```json
+{
+  "TOKEN": "YOUR_BOT_TOKEN",
+  "PREFIX": "YOUR_BOT_PREFIX"
+}
+```
+
+**Step 3**: Install all the required dependencies by running:
 ```
 npm install
 ```
 
-**Step 3**: Run the bot by running:
+**Step 4**: Run the bot by running:
 ```
 npm run dev
 ```
