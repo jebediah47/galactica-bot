@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jebediah47/vibe-bot-ts#readme",
   "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2",
     "@types/node": "^15.12.4",
     "discord.js": "^12.5.3",
     "figlet": "^1.5.0",
