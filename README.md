@@ -5,28 +5,36 @@
 <p align="center">A Discord bot coded in TypeScript</p>
 
 ## 💭 What is Vibe?
+
 [Vibe](https://github.com/jebediah47/vibe-bot-ts) is a Discord bot coded in TypeScript that can do various stuff using it's commands!
 
 ## ⚡️ Fast Implementation
+
 **Step 1**: Clone Vibe bot with git by running:
+
 ```
 git clone https://github.com/jebediah47/vibe-bot-ts
 ```
 
 **Step 2**: Edit the `config.json` file and change:
+
 ```json
 {
   "TOKEN": "YOUR_BOT_TOKEN",
-  "PREFIX": "YOUR_BOT_PREFIX"
+  "PREFIX": "YOUR_BOT_PREFIX",
+  "BOT_PRESENCE": "YOUR_BOT_PRESENCE"
 }
 ```
+💡 Quick tip: The `BOT_PRESECE` option in `config.json` sets what Vibe's presence will be.
 
 **Step 3**: Install all the required dependencies by running:
+
 ```
 npm install
 ```
 
 **Step 4**: Run the bot by running:
+
 ```
 npm run dev
 ```
@@ -34,7 +42,9 @@ npm run dev
 ## 🎉 You're ready!
 
 ### Expected output:
+
 ```
 We have logged in as [your_bot_name#discriminator]
 ```
+
 If you got this output you are ready to go!
