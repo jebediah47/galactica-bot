@@ -11,13 +11,13 @@ export const command: Command = {
     const newEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("User has been successfully kicked")
-      .setDescription("Now this guy won't be a problem to us again")
+      .setDescription("Now this guy won't be a problem to us again!")
       .setTimestamp();
 
     //exception 2
     const newEmbed2 = new MessageEmbed()
       .setColor("RANDOM")
-      .setTitle("You need to mention a user in order to kick them")
+      .setTitle("You need to mention a user in order to kick them!")
       .setTimestamp();
 
     //exception 3
@@ -25,7 +25,7 @@ export const command: Command = {
       .setColor("RANDOM")
       .setTitle("You are not permitted to kick a member")
       .setDescription(
-        "You need to have the kick permission in order to kick a member"
+        "You need to have the kick permission in order to kick a member!"
       )
       .setTimestamp();
 
