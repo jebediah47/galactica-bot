@@ -25,7 +25,7 @@ git clone https://github.com/jebediah47/vibe-bot-ts
   "BOT_PRESENCE": "YOUR_BOT_PRESENCE"
 }
 ```
-💡 Quick tip: The `BOT_PRESECE` option in `config.json` sets what Vibe's presence will be.
+💡 Quick tip: The `BOT_PRESENCE` option in `config.json` sets what Vibe's presence will be.
 
 **Step 3**: Install all the required dependencies by running:
 
