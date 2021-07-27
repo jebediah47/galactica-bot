@@ -17,7 +17,7 @@ export const command: Command = {
           .setDescription(
             "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
               `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
-              "And here is a list of all the available cryptos/tokens \n https://www.coingecko.com"
+              "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com tokens \n https://www.xe.com/iso4217.php currency codes"
           )
       );
     } else if (irl_currency === undefined) {
@@ -33,7 +33,7 @@ export const command: Command = {
     );
 
     if (!data) {
-      message.channel.send(
+      return message.channel.send(
         new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("We are sorry but...")
@@ -49,17 +49,37 @@ export const command: Command = {
       return s.charAt(0).toUpperCase() + s.slice(1);
     };
 
-    message.channel.send(
-      new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle(
-          capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
-        )
-        .setDescription(
-          `Price: \`${data[token][irl_currency]}\` ` +
-            irl_currency.toUpperCase()
-        )
-        .setTimestamp()
-    );
+    function commaFormatter(x) {
+      var parts = x.toString().split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
+    }
+
+    try {
+      const regularToken = Number(`${data[token][irl_currency]}`);
+      return message.channel.send(
+        new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle(
+            capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
+          )
+          .setDescription(
+            `Price: \`${commaFormatter(regularToken)}\` ` +
+              irl_currency.toUpperCase()
+          )
+          .setTimestamp()
+      );
+    } catch (err) {
+      return message.channel.send(
+        new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("Notice!")
+          .setDescription(
+            "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
+              `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+              "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com tokens \n https://www.xe.com/iso4217.php currency codes"
+          )
+      );
+    }
   },
 };
