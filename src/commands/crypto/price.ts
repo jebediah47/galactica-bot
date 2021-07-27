@@ -9,7 +9,7 @@ export const command: Command = {
     let token: string = args[0];
     let irl_currency: string = args[1];
 
-    if (token == undefined) {
+    if (token === undefined) {
       return message.channel.send(
         new MessageEmbed()
           .setColor("RANDOM")
@@ -22,6 +22,8 @@ export const command: Command = {
       );
     } else if (irl_currency === undefined) {
       irl_currency = "usd";
+    } else {
+      console.log((err) => err);
     }
 
     token = encodeURIComponent(token).toLowerCase();
