@@ -3,8 +3,8 @@ import { MessageEmbed } from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
-  name: "price",
-  aliases: ["crypto"],
+  name: "crypto",
+  aliases: ["crypto-price"],
   run: async (client, message, args) => {
     let token: string = args[0];
     let irl_currency: string = args[1];
@@ -44,10 +44,10 @@ export const command: Command = {
       );
     }
 
-    const capitalize = (s) => {
+    function capitalize(s) {
       if (typeof s !== "string") return "";
       return s.charAt(0).toUpperCase() + s.slice(1);
-    };
+    }
 
     function commaFormatter(x) {
       var parts = x.toString().split(".");
@@ -55,8 +55,14 @@ export const command: Command = {
       return parts.join(".");
     }
 
+    const change = `${data[token].usd_24h_change}`.substring(
+      0,
+      `${data[token].usd_24h_change}`.length - 13
+    );
+
     try {
-      const regularToken = Number(`${data[token][irl_currency]}`);
+      const regularToken = `${data[token][irl_currency]}`;
+
       return message.channel.send(
         new MessageEmbed()
           .setColor("RANDOM")
@@ -64,8 +70,9 @@ export const command: Command = {
             capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
           )
           .setDescription(
-            `Price: \`${commaFormatter(regularToken)}\` ` +
-              irl_currency.toUpperCase()
+            `**Price:** \`${commaFormatter(regularToken)}\` ` +
+              irl_currency.toUpperCase() +
+              `\n **(24hr) Change:** \`${change}%\``
           )
           .setTimestamp()
       );
