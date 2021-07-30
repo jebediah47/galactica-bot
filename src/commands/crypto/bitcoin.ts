@@ -36,7 +36,10 @@ export const command: Command = {
             .setColor("RANDOM")
             .setTitle("We are sorry but...")
             .setDescription(
-              "We couldn't find your currency code on the list here are the supported currencies by the [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+              "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+            )
+            .setThumbnail(
+              `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
             )
             .setTimestamp()
         );
