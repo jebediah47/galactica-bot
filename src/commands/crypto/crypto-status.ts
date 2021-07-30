@@ -6,8 +6,16 @@ export const command: Command = {
   name: "crypto-status",
   aliases: [],
   run: async (client, message, args) => {
-    const { data } = await axios.get(`https://api.coingecko.com/api/v3/ping`);
+    const errEmbed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("Notice!")
+      .setDescription(
+        "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
+          `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+          "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
+      );
     try {
+      const { data } = await axios.get(`https://api.coingecko.com/api/v3/ping`);
       return message.channel.send(
         new MessageEmbed()
           .setColor("RANDOM")
@@ -19,18 +27,7 @@ export const command: Command = {
           .setTimestamp()
       );
     } catch (err) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("We are sorry but...")
-          .setDescription(
-            "The CoinGecko API seems to be down, try executing the command again later..."
-          )
-          .setThumbnail(
-            `https://media0.giphy.com/media/TqiwHbFBaZ4ti/giphy.gif?cid=ecf05e47c4dpryzlle85fupuks97v0rkpr12y56izayy9omc&rid=giphy.gif`
-          )
-          .setTimestamp()
-      );
+      return message.channel.send({ embed: errEmbed });
     }
   },
 };
