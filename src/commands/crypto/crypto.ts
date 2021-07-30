@@ -9,17 +9,17 @@ export const command: Command = {
     let token: string = args[0];
     let irl_currency: string = args[1];
 
-    if (token === undefined) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription(
-            "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-              `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
-              "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com tokens \n https://www.xe.com/iso4217.php currency codes"
-          )
+    const errEmbed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("Notice!")
+      .setDescription(
+        "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
+          `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+          "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
+
+    if (token === undefined) {
+      return message.channel.send(errEmbed);
     } else if (irl_currency === undefined) {
       irl_currency = "usd";
     } else {
@@ -55,14 +55,12 @@ export const command: Command = {
       return parts.join(".");
     }
 
-    const change = `${data[token].usd_24h_change}`.substring(
-      0,
-      `${data[token].usd_24h_change}`.length - 13
-    );
-
     try {
       const regularToken = `${data[token][irl_currency]}`;
-
+      const change = `${data[token].usd_24h_change}`.substring(
+          0,
+          `${data[token].usd_24h_change}`.length - 13
+      );
       return message.channel.send(
         new MessageEmbed()
           .setColor("RANDOM")
@@ -77,16 +75,7 @@ export const command: Command = {
           .setTimestamp()
       );
     } catch (err) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription(
-            "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-              `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
-              "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com tokens \n https://www.xe.com/iso4217.php currency codes"
-          )
-      );
+      return message.channel.send(errEmbed);
     }
   },
 };
