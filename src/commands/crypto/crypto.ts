@@ -33,6 +33,18 @@ export const command: Command = {
         `https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=${irl_currency}&include_market_cap=true&include_24hr_change=true`
       );
 
+      if (data[token][irl_currency] === undefined) {
+        return message.channel.send(
+          new MessageEmbed()
+            .setColor("RANDOM")
+            .setTitle("We are sorry but...")
+            .setDescription(
+              "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+            )
+            .setTimestamp()
+        );
+      }
+
       if (!data) {
         return message.channel.send(
           new MessageEmbed()
