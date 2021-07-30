@@ -58,8 +58,8 @@ export const command: Command = {
     try {
       const regularToken = `${data[token][irl_currency]}`;
       const change = `${data[token].usd_24h_change}`.substring(
-          0,
-          `${data[token].usd_24h_change}`.length - 13
+        0,
+        `${data[token].usd_24h_change}`.length - 13
       );
       return message.channel.send(
         new MessageEmbed()
