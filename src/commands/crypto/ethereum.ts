@@ -57,9 +57,11 @@ export const command: Command = {
       }
 
       const regularToken = `${data[ethereum][irl_currency]}`;
-      const change = `${data[ethereum].usd_24h_change}`.substring(
+      const change = `${
+        data[ethereum][irl_currency + "_24h_change"]
+      }`.substring(
         0,
-        `${data[ethereum].usd_24h_change}`.length - 13
+        `${data[ethereum][irl_currency + "_24h_change"]}`.length - 13
       );
       return message.channel.send(
         new MessageEmbed()
