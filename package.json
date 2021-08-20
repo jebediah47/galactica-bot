@@ -5,7 +5,7 @@
   "main": "/src/main.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
-    "format": "prettier --write \"src/**/*.{ts,json}",
+    "format": "prettier --write \"src/**/*.{ts,json}\"",
     "lint": "eslint . --ext .ts"
   },
   "repository": {
