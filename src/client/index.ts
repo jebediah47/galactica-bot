@@ -22,6 +22,7 @@ class ExtendedClient extends Client {
       }
 
       for (const file of commands) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const { command } = require(`${command_files}/${dir}/${file}`);
         this.commands.set(command.name, command);
 
