@@ -4,7 +4,8 @@
   "description": "A discord bot template coded in TypeScript",
   "main": "/src/main.ts",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts"
+    "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
+    "lint": "eslint . --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,15 @@
     "@types/ms": "^0.7.31",
     "@types/node": "^15.14.1",
     "@types/node-fetch": "^2.5.11",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "axios": "^0.21.1",
     "canvacord": "^5.2.1",
     "discord-buttons": "^4.0.0",
     "discord.js": "^12.5.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "figlet": "^1.5.0",
     "fs": "0.0.1-security",
     "glob": "^7.1.7",
@@ -39,10 +45,8 @@
     "nuggies": "^1.2.51",
     "path": "^0.12.7",
     "prettier": "^2.3.1",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.4",
     "util": "^0.10.4"
-  },
-  "devDependencies": {
-    "ts-node-dev": "^1.1.8"
   }
 }
