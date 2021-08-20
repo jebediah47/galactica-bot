@@ -1,3 +1,4 @@
+import { capitalize, commaFormatter } from "../../functions";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 import axios from "axios";
@@ -55,17 +56,6 @@ export const command: Command = {
             )
             .setTimestamp()
         );
-      }
-
-      function capitalize(s) {
-        if (typeof s !== "string") return "";
-        return s.charAt(0).toUpperCase() + s.slice(1);
-      }
-
-      function commaFormatter(x) {
-        var parts = x.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return parts.join(".");
       }
 
       const regularToken = `${data[token][irl_currency]}`;
