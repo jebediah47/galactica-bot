@@ -5,12 +5,12 @@
   "main": "/src/main.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
+    "format": "prettier --write \"src/**/*.{ts,json}",
     "lint": "eslint . --ext .ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jebediah47/vibe-bot-ts.git",
-    "format": "prettier --write \"src/**/*.{ts,json}"
   },
   "author": "jebediah47",
   "license": "GPL-3.0",
