@@ -9,7 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jebediah47/vibe-bot-ts.git"
+    "url": "git+https://github.com/jebediah47/vibe-bot-ts.git",
+    "format": "prettier --write \"src/**/*.{ts,json}"
   },
   "author": "jebediah47",
   "license": "GPL-3.0",
