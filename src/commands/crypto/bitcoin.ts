@@ -6,7 +6,7 @@ export const command: Command = {
   name: "bitcoin",
   aliases: ["btc", "BITCOIN", "BTC"],
   run: async (client, message, args) => {
-    let bitcoin: string = `bitcoin`;
+    let bitcoin = `bitcoin`;
     let irl_currency: string = args[0];
 
     const errEmbed = new MessageEmbed()
@@ -45,16 +45,16 @@ export const command: Command = {
         );
       }
 
-      function capitalize(s) {
+      const capitalize = (s) => {
         if (typeof s !== "string") return "";
         return s.charAt(0).toUpperCase() + s.slice(1);
-      }
+      };
 
-      function commaFormatter(x) {
-        var parts = x.toString().split(".");
+      const commaFormatter = (x) => {
+        const parts = x.toString().split(".");
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return parts.join(".");
-      }
+      };
 
       const regularToken = `${data[bitcoin][irl_currency]}`;
       const change = `${data[bitcoin][irl_currency + "_24h_change"]}`.substring(
