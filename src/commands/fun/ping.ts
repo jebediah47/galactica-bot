@@ -4,7 +4,7 @@ import { MessageEmbed } from "discord.js";
 export const command: Command = {
   name: "ping",
   aliases: ["p"],
-  run: async (client, message, args) => {
+  run: async (client, message) => {
     message.channel
       .send(
         new MessageEmbed()
