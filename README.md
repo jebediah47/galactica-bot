@@ -1,6 +1,6 @@
 <p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
 
-<style>
+<style type="text/css">
 img {
   border-radius: 12%;
 }
