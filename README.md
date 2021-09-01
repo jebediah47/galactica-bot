@@ -1,7 +1,7 @@
-<p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/obhS6zx.png" height="165" id="logo"></a></p>
+<p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
 
 <style>
-#logo {
+img {
   border-radius: 12%;
 }
 </style>
