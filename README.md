@@ -40,6 +40,7 @@ or with yarn:
 `
 yarn install
 `
+</br>
 <br>
 **Step 4**: Run the bot by running:
 
@@ -52,6 +53,7 @@ or with yarn:
 `
 yarn run dev
 `
+</br>
 
 ## 🎉 You're ready!
 
