@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/jebediah47/vibe-bot-ts"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
+<p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
 
 <h1 align="center">galactica-bot</h1>
 
@@ -6,14 +6,14 @@
 
 ## 💭 What is Galactica?
 
-[Galactica](https://github.com/jebediah47/vibe-bot-ts) is a Discord bot coded in TypeScript that can do various stuff using it's multiple commands!
+[Galactica](https://github.com/jebediah47/galactica-bot) is a Discord bot coded in TypeScript that can do various stuff using it's multiple commands!
 
 ## ⚡️ Fast Implementation
 
 **Step 1**: Clone Galactica bot with git by running:
 
 `
-git clone https://github.com/jebediah47/vibe-bot-ts
+git clone https://github.com/jebediah47/galactica-bot
 `
 
 **Step 2**: Edit the `config.json` file and change:
@@ -63,4 +63,4 @@ We have logged in as [your_bot_name#discriminator]
 
 If you got this output you are ready to go!
 
-<sup>Christian Llupo © 2021 - 2022</sup>
+<sup>Christian Llupo © 2021</sup>
