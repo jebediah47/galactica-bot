@@ -28,7 +28,7 @@ git clone https://github.com/jebediah47/vibe-bot-ts
 ```
 
 💡 Quick tip: The `BOT_PRESENCE` option in `config.json` sets what Vibe's presence will be and the `MODLOGS_CHANNEL_NAME` sets the channel with moderation logs will be sent.
-<br>
+
 **Step 3**: Install all the required dependencies by running:
 
 `
@@ -40,8 +40,7 @@ or with yarn:
 `
 yarn install
 `
-</br>
-<br>
+
 **Step 4**: Run the bot by running:
 
 `
@@ -53,7 +52,6 @@ or with yarn:
 `
 yarn run dev
 `
-</br>
 
 ## 🎉 You're ready!
 
