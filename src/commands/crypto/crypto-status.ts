@@ -5,7 +5,7 @@ import axios from "axios";
 export const command: Command = {
   name: "crypto-status",
   aliases: [],
-  run: async (client, message, args) => {
+  run: async (client, message) => {
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Notice!")
