@@ -31,9 +31,9 @@ git clone https://github.com/jebediah47/vibe-bot-ts
 
 **Step 3**: Install all the required dependencies by running:
 
-`
+```
 npm install
-`
+```
 <sup>or with yarn:</sup>
 ```
 yarn install
