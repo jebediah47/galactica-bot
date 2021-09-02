@@ -72,7 +72,8 @@ export const command: Command = {
           .setDescription(
             `**Price:** \`${commaFormatter(regularToken)}\` ` +
               irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\``
+              `\n **(24hr) Change:** \`${change}%\` \n` +
+              `*Powered by CoinGecko API*`
           )
           .setTimestamp()
       );

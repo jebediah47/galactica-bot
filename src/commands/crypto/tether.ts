@@ -60,7 +60,8 @@ export const command: Command = {
           .setDescription(
             `**Price:** \`${commaFormatter(regularToken)}\` ` +
               irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\``
+              `\n **(24hr) Change:** \`${change}%\` \n` +
+              `*Powered by CoinGecko API*`
           )
           .setThumbnail(
             `https://seeklogo.com/images/T/tether-usdt-logo-FA55C7F397-seeklogo.com.png`

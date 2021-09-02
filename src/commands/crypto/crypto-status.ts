@@ -20,7 +20,7 @@ export const command: Command = {
         new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("API status!")
-          .setDescription(`***${data.gecko_says}*** \n CoinGecko API !`)
+          .setDescription(`***${data.gecko_says}*** \n CoinGecko API!`)
           .setThumbnail(
             `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
           )

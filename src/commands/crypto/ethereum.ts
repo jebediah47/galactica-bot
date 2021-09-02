@@ -62,7 +62,8 @@ export const command: Command = {
           .setDescription(
             `**Price:** \`${commaFormatter(regularToken)}\` ` +
               irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\``
+              `\n **(24hr) Change:** \`${change}%\` \n` +
+              `*Powered by CoinGecko API*`
           )
           .setThumbnail(
             `https://www.azcryptoexchanges.com/wp-content/uploads/2018/02/ethereum-1.png`

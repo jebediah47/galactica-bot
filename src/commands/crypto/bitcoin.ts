@@ -60,7 +60,8 @@ export const command: Command = {
           .setDescription(
             `**Price:** \`${commaFormatter(regularToken)}\` ` +
               irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\``
+              `\n **(24hr) Change:** \`${change}%\` \n` +
+              `*Powered by CoinGecko API*`
           )
           .setThumbnail(
             `https://bitcoin.org/img/icons/opengraph.png?1625742893`
