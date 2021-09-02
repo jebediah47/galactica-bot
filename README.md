@@ -50,7 +50,7 @@ npm run dev
 or with yarn:
 
 `
-yarn run dev
+yarn dev
 `
 
 ## 🎉 You're ready!
