@@ -12,9 +12,9 @@
 
 **Step 1**: Clone Galactica bot with git by running:
 
-```
+`
 git clone https://github.com/jebediah47/vibe-bot-ts
-```
+`
 
 **Step 2**: Edit the `config.json` file and change:
 
@@ -31,31 +31,31 @@ git clone https://github.com/jebediah47/vibe-bot-ts
 
 **Step 3**: Install all the required dependencies by running:
 
-```
+`
 npm install
-```
-<sup>or with yarn:</sup>
-```
+`
+or with yarn:
+`
 yarn install
-```
+`
 
 **Step 4**: Run the bot by running:
 
-```
+`
 npm run dev
-```
-<sup>or with yarn:</sup>
-```
+`
+or with yarn:
+`
 yarn run dev
-```
+`
 
 ## 🎉 You're ready!
 
 ### Expected output:
 
-```
+`
 We have logged in as [your_bot_name#discriminator]
-```
+`
 
 If you got this output you are ready to go!
 
