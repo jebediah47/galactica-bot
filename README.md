@@ -34,7 +34,9 @@ git clone https://github.com/jebediah47/vibe-bot-ts
 `
 npm install
 `
+
 or with yarn:
+
 `
 yarn install
 `
@@ -44,7 +46,9 @@ yarn install
 `
 npm run dev
 `
+
 or with yarn:
+
 `
 yarn run dev
 `
