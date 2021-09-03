@@ -1,4 +1,5 @@
 <p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 <h1 align="center">galactica-bot</h1>
 
