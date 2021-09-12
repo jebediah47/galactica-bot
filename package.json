@@ -1,24 +1,24 @@
 {
   "name": "galactica-bot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A discord bot coded in TypeScript using the Discord.js v12 library!",
   "main": "/src/main.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
-    "format": "prettier --write \"src/**/*.{ts,json}\"",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
     "lint": "eslint . --ext .ts",
     "build": "node build.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jebediah47/vibe-bot-ts.git"
+    "url": "git+https://github.com/jebediah47/galactica-bot.git"
   },
   "author": "jebediah47",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/jebediah47/vibe-bot-ts/issues"
+    "url": "https://github.com/jebediah47/galactica-bot/issues"
   },
-  "homepage": "https://github.com/jebediah47/vibe-bot-ts#readme",
+  "homepage": "https://github.com/jebediah47/galactica-bot#readme",
   "dependencies": {
     "@iamtraction/google-translate": "^1.1.2",
     "@types/axios": "^0.14.0",
