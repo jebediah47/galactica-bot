@@ -17,7 +17,6 @@ if (fs.existsSync(buildDir)) {
   compile();
 } else {
   console.log("Creating build directory");
-  fs.mkdirSync("dist");
   console.log("Building bot to JavaScript");
   compile();
 }
