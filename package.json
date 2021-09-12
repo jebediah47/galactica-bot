@@ -1,12 +1,13 @@
 {
   "name": "galactica-bot",
   "version": "1.1.0",
-  "description": "A discord bot template coded in TypeScript",
+  "description": "A discord bot coded in TypeScript using the Discord.js v12 library!",
   "main": "/src/main.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
     "format": "prettier --write \"src/**/*.{ts,json}\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
