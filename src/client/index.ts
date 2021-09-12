@@ -15,7 +15,7 @@ class ExtendedClient extends Client {
     const command_files = path.join(__dirname, "..", "commands");
     readdirSync(command_files).forEach((dir) => {
       const commands = readdirSync(`${command_files}/${dir}`).filter((file) =>
-        file.endsWith(".ts")
+        file.endsWith(".ts" || ".js")
       );
       if (command_files.length <= 0) {
         return console.log("[LOGS] Couldn't Find Commands!");
