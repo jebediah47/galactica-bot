@@ -14,8 +14,8 @@ class ExtendedClient extends Client {
     this.login(this.config.TOKEN);
     const command_files = path.join(__dirname, "..", "commands");
     readdirSync(command_files).forEach((dir) => {
-      const commands = readdirSync(`${command_files}/${dir}`).filter((file) =>
-        file.endsWith(".ts" || ".js")
+      const commands = readdirSync(`${command_files}/${dir}`).filter(
+        (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
       );
       if (command_files.length <= 0) {
         return console.log("[LOGS] Couldn't Find Commands!");
