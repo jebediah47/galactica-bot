@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 exports.command = {
   name: "unlock-channel",
   aliases: ["channel-unlock"],
-  run: async (client, message) => {
+  run: async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_CHANNELS")) {
       return message.channel.send(
         new MessageEmbed()
