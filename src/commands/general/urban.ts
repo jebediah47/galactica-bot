@@ -8,13 +8,12 @@ export const command: Command = {
   run: async (client, message, args) => {
     let query: any = args.join(" ");
     if (!query) {
-      return message.reply(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription("Please enter a word to search for!")
-          .setTimestamp()
-      );
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Notice!")
+        .setDescription("Please enter a word to search for!")
+        .setTimestamp();
+      return message.reply({ embeds: [embed] });
     }
 
     query = encodeURIComponent(query);
@@ -25,19 +24,15 @@ export const command: Command = {
     );
     const [answer] = list;
 
-    message.channel.send(
-      new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle(answer.word)
-        .setURL(answer.permalink)
-        .addField("Definition:", trim(answer.definition))
-        .addField("Example:", trim(answer.example))
-        .addField(
-          "Ratings:",
-          `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`
-        )
-        .setTimestamp()
-    );
+    const embed2 = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle(answer.word)
+      .setURL(answer.permalink)
+      .addField("Definition:", trim(answer.definition))
+      .addField("Example:", trim(answer.example))
+      .addField("Ratings:", `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`)
+      .setTimestamp();
+    message.channel.send({ embeds: [embed2] });
   },
 };
 

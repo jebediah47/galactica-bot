@@ -13,7 +13,7 @@ export const command: Command = {
         .setTitle("Notice!")
         .setDescription("❎ Please provide a valid user")
         .setTimestamp();
-      return message.channel.send({ embed: error });
+      return message.channel.send({ embeds: [error] });
     }
 
     const url = `https://api.github.com/users/${name}`;
@@ -67,7 +67,7 @@ export const command: Command = {
         .setThumbnail(response.avatar_url)
         .setTimestamp();
 
-      message.channel.send(embed);
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       return message.channel.send(`❎ Please provide a valid user`);
     }
