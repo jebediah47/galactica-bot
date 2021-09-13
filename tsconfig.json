@@ -4,6 +4,8 @@
     "module": "commonjs",
     "target": "es2017",
     "sourceMap": false,
+    "allowJs": true,
+    "checkJs": true,
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
