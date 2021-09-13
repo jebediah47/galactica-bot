@@ -14,21 +14,7 @@ exports.command = {
           .setTimestamp()
       );
     }
-    const unlockChannel = message.mentions.channels.first() || message.channel;
-
-    if (
-      message.guild.roles.everyone
-        .permissionsIn(unlockChannel)
-        .has(["SEND_MESSAGES"])
-    ) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription("The channel has already been unlocked :unlock:")
-          .setTimestamp()
-      );
-    }
+    const unlockChannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.channel;
 
     unlockChannel
       .updateOverwrite(message.guild.roles.everyone, {
