@@ -2,7 +2,7 @@ import { Event, Command } from "../interfaces";
 import { Message } from "discord.js";
 
 export const event: Event = {
-  name: "message",
+  name: "messageCreate",
   run: (client, message: Message) => {
     if (
       message.author.bot ||
