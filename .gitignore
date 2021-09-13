@@ -109,3 +109,6 @@ dist
 # package locks
 *package-lock.json
 *yarn.lock
+
+# Build directory
+*build
