@@ -1,5 +1,5 @@
+import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
-import { Client, Collection } from "discord.js";
 import * as ConfigJson from "../../config.json";
 import { readdirSync } from "fs";
 import * as path from "path";
@@ -9,6 +9,9 @@ class ExtendedClient extends Client {
   public aliases: Collection<string, Command> = new Collection();
   public events: Collection<string, Event> = new Collection();
   public config: Config = ConfigJson;
+  public constructor(intents = new Intents(32767)) {
+    super({ intents });
+  }
 
   public async init() {
     this.login(this.config.TOKEN);
