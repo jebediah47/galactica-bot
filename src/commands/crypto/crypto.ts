@@ -20,7 +20,7 @@ export const command: Command = {
       );
 
     if (token === undefined) {
-      return message.channel.send({ embed: errEmbed });
+      return message.channel.send({ embeds: [errEmbed] });
     } else if (irl_currency === undefined) {
       irl_currency = "usd";
     } else {
@@ -35,27 +35,25 @@ export const command: Command = {
       );
 
       if (data[token][irl_currency] === undefined) {
-        return message.channel.send(
-          new MessageEmbed()
-            .setColor("RANDOM")
-            .setTitle("We are sorry but...")
-            .setDescription(
-              "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
-            )
-            .setTimestamp()
-        );
+        const embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("We are sorry but...")
+          .setDescription(
+            "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+          )
+          .setTimestamp();
+        return message.channel.send({ embeds: [embed] });
       }
 
       if (!data) {
-        return message.channel.send(
-          new MessageEmbed()
-            .setColor("RANDOM")
-            .setTitle("We are sorry but...")
-            .setDescription(
-              "We couldn't fetch the required data from the API, maybe try executing the command again!"
-            )
-            .setTimestamp()
-        );
+        const embed2 = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("We are sorry but...")
+          .setDescription(
+            "We couldn't fetch the required data from the API, maybe try executing the command again!"
+          )
+          .setTimestamp();
+        return message.channel.send({ embeds: [embed2] });
       }
 
       const regularToken = `${data[token][irl_currency]}`;
@@ -63,22 +61,21 @@ export const command: Command = {
         0,
         `${data[token][irl_currency + "_24h_change"]}`.length - 13
       );
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle(
-            capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
-          )
-          .setDescription(
-            `**Price:** \`${commaFormatter(regularToken)}\` ` +
-              irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\` \n` +
-              `*Powered by CoinGecko API*`
-          )
-          .setTimestamp()
-      );
+      const embed3 = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle(
+          capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
+        )
+        .setDescription(
+          `**Price:** \`${commaFormatter(regularToken)}\` ` +
+            irl_currency.toUpperCase() +
+            `\n **(24hr) Change:** \`${change}%\` \n` +
+            `*Powered by CoinGecko API*`
+        )
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed3] });
     } catch (err) {
-      return message.channel.send({ embed: errEmbed });
+      return message.channel.send({ embeds: [errEmbed] });
     }
   },
 };

@@ -32,18 +32,17 @@ export const command: Command = {
       );
 
       if (data[ethereum][irl_currency] === undefined) {
-        return message.channel.send(
-          new MessageEmbed()
-            .setColor("RANDOM")
-            .setTitle("We are sorry but...")
-            .setDescription(
-              "We couldn't find your currency code on the list here are the \n supported currencies by the [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
-            )
-            .setThumbnail(
-              `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
-            )
-            .setTimestamp()
-        );
+        const embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("We are sorry but...")
+          .setDescription(
+            "We couldn't find your currency code on the list here are the \n supported currencies by the [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+          )
+          .setThumbnail(
+            `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
+          )
+          .setTimestamp();
+        return message.channel.send({ embeds: [embed] });
       }
 
       const regularToken = `${data[ethereum][irl_currency]}`;
@@ -53,25 +52,24 @@ export const command: Command = {
         0,
         `${data[ethereum][irl_currency + "_24h_change"]}`.length - 13
       );
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle(
-            capitalize(ethereum) + " " + irl_currency.toUpperCase() + " price!"
-          )
-          .setDescription(
-            `**Price:** \`${commaFormatter(regularToken)}\` ` +
-              irl_currency.toUpperCase() +
-              `\n **(24hr) Change:** \`${change}%\` \n` +
-              `*Powered by CoinGecko API*`
-          )
-          .setThumbnail(
-            `https://www.azcryptoexchanges.com/wp-content/uploads/2018/02/ethereum-1.png`
-          )
-          .setTimestamp()
-      );
+      const embed2 = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle(
+          capitalize(ethereum) + " " + irl_currency.toUpperCase() + " price!"
+        )
+        .setDescription(
+          `**Price:** \`${commaFormatter(regularToken)}\` ` +
+            irl_currency.toUpperCase() +
+            `\n **(24hr) Change:** \`${change}%\` \n` +
+            `*Powered by CoinGecko API*`
+        )
+        .setThumbnail(
+          `https://www.azcryptoexchanges.com/wp-content/uploads/2018/02/ethereum-1.png`
+        )
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed2] });
     } catch (err) {
-      return message.channel.send({ embed: errEmbed });
+      return message.channel.send({ embeds: [errEmbed] });
     }
   },
 };
