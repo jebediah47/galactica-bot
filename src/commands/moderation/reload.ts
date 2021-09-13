@@ -6,14 +6,13 @@ export const command: Command = {
   name: "reload",
   aliases: ["restart"],
   run: (client, message) => {
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("DISCLAIMER!")
-          .setDescription("You are not permitted to use this command!")
-          .setTimestamp()
-      );
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Notice!")
+        .setDescription("You are not permitted to use this command!")
+        .setTimestamp();
+      return message.reply({ embeds: [embed] });
     }
     client.commands.sweep(() => true);
     glob(`${__dirname}/../**/.ts`, async (err, filePaths) => {
@@ -21,6 +20,7 @@ export const command: Command = {
       filePaths.forEach((file) => {
         delete require.cache[require.resolve(file)];
 
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const pull = require(file);
 
         if (pull.name) {
@@ -34,13 +34,12 @@ export const command: Command = {
           });
         }
       });
-      message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Success!")
-          .setDescription("Reloaded commands!")
-          .setTimestamp()
-      );
+      const embed2 = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Success!")
+        .setDescription("Reloaded commands!")
+        .setTimestamp();
+      message.channel.send({ embeds: [embed2] });
     });
   },
 };

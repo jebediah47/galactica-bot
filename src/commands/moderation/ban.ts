@@ -22,27 +22,21 @@ export const command: Command = {
 
     //exception 3
     const newEmbed3 = new MessageEmbed()
-      .setColor("RADNOM")
+      .setColor("RANDOM")
       .setTitle("You are not permitted to ban a member")
       .setDescription(
         "You need to have the ban permission in order to ban a member!"
       )
       .setTimestamp();
 
-    if (!message.member.hasPermission("BAN_MEMBERS"))
-      return message
-        .reply(newEmbed3)
-        .then((message) => message.delete({ timeout: 10000 }));
+    if (!message.member.permissions.has("BAN_MEMBERS"))
+      return message.reply({ embeds: [newEmbed3] });
     if (member) {
       const memberTarget = message.guild.members.cache.get(member.id);
       memberTarget.ban();
-      message.channel
-        .send(newEmbed1)
-        .then((message) => message.delete({ timeout: 10000 }));
+      message.channel.send({ embeds: [newEmbed1] });
     } else {
-      message.channel
-        .send(newEmbed2)
-        .then((message) => message.delete({ timeout: 10000 }));
+      message.channel.send({ embeds: [newEmbed2] });
     }
   },
 };

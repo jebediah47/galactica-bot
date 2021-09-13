@@ -29,20 +29,14 @@ export const command: Command = {
       )
       .setTimestamp();
 
-    if (!message.member.hasPermission("KICK_MEMBERS"))
-      return message
-        .reply(newEmbed3)
-        .then((message) => message.delete({ timeout: 10000 }));
+    if (!message.member.permissions.has("KICK_MEMBERS"))
+      return message.reply({ embeds: [newEmbed3] });
     if (member) {
       const memberTarget = message.guild.members.cache.get(member.id);
       memberTarget.kick();
-      message.channel
-        .send(newEmbed)
-        .then((message) => message.delete({ timeout: 10000 }));
+      message.channel.send({ embeds: [newEmbed] });
     } else {
-      message.channel
-        .send(newEmbed2)
-        .then((message) => message.delete({ timeout: 10000 }));
+      message.channel.send({ embeds: [newEmbed2] });
     }
   },
 };
