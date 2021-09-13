@@ -1,7 +1,7 @@
-import { Command } from "../../interfaces";
-import { MessageEmbed, TextChannel } from "discord.js";
+/* eslint-disable */
+const { MessageEmbed } = require("discord.js");
 
-export const command: Command = {
+exports.command = {
   name: "unlock-channel",
   aliases: ["channel-unlock"],
   run: async (client, message) => {
@@ -14,10 +14,7 @@ export const command: Command = {
           .setTimestamp()
       );
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const unlockChannel: TextChannel =
-      message.mentions.channels.first() || message.channel;
+    const unlockChannel = message.mentions.channels.first() || message.channel;
 
     if (
       message.guild.roles.everyone
