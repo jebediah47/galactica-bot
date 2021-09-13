@@ -5,13 +5,10 @@ export const command: Command = {
   name: "ping",
   aliases: ["p"],
   run: async (client, message) => {
-    message.channel
-      .send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setDescription(`The bot's ping is **${client.ws.ping}**`)
-          .setTimestamp()
-      )
-      .catch(console.error);
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setDescription(`The bot's ping is **${client.ws.ping}**`)
+      .setTimestamp();
+    message.channel.send({ embeds: [embed] }).catch(console.error);
   },
 };

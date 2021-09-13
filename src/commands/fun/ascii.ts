@@ -11,21 +11,19 @@ export const command: Command = {
   run: async (client, message, args) => {
     const text = args.join(" ");
     if (!text) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription("You need to add text to execute the command!")
-          .setTimestamp()
-      );
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Notice!")
+        .setDescription("You need to add text to execute the command!")
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed] });
     } else if (text.length > 20) {
-      return message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Notice!")
-          .setDescription("The text input has to be less than 20 characters!")
-          .setTimestamp()
-      );
+      const embed2 = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Notice!")
+        .setDescription("The text input has to be less than 20 characters!")
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed2] });
     }
 
     const rendered = await figletAsync(text);

@@ -7,13 +7,12 @@ export const command: Command = {
   aliases: ["calc", "calculate"],
   run: (client, message, args) => {
     try {
-      message.channel.send(
-        new MessageEmbed()
-          .setColor("RANDOM")
-          .addField("Question", args.join(" "))
-          .addField("Value", math.evaluate(args.join(" ")))
-          .setTimestamp()
-      );
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .addField("Question", args.join(" "))
+        .addField("Value", math.evaluate(args.join(" ")))
+        .setTimestamp();
+      message.channel.send({ embeds: [embed] });
     } catch (err) {
       message.reply("Your question is not valid!");
     }

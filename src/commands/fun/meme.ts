@@ -23,7 +23,7 @@ export const command: Command = {
       embed.setFooter(
         `👍 ${memeUpvotes} 👎 ${memeDownvotes} 💬 ${memeNumComments}`
       );
-      message.channel.send(embed);
+      message.channel.send({ embeds: [embed] });
     });
   },
 };

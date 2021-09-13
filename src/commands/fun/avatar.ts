@@ -6,12 +6,11 @@ export const command: Command = {
   aliases: ["pfp"],
   run: (client, message) => {
     const user = message.mentions.users.first() || message.author;
-    message.channel.send(
-      new MessageEmbed()
-        .setAuthor(`${user.tag}'s avatar!`)
-        .setTimestamp()
-        .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
-        .setTimestamp()
-    );
+    const embed = new MessageEmbed()
+      .setAuthor(`${user.tag}'s avatar!`)
+      .setTimestamp()
+      .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
+      .setTimestamp();
+    message.channel.send({ embeds: [embed] });
   },
 };
