@@ -23,7 +23,7 @@
     "@iamtraction/google-translate": "^1.1.2",
     "@types/axios": "^0.14.0",
     "@types/ms": "^0.7.31",
-    "@types/node": "^15.14.1",
+    "@types/node": "^16.9.1",
     "@types/node-fetch": "^3.0.3",
     "axios": "^0.21.1",
     "colors": "^1.4.0",
