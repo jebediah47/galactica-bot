@@ -13,7 +13,7 @@ class ExtendedClient extends Client {
     super({ intents });
   }
 
-  public async init() {
+  public async init(): Promise<void> {
     this.login(this.config.TOKEN);
     const command_files = path.join(__dirname, "..", "commands");
     readdirSync(command_files).forEach((dir) => {
