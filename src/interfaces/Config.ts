@@ -1,6 +1,6 @@
 export interface Config {
   TOKEN: string;
   PREFIX: string;
-  BOT_PRESENCE: any;
+  BOT_PRESENCE: string;
   MODLOGS_CHANNEL_NAME: any;
 }
