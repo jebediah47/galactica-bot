@@ -1,6 +1,6 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
-import fetch from "node-fetch";
+import axios from "axios";
 
 export const command: Command = {
   name: "github",
@@ -18,58 +18,48 @@ export const command: Command = {
 
     const url = `https://api.github.com/users/${name}`;
 
-    let response;
     try {
-      response = await fetch(url).then((res) => res.json());
-    } catch (err) {
-      message.channel.send("An error occurred. " + err.message);
-    }
-
-    try {
+      const { data } = await axios.get(url);
       const embed = new MessageEmbed()
         .setColor("RANDOM")
-        .setTitle(`${response.login}`)
-        .setDescription(response.bio ? response.bio : "None")
+        .setTitle(`${data.login}`)
+        .setDescription(data.bio ? data.bio : "None")
         .addFields(
           {
             name: "💖 Followers",
-            value: `\`\`\`${response.followers.toLocaleString()}\`\`\``,
+            value: `\`\`\`${data.followers.toLocaleString()}\`\`\``,
             inline: true,
           },
           {
             name: "🏃 Following",
-            value: `\`\`\`${response.following.toLocaleString()}\`\`\``,
+            value: `\`\`\`${data.following.toLocaleString()}\`\`\``,
             inline: true,
           },
           {
             name: "📚 Repositories",
-            value: `\`\`\`${response.public_repos.toLocaleString()}\`\`\``,
+            value: `\`\`\`${data.public_repos.toLocaleString()}\`\`\``,
             inline: true,
           },
           {
             name: "✉️ Email",
-            value: `\`\`\`${response.email ? response.email : "None"}\`\`\``,
+            value: `\`\`\`${data.email ? data.email : "None"}\`\`\``,
           },
           {
             name: "🏢 Company",
-            value: `\`\`\`${
-              response.company ? response.company : "None"
-            }\`\`\``,
+            value: `\`\`\`${data.company ? data.company : "None"}\`\`\``,
           },
           {
             name: "📍 Location",
-            value: `\`\`\`${
-              response.location ? response.location : "None"
-            }\`\`\``,
+            value: `\`\`\`${data.location ? data.location : "None"}\`\`\``,
           }
         )
-        .setURL(response.html_url)
-        .setThumbnail(response.avatar_url)
+        .setURL(data.html_url)
+        .setThumbnail(data.avatar_url)
         .setTimestamp();
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
-      return message.channel.send(`❎ Please provide a valid user`);
+      message.channel.send("An error occurred. " + err.message);
     }
   },
 };
