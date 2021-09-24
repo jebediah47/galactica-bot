@@ -30,7 +30,7 @@ export const command: Command = {
     const labels = [];
     const deaths = [];
     const cases = [];
-    const recovered = [];
+    const negative = [];
 
     for (const result of results) {
       const date = String(result.date);
@@ -41,7 +41,7 @@ export const command: Command = {
 
       deaths.push(result.death);
       cases.push(result.positive);
-      recovered.push(result.recovered);
+      negative.push(result.negative);
     }
 
     const canvas = new CanvasRenderService(width, height, chartCallback);
@@ -60,19 +60,19 @@ export const command: Command = {
             fill: false,
           },
           {
+            label: "Negative cases",
+            data: negative,
+            color: "#592ec2",
+            backgroundColor: "#592ec2",
+            borderColor: "#592ec2",
+            fill: false,
+          },
+          {
             label: "Deaths",
             data: deaths,
             color: "#b32f38",
             backgroundColor: "#b32f38",
             borderColor: "#b32f38",
-            fill: false,
-          },
-          {
-            label: "Recovered",
-            data: recovered,
-            color: "#592ec2",
-            backgroundColor: "#592ec2",
-            borderColor: "#592ec2",
             fill: false,
           },
         ],
@@ -83,6 +83,9 @@ export const command: Command = {
 
     const attachment = new MessageAttachment(image);
 
-    message.channel.send({ files: [attachment] });
+    message.channel.send({
+      content: "Here is a graph of US COVID data:",
+      files: [attachment],
+    });
   },
 };
