@@ -1,4 +1,3 @@
-/* idk */
 import { CanvasRenderService } from "chartjs-node-canvas";
 import { MessageAttachment } from "discord.js";
 import { Command } from "../../interfaces";
