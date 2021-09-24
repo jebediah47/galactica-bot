@@ -11,12 +11,13 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
     "lib": [
       "es2017",
       "esnext.asynciterable",
       "DOM"
     ],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
   },
   "exclude": [
     "node_modules",
