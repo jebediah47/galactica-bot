@@ -16,7 +16,7 @@ class ExtendedClient extends Client {
   public async init(): Promise<void> {
     this.login(this.config.TOKEN);
     const command_files = path.join(__dirname, "..", "commands");
-    readdirSync(command_files).forEach((dir) => {
+    readdirSync(command_files).forEach(async (dir) => {
       const commands = readdirSync(`${command_files}/${dir}`).filter(
         (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
       );
@@ -25,8 +25,7 @@ class ExtendedClient extends Client {
       }
 
       for (const file of commands) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { command } = require(`${command_files}/${dir}/${file}`);
+        const { command } = await import(`${command_files}/${dir}/${file}`);
         this.commands.set(command.name, command);
 
         if (command?.aliases.length !== 0) {
