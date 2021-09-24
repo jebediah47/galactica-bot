@@ -52,19 +52,19 @@ export const command: Command = {
         labels,
         datasets: [
           {
-            label: "Cases",
-            data: cases,
-            color: "#7289d9",
-            backgroundColor: "#7289d9",
-            borderColor: "#7289d9",
-            fill: false,
-          },
-          {
             label: "Negative cases",
             data: negative,
             color: "#592ec2",
             backgroundColor: "#592ec2",
             borderColor: "#592ec2",
+            fill: false,
+          },
+          {
+            label: "Cases",
+            data: cases,
+            color: "#7289d9",
+            backgroundColor: "#7289d9",
+            borderColor: "#7289d9",
             fill: false,
           },
           {
