@@ -8,7 +8,7 @@ export const command: Command = {
   aliases: ["usdt", "tusd", "USDT", "TUSD", "TETHER"],
   run: async (client, message, args) => {
     let tether = `tether`;
-    let irl_currency: string = args[0];
+    let irl_currency: string = args[0] || "usd";
 
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
@@ -19,11 +19,6 @@ export const command: Command = {
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
-    if (irl_currency === undefined) {
-      irl_currency = "usd";
-    } else {
-      console.log((error) => error);
-    }
     try {
       tether = encodeURIComponent(tether).toLowerCase();
       irl_currency = encodeURIComponent(irl_currency).toLowerCase();
