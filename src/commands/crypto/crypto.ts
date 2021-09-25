@@ -7,7 +7,7 @@ export const command: Command = {
   name: "crypto",
   aliases: ["crypto-price"],
   run: async (client, message, args) => {
-    let token: string = args[0];
+    let token: string = args[0] || "usd";
     let irl_currency: string = args[1];
 
     const errEmbed = new MessageEmbed()
@@ -21,10 +21,6 @@ export const command: Command = {
 
     if (token === undefined) {
       return message.channel.send({ embeds: [errEmbed] });
-    } else if (irl_currency === undefined) {
-      irl_currency = "usd";
-    } else {
-      console.log((err) => err);
     }
 
     try {
