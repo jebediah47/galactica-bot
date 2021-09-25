@@ -1,6 +1,7 @@
 import { CanvasRenderService } from "chartjs-node-canvas";
 import { MessageAttachment } from "discord.js";
 import { Command } from "../../interfaces";
+import { MessageEmbed } from "discord.js";
 import axios from "axios";
 
 const width = 800;
@@ -82,9 +83,15 @@ export const command: Command = {
     const image = await canvas.renderToBuffer(configuration);
 
     const attachment = new MessageAttachment(image);
+    const attachmentEmbed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("Here is a graph of US COVID data:")
+      .setDescription(
+        "**Note that the deaths are are much lower than the positive and negative cases and may look flat on the graph.*"
+      );
 
     message.channel.send({
-      content: "Here is a graph of US COVID data:",
+      embeds: [attachmentEmbed],
       files: [attachment],
     });
   },
