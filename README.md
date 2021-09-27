@@ -63,4 +63,4 @@ We have logged in as [your_bot_name#discriminator]
 
 If you got this output you are ready to go!
 
-<sup>Christian Llupo © 2021</sup>
+<sup>Christian Llupo and contributors © 2021</sup>
