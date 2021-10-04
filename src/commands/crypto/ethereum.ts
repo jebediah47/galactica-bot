@@ -1,4 +1,4 @@
-import functions from "../../functions";
+import { capitalize, commaFormatter } from "../../functions";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 import axios from "axios";
@@ -50,10 +50,10 @@ export const command: Command = {
       const embed2 = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle(
-          functions.capitalize(ethereum) + " " + irl_currency.toUpperCase() + " price!"
+          capitalize(ethereum) + " " + irl_currency.toUpperCase() + " price!"
         )
         .setDescription(
-          `**Price:** \`${functions.commaFormatter(regularToken)}\` ` +
+          `**Price:** \`${commaFormatter(regularToken)}\` ` +
             irl_currency.toUpperCase() +
             `\n **(24hr) Change:** \`${change}%\` \n` +
             `*Powered by CoinGecko API*`
