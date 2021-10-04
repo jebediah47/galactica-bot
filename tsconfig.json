@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "lib": [
       "es2017",
       "esnext.asynciterable",
@@ -19,7 +20,6 @@
     "moduleResolution": "node",
   },
   "exclude": [
-    "node_modules",
-    "build.js"
+    "build.js",
   ]
 }
