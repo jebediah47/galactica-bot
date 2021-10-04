@@ -16,10 +16,10 @@ export const command: Command = {
       return message.channel.send({ embeds: [error] });
     }
 
-    const url = `https://api.github.com/users/${name}`;
-
     try {
-      const { data } = await axios.get(url);
+      const { data }: any = await axios.get(
+        `https://api.github.com/users/${name}`
+      );
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle(`${data.login}`)
