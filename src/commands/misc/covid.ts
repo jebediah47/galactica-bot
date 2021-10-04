@@ -25,7 +25,7 @@ export const command: Command = {
     const days = parseInt(args[0]) || 30;
 
     const url = "https://api.covidtracking.com/v1/us/daily.json";
-    let { data: results } = await axios.get(url);
+    let { data: results }: any = await axios.get(url);
     results = results.slice(0, days).reverse();
 
     const labels = [];
