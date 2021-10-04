@@ -7,7 +7,7 @@ export const command: Command = {
   aliases: ["birb"],
   run: async (client, message) => {
     try {
-      const { data } = await axios.get(
+      const { data }: any = await axios.get(
         "https://api.monkedev.com/attachments/bird"
       );
       const embed = new MessageEmbed()
