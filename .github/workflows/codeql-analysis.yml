@@ -34,10 +34,3 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2.1.0
-      with:
-        verbose: true
-        fail_ci_if_error: true
-        path_to_write_report: ./coverage/codecov_report.txt
