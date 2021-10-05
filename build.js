@@ -10,10 +10,11 @@ async function compile() {
   }
 }
 
-var buildDir = "./dist";
+var buildDir = "dist";
 
-if (fs.existsSync(buildDir)) {
+if (fs.existsSync(buildDir) === true) {
   console.log("Building bot to JavaScript");
+  fs.unlinkSync(buildDir);
   compile();
 } else {
   console.log("Creating build directory");
