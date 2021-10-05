@@ -4,6 +4,11 @@
 
 <p align="center">A open-source Discord bot coded in TypeScript</p>
 
+<p align="center">
+  <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main"></img>
+  <img src="https://img.shields.io/github/workflow/status/jebediah47/galactica-bot/CodeQL"></img>
+</p>
+
 ## 💭 What is Galactica?
 
 [Galactica](https://github.com/jebediah47/galactica-bot) is a Discord bot coded in TypeScript that can do various stuff using it's multiple commands!
