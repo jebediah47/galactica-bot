@@ -8,6 +8,7 @@
   <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"></img>
   <img src="https://img.shields.io/github/workflow/status/jebediah47/galactica-bot/CodeQL" alt="Build Status"></img>
   <img src="https://img.shields.io/npm/v/discord.js?label=discord.js" alt="npm">
+  <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version">
 </p>
 
 ## 💭 What is Galactica?
