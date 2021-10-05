@@ -22,7 +22,7 @@ export const command: Command = {
   name: "covid",
   aliases: [],
   run: async (client, message, args) => {
-    const days = parseInt(args[0]) || 30;
+    const days = parseInt(args[0], 10) || 30;
 
     const url = "https://api.covidtracking.com/v1/us/daily.json";
     let { data: results }: any = await axios.get(url);
