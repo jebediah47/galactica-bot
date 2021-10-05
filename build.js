@@ -12,9 +12,9 @@ async function compile() {
 
 var buildDir = "dist";
 
-if (fs.existsSync(buildDir) === true) {
+if (fs.existsSync(buildDir)) {
   console.log("Building bot to JavaScript");
-  fs.unlinkSync(buildDir);
+  fs.rmdir(buildDir, { recursive: true });
   compile();
 } else {
   console.log("Creating build directory");
