@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"></img>
-  <img src="https://img.shields.io/github/workflow/status/jebediah47/galactica-bot/CodeQL" src="Build Status"></img>
+  <img src="https://img.shields.io/github/workflow/status/jebediah47/galactica-bot/CodeQL" alt="Build Status"></img>
 </p>
 
 ## 💭 What is Galactica?
