@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "es2017",
+    "target": "esnext",
     "sourceMap": false,
     "allowJs": true,
     "checkJs": true,
