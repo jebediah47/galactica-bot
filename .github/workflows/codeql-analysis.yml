@@ -28,9 +28,15 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.4.1
+        
+    - name: Install Packages
+      run: npm install
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+    - name: Build TypeScript
+      run: tsc
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
