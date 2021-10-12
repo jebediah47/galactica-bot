@@ -23,14 +23,17 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+      
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
-
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.4.1
+      
+    - name: Install Packages
+      run: npm install
+      
+    - name: Build TypeScript
+      run: tsc
