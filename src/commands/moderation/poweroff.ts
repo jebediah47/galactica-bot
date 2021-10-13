@@ -2,8 +2,8 @@ import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
-  name: "shutdown",
-  aliases: [],
+  name: "poweroff",
+  aliases: ["shutdown"],
   run: async (client, message) => {
     if (!message.member.permissions.has("ADMINISTRATOR")) {
       const embed = new MessageEmbed()
