@@ -7,7 +7,7 @@ export const command: Command = {
   name: "ethereum",
   aliases: ["eth", "ETHEREUM", "ETH"],
   run: async (client, message, args) => {
-    let ethereum = `ethereum`;
+    const ethereum = `ethereum`;
     const irl_currency: string = args[0].toLowerCase() || "usd";
 
     const errEmbed = new MessageEmbed()
@@ -20,7 +20,6 @@ export const command: Command = {
       );
 
     try {
-      ethereum = encodeURIComponent(ethereum).toLowerCase();
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${ethereum}&vs_currencies=${irl_currency}&include_24hr_change=true`
       );
