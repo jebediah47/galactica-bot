@@ -7,7 +7,7 @@ export const command: Command = {
   name: "crypto",
   aliases: ["crypto-price"],
   run: async (client, message, args) => {
-    let token: string = args[0] || "usd";
+    const token = args[0].toLowerCase() || "usd";
     const irl_currency = args[1].toLowerCase();
 
     const errEmbed = new MessageEmbed()
@@ -24,7 +24,6 @@ export const command: Command = {
     }
 
     try {
-      token = encodeURIComponent(token).toLowerCase();
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=${irl_currency}&include_market_cap=true&include_24hr_change=true`
       );
