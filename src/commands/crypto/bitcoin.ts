@@ -7,7 +7,7 @@ export const command: Command = {
   name: "bitcoin",
   aliases: ["btc", "BITCOIN", "BTC"],
   run: async (client, message, args) => {
-    let bitcoin = `bitcoin`;
+    const bitcoin = `bitcoin`;
     const irl_currency = args[0].toLowerCase() || "usd";
 
     const errEmbed = new MessageEmbed()
@@ -20,7 +20,6 @@ export const command: Command = {
       );
 
     try {
-      bitcoin = encodeURIComponent(bitcoin).toLowerCase();
       const { data } = await axios.get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${bitcoin}&vs_currencies=${irl_currency}&include_24hr_change=true`
       );
