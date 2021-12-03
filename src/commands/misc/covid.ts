@@ -12,7 +12,7 @@ const chartCallback = (ChartJS) => {
     beforeDraw: (chartInstance) => {
       const { chart } = chartInstance;
       const { ctx } = chart;
-      ctx.fillStyle = "white";
+      ctx.fillStyle = "rgb(3, 24, 38)";
       ctx.fillRect(0, 0, chart.width, chart.height);
     },
   });
