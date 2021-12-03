@@ -1,5 +1,5 @@
-import { stdout } from "process";
 import { Event } from "../interfaces";
+import { stdout } from "process";
 
 export const event: Event = {
   name: "ready",
