@@ -1,4 +1,5 @@
 import { Event } from "../interfaces";
+import { stdout } from "process";
 
 export const event: Event = {
   name: "guildMemberAdd",
@@ -9,8 +10,8 @@ export const event: Event = {
       );
       channel.send(`[LOGS] A new member has joined ${member.user.tag}`);
     } catch (err) {
-      console.log(
-        "A problem has occurred please check you config.json file on the MODLOGS_CHANNEL_NAME parameter and see if you have typed a wrong channel name"
+      stdout.write(
+        "A problem has occurred please check you config.json file on the MODLOGS_CHANNEL_NAME parameter and see if you have typed a wrong channel name \n"
       );
     }
   },
