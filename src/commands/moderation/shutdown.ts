@@ -1,5 +1,6 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
+import { stdout } from "process";
 
 export const command: Command = {
   name: "shutdown",
@@ -32,7 +33,7 @@ export const command: Command = {
     });
 
     collector.on("collect", () => {
-      console.log("Shutting down...");
+      stdout.write("Shutting down...\n");
       process.exit();
     });
   },
