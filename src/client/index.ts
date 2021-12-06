@@ -2,6 +2,7 @@ import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
 import * as ConfigJson from "../../config.json";
 import { readdirSync } from "fs";
+import { stdout } from "process";
 import * as path from "path";
 
 class ExtendedClient extends Client {
@@ -21,7 +22,7 @@ class ExtendedClient extends Client {
         (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
       );
       if (command_files.length <= 0) {
-        return console.log("[LOGS] Couldn't Find Commands!");
+        return stdout.write("[LOGS] Couldn't Find Commands!");
       }
 
       for (const file of commands) {
