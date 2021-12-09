@@ -14,25 +14,25 @@ FILE_EXISTS="file exists, ignoring."
 DIR_EXISTS="directory exists, ignoring."
 
 if test -d "$SRC"; then
-    echo ""$SRC", $DIR_EXISTS"
+    echo "$SRC, $DIR_EXISTS"
 else
     cp -r src /root/galactica-bot/
 fi
 
 if test -f "$TSCONFIG"; then
-    echo ""$TSCONFIG", $FILE_EXISTS"
+    echo "$TSCONFIG, $FILE_EXISTS"
 else
     cp tsconfig.json /root/galactica-bot/
 fi
 
 if test -f "$CONFIG"; then
-    echo ""$CONFIG", $FILE_EXISTS"
+    echo "$CONFIG, $FILE_EXISTS"
 else
     cp config.json /root/galactica-bot/
 fi
 
 if test -f "$PACKAGE"; then
-    echo ""$PACKAGE", $FILE_EXISTS"
+    echo "$PACKAGE, $FILE_EXISTS"
 else
     cp package.json /root/galactica-bot/
 fi
