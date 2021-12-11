@@ -1,5 +1,6 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
+import { stdout } from "process";
 
 export const command: Command = {
   name: "ping",
@@ -9,6 +10,6 @@ export const command: Command = {
       .setColor("RANDOM")
       .setDescription(`The bot's ping is **${client.ws.ping}**`)
       .setTimestamp();
-    message.channel.send({ embeds: [embed] }).catch(console.error);
+    message.channel.send({ embeds: [embed] }).catch((err) => stdout.write(err));
   },
 };
