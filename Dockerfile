@@ -6,8 +6,7 @@ RUN pacman-key --populate archlinux
 
 WORKDIR /root/
 COPY config.json .
-COPY build.sh .
-COPY build.js .
+COPY docker.build.sh .
 COPY src src
 COPY tsconfig.json .
 COPY package.json .
