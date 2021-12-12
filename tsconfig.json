@@ -12,18 +12,8 @@
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "lib": [
-      "es2017",
-      "esnext.asynciterable",
-      "DOM"
-    ],
-    "moduleResolution": "node",
+    "lib": ["es2017", "esnext.asynciterable", "DOM"],
+    "moduleResolution": "node"
   },
-  "include": [
-    "src/**/*",
-    "config.json"
-  ],
-  "exclude": [
-    "build.js",
-  ]
+  "include": ["src/**/*", "config.json"]
 }
