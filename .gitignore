@@ -109,6 +109,7 @@ dist
 # package locks
 *package-lock.json
 *yarn.lock
+*pnpm-lock.yaml
 
 # Build directory
 *build
