@@ -33,7 +33,8 @@ jobs:
       uses: actions/setup-node@v2.4.1
       
     - name: Install Packages
-      run: npm install
+      run: npm install -g typescript
+      run: npm install --only=production
       
     - name: Build TypeScript
       run: tsc
