@@ -81,8 +81,8 @@ export const command: Command = {
     };
 
     const image = await canvas.renderToBuffer(configuration);
-
     const attachment = new MessageAttachment(image);
+
     const attachmentEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Here is a graph of US COVID data:")
