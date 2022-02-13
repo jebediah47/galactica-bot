@@ -1,6 +1,5 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
-import { isInteger } from "mathjs";
 
 export const command: Command = {
   name: "clear",
@@ -55,7 +54,6 @@ export const command: Command = {
     if (args[0] > 100) return message.reply({ embeds: [newEmbed3] });
     if (!args[0]) return message.reply({ embeds: [newEmbed4] });
     if (args[0] < 1) return message.reply({ embeds: [newEmbed5] });
-    if (args[0] != isInteger) return message.reply({ embeds: [newEmbed2] });
 
     await message.channel.messages
       .fetch({ limit: args[0] })
