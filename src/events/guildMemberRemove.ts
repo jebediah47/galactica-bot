@@ -1,18 +1,19 @@
-import { stdout } from "process";
+import { TextChannel } from "discord.js";
 import { Event } from "../interfaces";
 
 export const event: Event = {
   name: "guildMemberRemove",
   run: async (client, member) => {
-    try {
-      const channel = member.guild.channels.cache.find(
-        (c) => c.name == client.config.MODLOGS_CHANNEL_NAME
-      );
-      channel.send(`[LOGS] A new member has left ${member.user.tag}`);
-    } catch (err) {
-      stdout.write(
-        "A problem has occurred please check you config.json file on the MODLOGS_CHANNEL_NAME parameter and see if you have typed a wrong channel name \n"
+    const channel: TextChannel = member.guild.channels.cache.find(
+      (c) => c.name == client.config.MODLOGS_CHANNEL_NAME
+    ) as TextChannel;
+
+    if (!channel) {
+      process.stderr.write(
+        "MODLOGS_CHANNEL_NAME cannot be found, please check your config.json \n"
       );
     }
+
+    channel.send(`[LOGS] A new member has left ${member.user.tag}`);
   },
 };
