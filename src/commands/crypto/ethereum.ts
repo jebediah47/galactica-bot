@@ -58,7 +58,7 @@ export const command: Command = {
             `*Powered by CoinGecko API*`
         )
         .setThumbnail(
-          `https://www.azcryptoexchanges.com/wp-content/uploads/2018/02/ethereum-1.png`
+          `https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png`
         )
         .setTimestamp();
       return message.channel.send({ embeds: [embed2] });
