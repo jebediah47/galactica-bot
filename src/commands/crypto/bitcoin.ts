@@ -8,7 +8,8 @@ export const command: Command = {
   aliases: ["btc", "BITCOIN", "BTC"],
   run: async (client, message, args) => {
     const bitcoin = `bitcoin`;
-    const irl_currency = args[0].toLowerCase() || "usd";
+    let irl_currency = args[0] || "usd";
+    irl_currency = irl_currency.toLowerCase();
 
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
