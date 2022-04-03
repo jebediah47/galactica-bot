@@ -6,7 +6,8 @@ export const event: Event = {
   run: (client) => {
     stdout.write(`We have logged in as ${client.user.tag} \n`);
     client.user.setActivity(`${client.config.BOT_PRESENCE}`, {
-      type: "COMPETING",
+      //@ts-ignore
+      type: `${client.config.BOT_PRESENCE_TYPE}`,
     });
   },
 };
