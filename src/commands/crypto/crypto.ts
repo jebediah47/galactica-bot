@@ -17,7 +17,7 @@ export const command: Command = {
       .setTitle("Notice!")
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-          `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+          `\`\`\`${client.config.PREFIX}crypto bitcoin usd\`\`\` \n` +
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
