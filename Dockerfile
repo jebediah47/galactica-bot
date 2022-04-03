@@ -11,6 +11,6 @@ COPY src src
 COPY tsconfig.json .
 COPY package.json .
 
-RUN ["chmod", "+x", "root/build.sh"]
+RUN ["chmod", "+x", "root/docker.build.sh"]
 
-ENTRYPOINT ["./root/build.sh"]
+ENTRYPOINT ["./root/docker.build.sh"]
