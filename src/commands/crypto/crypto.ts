@@ -7,8 +7,10 @@ export const command: Command = {
   name: "crypto",
   aliases: ["crypto-price"],
   run: async (client, message, args) => {
-    const token = args[0].toLowerCase() || "usd";
-    const irl_currency = args[1].toLowerCase();
+    let token = args[0];
+    let irl_currency = args[1] || "usd";
+    token = token.toLowerCase();
+    irl_currency = irl_currency.toLowerCase();
 
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
