@@ -55,11 +55,7 @@ yarn install
 npm run dev
 `
 
-or with yarn:
-
-`
-yarn dev
-`
+or with yarn accordingly.
 
 ## 🎉 You're ready!
 
