@@ -30,11 +30,12 @@ git clone https://github.com/jebediah47/galactica-bot
   "TOKEN": "YOUR_BOT_TOKEN",
   "PREFIX": "YOUR_BOT_PREFIX",
   "BOT_PRESENCE": "YOUR_BOT_PRESENCE",
+  "BOT_PRESENCE_TYPE": "YOUR_BOT_PRESENCE_TYPE",
   "MODLOGS_CHANNEL_NAME": "MODLOGS_CHANNEL_NAME"
 }
 ```
 
-💡 Quick tip: The `BOT_PRESENCE` option in `config.json` sets what Vibe's presence will be and the `MODLOGS_CHANNEL_NAME` sets the channel with moderation logs will be sent.
+💡 Quick tip: If you don't know how to configure galactica you can check it's documentation website [here](https://galacticabot.vercel.app/)
 
 **Step 3**: Install all the required dependencies by running:
 
