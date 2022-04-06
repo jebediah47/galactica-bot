@@ -7,6 +7,7 @@ import axios from "axios";
 const width = 800;
 const height = 600;
 
+//@ts-nocheck
 const chartCallback = (ChartJS) => {
   ChartJS.plugins.register({
     beforeDraw: (chartInstance) => {
