@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --poll src/main.ts",
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
