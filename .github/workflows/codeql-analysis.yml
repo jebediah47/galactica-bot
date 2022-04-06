@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript', 'typescript' ]
+        language: [ 'typescript' ]
 
     steps:
     - name: Checkout repository
@@ -28,7 +28,6 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
-        source-root: src
       
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.4.1
@@ -40,7 +39,7 @@ jobs:
       run: npm install --only=production
       
     - name: Build TypeScript
-      run: tsc
+      run: npm run build
     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
