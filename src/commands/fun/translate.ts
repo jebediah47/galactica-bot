@@ -4,7 +4,7 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "translate",
-  aliases: ["trans", "langtrans", "google-translate"],
+  aliases: ["langtrans", "google-translate"],
   run: async (client, message, args) => {
     const query = args.join(" ");
     const embed = new MessageEmbed()
