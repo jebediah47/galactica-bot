@@ -39,4 +39,4 @@ fi
 
 cd galactica-bot
 npm install --only=production
-tsc && node ./dist/src/main.js
+npm run build && node ./dist/src/main.js
