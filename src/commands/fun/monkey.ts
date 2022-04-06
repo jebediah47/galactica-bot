@@ -7,7 +7,7 @@ export const command: Command = {
   aliases: ["monke"],
   run: async (client, message) => {
     try {
-      const { data }: any = await axios.get(
+      const { data } = await axios.get(
         "https://api.monkedev.com/attachments/monkey"
       );
       const embed = new MessageEmbed()
