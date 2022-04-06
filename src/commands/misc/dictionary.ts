@@ -3,8 +3,8 @@ import { MessageEmbed } from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
-  name: "urban",
-  aliases: [],
+  name: "dictionary",
+  aliases: ["urban-dictionary"],
   run: async (client, message, args) => {
     let query: any = args.join(" ");
     if (!query) {
