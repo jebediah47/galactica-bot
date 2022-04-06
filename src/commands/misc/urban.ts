@@ -19,7 +19,7 @@ export const command: Command = {
     query = encodeURIComponent(query);
     const {
       data: { list },
-    }: any = await axios.get(
+    } = await axios.get(
       `https://api.urbandictionary.com/v0/define?term=${query}`
     );
     const [answer] = list;
