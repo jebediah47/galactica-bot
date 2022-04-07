@@ -30,7 +30,7 @@ class ExtendedClient extends Client {
         this.commands.set(command.name, command);
 
         if (command?.aliases.length !== 0) {
-          command.aliases.forEach((alias) => {
+          command.aliases.forEach((alias: string) => {
             this.aliases.set(alias, command);
           });
         }
