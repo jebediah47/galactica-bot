@@ -6,7 +6,6 @@
     "sourceMap": false,
     "allowJs": true,
     "checkJs": true,
-    "strict": true,
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
