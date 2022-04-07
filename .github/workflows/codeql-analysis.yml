@@ -40,6 +40,3 @@ jobs:
       
     - name: Build TypeScript
       run: npm run build
-    
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
