@@ -5,7 +5,6 @@ export const event: Event = {
   run: (client) => {
     //@ts-ignore
     process.stdout.write(`We have logged in as ${client.user.tag} \n`);
-    // eslint-disable-next-line no-console
     //@ts-ignore
     client.user.setActivity(`${client.config.BOT_PRESENCE}`, {
       //@ts-ignore
