@@ -2,6 +2,7 @@ import Client from "../client";
 import { ClientEvents } from "discord.js";
 
 interface Run {
+  //@ts-ignore
   (client: Client, ...args: any[]);
 }
 
