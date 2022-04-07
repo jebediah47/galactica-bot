@@ -5,7 +5,7 @@ export const event: Event = {
   name: "guildMemberRemove",
   run: async (client, member) => {
     const channel: TextChannel = member.guild.channels.cache.find(
-      (c) => c.name == client.config.MODLOGS_CHANNEL_NAME
+      (c: { name: string }) => c.name == client.config.MODLOGS_CHANNEL_NAME
     ) as TextChannel;
 
     if (!channel) {
