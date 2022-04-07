@@ -9,6 +9,7 @@ const height = 600;
 
 //@ts-nocheck
 const chartCallback = (ChartJS) => {
+  //@ts-nocheck
   ChartJS.plugins.register({
     beforeDraw: (chartInstance) => {
       const { chart } = chartInstance;
