@@ -17,9 +17,7 @@ export const command: Command = {
     }
 
     try {
-      const { data }: any = await axios.get(
-        `https://api.github.com/users/${name}`
-      );
+      const { data } = await axios.get(`https://api.github.com/users/${name}`);
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle(`${data.login}`)
@@ -59,7 +57,7 @@ export const command: Command = {
 
       message.channel.send({ embeds: [embed] });
     } catch (err) {
-      message.channel.send("An error occurred. " + err.message);
+      message.channel.send("An error occurred. " + err);
     }
   },
 };
