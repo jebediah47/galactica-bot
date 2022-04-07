@@ -28,11 +28,13 @@ export const command: Command = {
         "You need to have the ban permission in order to ban a member!"
       )
       .setTimestamp();
-
+    //@ts-ignore
     if (!message.member.permissions.has("BAN_MEMBERS"))
       return message.reply({ embeds: [newEmbed3] });
     if (member) {
+      //@ts-ignore
       const memberTarget = message.guild.members.cache.get(member.id);
+      //@ts-ignore
       memberTarget.ban();
       message.channel.send({ embeds: [newEmbed1] });
     } else {
