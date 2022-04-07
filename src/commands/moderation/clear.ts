@@ -46,7 +46,7 @@ export const command: Command = {
       .setTitle("Messages have been cleared")
       .setDescription(`Cleared ${args[0]} messages!`)
       .setTimestamp();
-
+    //@ts-ignore
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       return message.reply({ embeds: [newEmbed1] });
     if (isNaN(args[0])) return message.reply({ embeds: [newEmbed2] });
