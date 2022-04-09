@@ -46,24 +46,26 @@ export const command: Command = {
       .setTitle("Messages have been cleared")
       .setDescription(`Cleared ${args[0]} messages!`)
       .setTimestamp();
-    //@ts-ignore
-    if (!message.member.permissions.has("MANAGE_MESSAGES"))
-      return message.reply({ embeds: [newEmbed1] });
-    if (isNaN(args[0])) return message.reply({ embeds: [newEmbed2] });
 
-    if (args[0] > 100) return message.reply({ embeds: [newEmbed3] });
-    if (!args[0]) return message.reply({ embeds: [newEmbed4] });
-    if (args[0] < 1) return message.reply({ embeds: [newEmbed5] });
+    if (message.member != undefined) {
+      if (!message.member.permissions.has("MANAGE_MESSAGES"))
+        return message.reply({ embeds: [newEmbed1] });
+      if (isNaN(args[0])) return message.reply({ embeds: [newEmbed2] });
 
-    await message.channel.messages
-      .fetch({ limit: args[0] })
-      .then((messages) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore // disabled because it gives random error
-        message.channel.bulkDelete(messages);
-        message.channel.send({ embeds: [newEmbed6] }).then((msg) => {
-          msg.react("✅");
+      if (args[0] > 100) return message.reply({ embeds: [newEmbed3] });
+      if (!args[0]) return message.reply({ embeds: [newEmbed4] });
+      if (args[0] < 1) return message.reply({ embeds: [newEmbed5] });
+
+      await message.channel.messages
+        .fetch({ limit: args[0] })
+        .then((messages) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore // disabled because it gives random error
+          message.channel.bulkDelete(messages);
+          message.channel.send({ embeds: [newEmbed6] }).then((msg) => {
+            msg.react("✅");
+          });
         });
-      });
+    }
   },
 };
