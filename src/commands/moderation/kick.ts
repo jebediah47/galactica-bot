@@ -28,17 +28,17 @@ export const command: Command = {
         "You need to have the kick permission in order to kick a member!"
       )
       .setTimestamp();
-    //@ts-ignore
-    if (!message.member.permissions.has("KICK_MEMBERS"))
-      return message.reply({ embeds: [newEmbed3] });
-    if (member) {
-      //@ts-ignore
-      const memberTarget = message.guild.members.cache.get(member.id);
-      //@ts-ignore
-      memberTarget.kick();
-      message.channel.send({ embeds: [newEmbed] });
-    } else {
-      message.channel.send({ embeds: [newEmbed2] });
+
+    if (message.member && message.guild != null) {
+      if (!message.member.permissions.has("KICK_MEMBERS"))
+        return message.reply({ embeds: [newEmbed3] });
+      if (member) {
+        const memberTarget = message.guild.members.cache.get(member.id);
+        memberTarget?.kick();
+        message.channel.send({ embeds: [newEmbed] });
+      } else {
+        message.channel.send({ embeds: [newEmbed2] });
+      }
     }
   },
 };
