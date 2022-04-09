@@ -15,8 +15,8 @@ export const event: Event = {
       .slice(client.config.PREFIX.length)
       .trim()
       .split(/ +/g);
-    //@ts-ignore
-    const cmd = args.shift().toLowerCase();
+
+    const cmd = args.shift()?.toLowerCase();
     if (!cmd) return;
     const command = client.commands.get(cmd) || client.aliases.get(cmd);
     if (command) (command as Command).run(client, message, args);
