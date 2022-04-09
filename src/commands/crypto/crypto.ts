@@ -7,11 +7,6 @@ export const command: Command = {
   name: "crypto",
   aliases: ["crypto-price"],
   run: async (client, message, args) => {
-    let token = args[0];
-    let irl_currency = args[1] || "usd";
-    token = token.toLowerCase();
-    irl_currency = irl_currency.toLowerCase();
-
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Notice!")
@@ -21,9 +16,14 @@ export const command: Command = {
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
-    if (token === undefined) {
+    let token = args[0];
+    let irl_currency = args[1] || "usd";
+    try {
+      token = token.toLowerCase();
+    } catch (error) {
       return message.channel.send({ embeds: [errEmbed] });
     }
+    irl_currency = irl_currency.toLowerCase();
 
     try {
       const { data } = await axios.get(
