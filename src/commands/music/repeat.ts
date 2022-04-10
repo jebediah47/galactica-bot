@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-useless-escape */
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
