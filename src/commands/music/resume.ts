@@ -1,3 +1,4 @@
+import { MessageEmbed } from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -9,6 +10,10 @@ export const command: Command = {
       return message.channel.send(`There is nothing in the queue right now!`);
     }
     queue.resume();
-    message.channel.send("The song has been resumed!");
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("The song has been resumed!")
+      .setTimestamp();
+    message.channel.send({ embeds: [embed] });
   },
 };
