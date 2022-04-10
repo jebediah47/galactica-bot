@@ -10,11 +10,7 @@ export const event: Event = {
       .setColor("RANDOM")
       .setDescription(`Song: [\`${song.name}\`](${song.url})`)
       .addField("💡 Requested by:", `>>> ${song.user}`, true)
-      .addField(
-        "⏱ Duration:",
-        `>>> \`${queue.formattedCurrentTime} / ${song.formattedDuration}\``,
-        true
-      )
+      .addField("⏱ Duration:", `>>> \`${song.formattedDuration}\``, true)
       .addField(
         "🌀 Queue:",
         `>>> \`${queue.songs.length} song(s) - ${queue.formattedDuration}\``,
