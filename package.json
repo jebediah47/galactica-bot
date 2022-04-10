@@ -20,13 +20,17 @@
   },
   "homepage": "https://github.com/jebediah47/galactica-bot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.7.0",
+    "@discordjs/voice": "^0.8.0",
     "@iamtraction/google-translate": "^1.1.2",
     "axios": "^0.26.1",
     "canvacord": "^5.2.3",
-    "discord-xp": "^1.1.16",
     "discord.js": "^13.6.0",
+    "distube": "^3.3.3",
+    "ffmpeg-static": "^5.0.0",
     "fs": "0.0.1-security",
     "got": "^11.3.8",
+    "libsodium-wrappers": "^0.7.10",
     "path": "^0.12.7",
     "typescript": "^4.6.3"
   },
