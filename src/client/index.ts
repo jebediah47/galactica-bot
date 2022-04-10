@@ -1,6 +1,7 @@
 import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
 import * as ConfigJson from "../../config.json";
+import { DisTube } from "distube";
 import { readdirSync } from "fs";
 import { stdout } from "process";
 import * as path from "path";
@@ -9,6 +10,7 @@ class ExtendedClient extends Client {
   public commands: Collection<string, Command> = new Collection();
   public aliases: Collection<string, Command> = new Collection();
   public events: Collection<string, Event> = new Collection();
+  public distube: DisTube | undefined;
   public config: Config = ConfigJson;
   public constructor(intents = new Intents(32767)) {
     super({ intents });
@@ -40,8 +42,21 @@ class ExtendedClient extends Client {
     readdirSync(event_files).forEach(async (file) => {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
-      this.on(event.name, event.run.bind(null, this));
+      this.on(event.name, event.run.bind(null, this)) &&
+        this.distube
+          ?.on(event.name, event.run.bind(null, this))
+          .setMaxListeners(2);
     });
+    if (this.config.MUSIC_IS_ENABLED === true) {
+      this.distube = new DisTube(this, {
+        searchSongs: 0,
+        emitNewSongOnly: true,
+      });
+    } else {
+      process.stdout.write(
+        "Music has been disabled in this session due to MUSIC_IS_ENABLED value being disabled in the config.json \n"
+      );
+    }
   }
 }
 
