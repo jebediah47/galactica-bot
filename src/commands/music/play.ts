@@ -11,7 +11,7 @@ export const command: Command = {
     const music = args.join(" ");
     if (!music) {
       return message.channel.send(
-        "Please enter a song url or query to search."
+        "Please enter a song URL or query to search."
       );
     }
     //@ts-ignore
