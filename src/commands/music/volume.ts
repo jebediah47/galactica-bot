@@ -3,7 +3,7 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "volume",
-  aliases: ["v", "set-volume"],
+  aliases: ["v", "vol", "set-volume"],
   run: (client, message, args) => {
     const queue = client.distube?.getQueue(message);
     if (!queue) {
