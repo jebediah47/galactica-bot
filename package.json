@@ -22,6 +22,8 @@
   "dependencies": {
     "@iamtraction/google-translate": "^1.1.2",
     "axios": "^0.26.1",
+    "canvacord": "^5.2.3",
+    "discord-xp": "^1.1.16",
     "discord.js": "^13.6.0",
     "fs": "0.0.1-security",
     "got": "^11.3.8",
@@ -40,6 +42,6 @@
     "tslib": "^2.3.1"
   },
   "engines": {
-    "node": "17.5.0"
+    "node": "16.14.2"
   }
 }
