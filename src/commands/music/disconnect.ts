@@ -5,5 +5,6 @@ export const command: Command = {
   aliases: ["leave"],
   run: (client, message) => {
     client.distube?.voices.leave(message);
+    message.reply("👋");
   },
 };
