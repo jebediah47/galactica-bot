@@ -1,3 +1,4 @@
+import { MessageEmbed } from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -9,11 +10,17 @@ export const command: Command = {
       return message.channel.send(`There is nothing in the queue right now!`);
     } else if (queue.paused) {
       queue.resume();
-      return message.channel.send(
-        "The song was already paused but I resumed it for you 😃"
-      );
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("The song was already paused but I resumed it for you 😃")
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed] });
     }
-    message.channel.send("The queue has been stopped!");
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("The queue has been stopped!")
+      .setTimestamp();
+    message.channel.send({ embeds: [embed] });
     client.distube?.pause(message);
   },
 };
