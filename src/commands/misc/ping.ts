@@ -4,7 +4,7 @@ import { stdout } from "process";
 
 export const command: Command = {
   name: "ping",
-  aliases: ["p"],
+  aliases: ["pp"],
   run: async (client, message) => {
     const embed = new MessageEmbed()
       .setColor("RANDOM")
