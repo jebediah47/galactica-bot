@@ -34,11 +34,19 @@ export const command: Command = {
             "This one will enable repeat mode throughout the queue."
         )
         .setTimestamp();
-        return message.channel.send({ embeds: [embed] })
+      return message.channel.send({ embeds: [embed] })
     }
-    //@ts-ignore
-    mode = queue.setRepeatMode(mode);
-    mode = mode ? (mode === 2 ? "Repeat queue" : "Repeat song") : "Off";
-    message.channel.send(`Set repeat mode to \`${mode}\``);
+    try {
+      //@ts-ignore
+      mode = queue.setRepeatMode(mode);
+      mode = mode ? (mode === 2 ? "Repeat queue" : "Repeat song") : "Off";
+      const mode_embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle(`Set repeat mode to \`${mode}\``)
+        .setTimestamp();
+      message.channel.send({ embeds: [mode_embed] });
+    } catch (err) {
+      return message.channel.send(`${err}`);
+    }
   },
 };
