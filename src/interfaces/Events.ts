@@ -1,4 +1,5 @@
 import Client from "../client";
+import { DisTubeEvents } from "distube";
 import { ClientEvents } from "discord.js";
 
 interface Run {
@@ -7,6 +8,6 @@ interface Run {
 }
 
 export interface Event {
-  name: keyof ClientEvents;
+  name: keyof ClientEvents | keyof DisTubeEvents;
   run: Run;
 }
