@@ -51,6 +51,8 @@ class ExtendedClient extends Client {
       this.distube = new DisTube(this, {
         searchSongs: 0,
         emitNewSongOnly: true,
+        emitAddSongWhenCreatingQueue: false,
+        emitAddListWhenCreatingQueue: false,
       });
     } else {
       process.stdout.write(
