@@ -29,16 +29,14 @@ export const command: Command = {
       )
       .setTimestamp();
 
-    if (message.member && message.guild != null) {
-      if (!message.member.permissions.has("BAN_MEMBERS"))
-        return message.reply({ embeds: [newEmbed3] });
-      if (member) {
-        const memberTarget = message.guild.members.cache.get(member.id);
-        memberTarget?.ban();
-        message.channel.send({ embeds: [newEmbed1] });
-      } else {
-        message.channel.send({ embeds: [newEmbed2] });
-      }
+    if (!message.member?.permissions.has("BAN_MEMBERS"))
+      return message.reply({ embeds: [newEmbed3] });
+    if (member) {
+      const memberTarget = message.guild?.members.cache.get(member.id);
+      memberTarget?.ban();
+      message.channel.send({ embeds: [newEmbed1] });
+    } else {
+      message.channel.send({ embeds: [newEmbed2] });
     }
   },
 };
