@@ -9,11 +9,10 @@ export const command: Command = {
       return message.channel.send("There is nothing in the queue!");
     }
     try {
-      const song = await queue.skip();
-      message.channel.send(`Skipped! Now playing:\n${song.name}`);
-    } catch (e) {
-      return message.channel.send(`${e}`);
+      await client.distube?.skip(message);
+      message.channel.send(`Skipped song!`);
+    } catch (err) {
+      return message.channel.send(`${err}`);
     }
-    client.distube?.skip(message);
   },
 };
