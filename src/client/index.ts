@@ -1,6 +1,7 @@
 import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
 import * as ConfigJson from "../../config.json";
+import { YtDlpPlugin } from "@distube/yt-dlp";
 import { DisTube } from "distube";
 import { readdirSync } from "fs";
 import { stdout } from "process";
@@ -53,6 +54,8 @@ class ExtendedClient extends Client {
         emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: false,
         emitAddListWhenCreatingQueue: false,
+        plugins: [new YtDlpPlugin()],
+        youtubeDL: false,
       });
     } else {
       process.stdout.write(
