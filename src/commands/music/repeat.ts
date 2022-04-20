@@ -25,7 +25,7 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle("No repeat options sent!")
         .setDescription(
-          `To enable repeat you need to mention one of the following modes \n\n` +
+          `To enable repeat you need to mention one of the following modes \n` +
            "\`0\` **off** \n" +
             "This is self explanatory, it switches the repeat mode off. \n" +
            "\`1\` **song** \n" +
