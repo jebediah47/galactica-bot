@@ -23,7 +23,12 @@ export const command: Command = {
         .setTimestamp();
       message.channel.send({ embeds: [embed] });
     } catch (err) {
-      return message.channel.send(`${err}`);
+      const errEmbed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return message.channel.send({ embeds: [errEmbed] });
     }
   },
 };
