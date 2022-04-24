@@ -1,18 +1,26 @@
 import { Command } from "../../interfaces";
+import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "play",
   aliases: ["p"],
   run: (client, message, args) => {
-    if (!message.member?.voice.channel)
-      return message.channel.send(
-        "You must be in a voice channel to use this command."
-      );
+    if (!message.member?.voice.channel) {
+      const noVoiceChannel = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription("You must be in a voice channel to use this command!")
+        .setTimestamp();
+      return message.channel.send({ embeds: [noVoiceChannel] });
+    }
     const music = args.join(" ");
     if (!music) {
-      return message.channel.send(
-        "Please enter a song URL or query to search."
-      );
+      const noMusic = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription("Please enter a song URL or query to search")
+        .setTimestamp();
+      return message.channel.send({ embeds: [noMusic] });
     }
     //@ts-ignore
     client.distube?.play(message.member.voice.channel, music, {
