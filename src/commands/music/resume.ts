@@ -7,7 +7,12 @@ export const command: Command = {
   run: (client, message) => {
     const queue = client.distube?.getQueue(message);
     if (!queue) {
-      return message.channel.send(`There is nothing in the queue right now!`);
+      const noQueue = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription("There is nothing in queue!")
+        .setTimestamp();
+      return message.channel.send({ embeds: [noQueue] });
     }
     queue.resume();
     const embed = new MessageEmbed()
