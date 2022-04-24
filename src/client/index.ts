@@ -59,7 +59,7 @@ class ExtendedClient extends Client {
       });
     } else {
       process.stdout.write(
-        "Music has been disabled in this session due to MUSIC_IS_ENABLED value being disabled in the config.json \n"
+        "Music has been disabled for this session due to MUSIC_IS_ENABLED value being false in the config.json \n"
       );
     }
   }
