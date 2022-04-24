@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
@@ -7,7 +6,14 @@ export const command: Command = {
   aliases: ["rp", "loop"],
   run: (client, message, args) => {
     const queue = client.distube?.getQueue(message);
-    if (!queue) return message.channel.send(`There is nothing playing!`);
+    if (!queue) {
+      const nothingPlaying = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription("There is nothing playing!")
+        .setTimestamp();
+      return message.channel.send({ embeds: [nothingPlaying] });
+    }
     let mode = null;
     switch (args[0]) {
       case "off":
@@ -26,15 +32,18 @@ export const command: Command = {
         .setTitle("No repeat options sent!")
         .setDescription(
           `To enable repeat you need to mention one of the following modes \n` +
+            // eslint-disable-next-line prettier/prettier
            "\`0\` **off** \n" +
             "This is self explanatory, it switches the repeat mode off. \n" +
+            // eslint-disable-next-line prettier/prettier
            "\`1\` **song** \n" +
             "This mode will enable the repeat mode only in the currently playing song. \n" +
+            // eslint-disable-next-line prettier/prettier
            "\`2\` **queue** \n" +
             "This one will enable repeat mode throughout the queue."
         )
         .setTimestamp();
-      return message.channel.send({ embeds: [embed] })
+      return message.channel.send({ embeds: [embed] });
     }
     try {
       //@ts-ignore
