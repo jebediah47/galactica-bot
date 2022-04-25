@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const command: Command = {
   name: "bored",
-  aliases: ["activity", "idea"],
+  aliases: ["activity", "idea", "brd"],
   run: async (client, message) => {
     try {
       const { data } = await axios.get("https://www.boredapi.com/api/activity");
