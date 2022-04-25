@@ -43,10 +43,10 @@ class ExtendedClient extends Client {
     readdirSync(event_files).forEach(async (file) => {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
-      this.on(event.name, event.run.bind(null, this)) &&
-        this.distube
-          ?.on(event.name, event.run.bind(null, this))
-          .setMaxListeners(2);
+      this.on(event.name, event.run.bind(null, this));
+      this.distube
+        ?.on(event.name, event.run.bind(null, this))
+        .setMaxListeners(2);
     });
     if (this.config.MUSIC_IS_ENABLED === true) {
       this.distube = new DisTube(this, {
