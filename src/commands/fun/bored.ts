@@ -13,6 +13,10 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle("Here's something for you to do!")
         .setDescription(data.activity)
+        .addFields(
+          { name: "Type", value: capitalize(`${data.type}`) },
+          { name: "Participants", value: `\`${data.participants}\`` }
+        )
         .setTimestamp();
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
