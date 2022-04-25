@@ -14,11 +14,20 @@ export const command: Command = {
         .setTimestamp();
       return message.channel.send({ embeds: [noQueue] });
     }
-    queue.resume();
-    const embed = new MessageEmbed()
-      .setColor("RANDOM")
-      .setTitle("The song has been resumed!")
-      .setTimestamp();
-    message.channel.send({ embeds: [embed] });
+    try {
+      queue.resume();
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("The song has been resumed!")
+        .setTimestamp();
+      message.channel.send({ embeds: [embed] });
+    } catch (err) {
+      const errEmbed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return message.channel.send({ embeds: [errEmbed] });
+    }
   },
 };
