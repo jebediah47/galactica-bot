@@ -15,7 +15,6 @@ export const command: Command = {
         .setTitle("Here is a image of a bird!")
         .setImage(data.url)
         .setTimestamp();
-
       return message.channel.send({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
