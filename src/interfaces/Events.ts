@@ -3,8 +3,7 @@ import { DisTubeEvents } from "distube";
 import { ClientEvents } from "discord.js";
 
 interface Run {
-  //@ts-ignore
-  (client: Client, ...args: any[]);
+  (client: Client, ...args: any[]): void;
 }
 
 export interface Event {
