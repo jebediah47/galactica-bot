@@ -16,13 +16,22 @@ export const command: Command = {
       .setTimestamp();
 
     if (!query) return message.reply({ embeds: [embed] });
-    const translated = await translate(query, { to: "en" });
-    const embed2 = new MessageEmbed()
-      .setColor("RANDOM")
-      .setTitle("**This Translates to:**")
-      .setDescription(translated.text)
-      .setTimestamp();
 
-    message.channel.send({ embeds: [embed2] });
+    try {
+      const translated = await translate(query, { to: "en" });
+      const embed2 = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("**This Translates to:**")
+        .setDescription(translated.text)
+        .setTimestamp();
+
+      message.channel.send({ embeds: [embed2] });
+    } catch (err) {
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return message.reply({ embeds: [embed] });
+    }
   },
 };
