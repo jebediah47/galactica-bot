@@ -14,7 +14,7 @@ export const command: Command = {
         .setTimestamp();
       return message.channel.send({ embeds: [nothingPlaying] });
     }
-    let mode = null;
+    let mode;
     switch (args[0]) {
       case "off":
         mode = 0;
@@ -46,7 +46,6 @@ export const command: Command = {
       return message.channel.send({ embeds: [embed] });
     }
     try {
-      //@ts-ignore
       mode = queue.setRepeatMode(mode);
       mode = mode ? (mode === 2 ? "Repeat queue" : "Repeat song") : "Off";
       const mode_embed = new MessageEmbed()
