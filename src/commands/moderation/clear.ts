@@ -54,14 +54,31 @@ export const command: Command = {
     if (args[0] > 100) return message.reply({ embeds: [newEmbed3] });
     if (!args[0]) return message.reply({ embeds: [newEmbed4] });
     if (args[0] < 1) return message.reply({ embeds: [newEmbed5] });
-
     await message.channel.messages
       .fetch({ limit: args[0] })
       .then((messages) => {
-        // @ts-ignore // disabled because it gives random error
-        message.channel.bulkDelete(messages);
+        if (message.channel.type === "GUILD_TEXT")
+          message.channel.bulkDelete(messages).catch((err) => {
+            const embed = new MessageEmbed()
+              .setColor("RANDOM")
+              .setDescription(`${err}`)
+              .setTimestamp();
+            return message.reply({ embeds: [embed] });
+          });
         message.channel.send({ embeds: [newEmbed6] }).then((msg) => {
           msg.react("✅");
+          const filter = (reaction: any, user: { id: string }) => {
+            return (
+              reaction.emoji.name === "✅" && user.id === message.author.id
+            );
+          };
+          const collector = msg.createReactionCollector({
+            filter,
+            time: 30000,
+          });
+          collector.on("collect", () => {
+            msg.delete();
+          });
         });
       });
   },
