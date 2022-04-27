@@ -16,17 +16,24 @@ export const command: Command = {
         .setTimestamp();
       return message.channel.send({ embeds: [embed] });
     }
+    try {
+      const pleaseWait = message.channel.send(
+        "Please wait while your text is converted to QR-code"
+      );
 
-    const pleaseWait = message.channel.send(
-      "Please wait while your text is converted to QR-code"
-    );
-
-    const embed1 = new MessageEmbed()
-      .setImage(
-        `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`
-      )
-      .setColor("RANDOM")
-      .setTimestamp();
-    (await pleaseWait).edit({ embeds: [embed1] });
+      const embed1 = new MessageEmbed()
+        .setImage(
+          `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`
+        )
+        .setColor("RANDOM")
+        .setTimestamp();
+      (await pleaseWait).edit({ embeds: [embed1] });
+    } catch (err) {
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return message.reply({ embeds: [embed] });
+    }
   },
 };
