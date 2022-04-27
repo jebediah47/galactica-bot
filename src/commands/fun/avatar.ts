@@ -7,7 +7,9 @@ export const command: Command = {
   run: (client, message) => {
     const user = message.mentions.users.first() || message.author;
     const embed = new MessageEmbed()
-      .setAuthor(`${user.tag}'s avatar!`)
+      .setAuthor({
+        name: `${user.tag} 's avatar`,
+      })
       .setTimestamp()
       .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
       .setTimestamp();
