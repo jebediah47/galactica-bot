@@ -88,7 +88,6 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}catfact\``,
           value: "Sends a random cat-fact in the cat",
-          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}meme\``,
@@ -121,7 +120,6 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}ping\``,
           value: "Shows you the bot's ping",
-          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}qr\``,
@@ -172,7 +170,6 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}stop\``,
           value: "Pauses the queue",
-          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}resume\``,
@@ -187,7 +184,6 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}volume\``,
           value: "Sets the volume of the queue",
-          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}disconnect\``,
