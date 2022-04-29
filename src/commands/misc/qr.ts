@@ -5,7 +5,7 @@ export const command: Command = {
   name: "qr",
   aliases: ["qrcode", "qr-code"],
   run: async (client, message, args) => {
-    const text = args.join(" ");
+    let text: string = args.join(" ");
     if (!text) {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
@@ -20,7 +20,7 @@ export const command: Command = {
       const pleaseWait = message.channel.send(
         "Please wait while your text is converted to QR-code"
       );
-
+      text = encodeURIComponent(text);
       const embed1 = new MessageEmbed()
         .setImage(
           `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`
