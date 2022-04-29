@@ -7,7 +7,7 @@ export const event: Event = {
   run: (client, queue: Queue, song: Song) => {
     if (typeof song.thumbnail === "string") {
       const embed = new MessageEmbed()
-        .setTitle("Added a son to queue...")
+        .setTitle("Added a song to queue...")
         .setColor("RANDOM")
         .setDescription(`Song: [\`${song.name}\`](${song.url})`)
         .addField("💡 Requested by:", `>>> ${song.user}`, true)
