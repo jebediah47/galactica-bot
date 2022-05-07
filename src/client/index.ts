@@ -2,10 +2,10 @@ import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
 import * as ConfigJson from "../../config.json";
 import { YtDlpPlugin } from "@distube/yt-dlp";
+import { readdirSync } from "node:fs";
 import { DisTube } from "distube";
-import { readdirSync } from "fs";
+import * as path from "node:path";
 import { stdout } from "process";
-import * as path from "path";
 
 class ExtendedClient extends Client {
   public commands: Collection<string, Command> = new Collection();
