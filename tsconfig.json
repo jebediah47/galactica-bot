@@ -8,10 +8,10 @@
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
+    "importHelpers": true,
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "esnext.asynciterable", "DOM"],
     "moduleResolution": "node"
