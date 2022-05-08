@@ -78,21 +78,22 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}avatar\``,
           value: `**Aliases**: \`["pfp"]\`\n Shows you any mentioned user's avatar`,
-          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}bored\``,
           value: `**Aliases**: \`["activity", "idea", "brd"]\`\n Suggests a random activity for you to do!`,
-          inline: true,
         },
         {
-          name: `\`${client.config.PREFIX}catfact\``,
-          value: `**Aliases**: \`["cat-fact", "catFact"]\`\n Sends a random cat-fact in the cat`,
+          name: `\`${client.config.PREFIX}tictactoe\``,
+          value: `**Aliases**: \`none\`\n Creates a tictactoe game for you to play against the bot!`,
         },
         {
           name: `\`${client.config.PREFIX}translate\``,
           value: `**Aliases**: \`["langtrans", "google-translate"]\`\n Send something in any language and this command will translate it for you`,
-          inline: true,
+        },
+        {
+          name: `\`${client.config.PREFIX}catfact\``,
+          value: `**Aliases**: \`["cat-fact", "catFact"]\`\n Sends a random cat-fact in the cat`,
         }
       )
       .setTimestamp();
@@ -213,27 +214,39 @@ export const command: Command = {
       filter,
       maxComponents: 5,
     });
-    collector.on("collect", async (collected: any) => {
-      const value = collected.values[0];
-      collected.deferUpdate();
-      switch (value) {
-        case "first_option":
-          message.channel.send({ embeds: [cryptoEmbed] });
-          break;
-        case "second_option":
-          message.channel.send({ embeds: [funEmbed] });
-          break;
-        case "third_option":
-          message.channel.send({ embeds: [miscEmbed] });
-          break;
-        case "fourth_option":
-          message.channel.send({ embeds: [modEmbed] });
-          break;
-        case "fifth_option":
-          message.channel.send({ embeds: [musicEmbed] });
-          break;
-      }
-    });
-    message.channel.send({ embeds: [embed], components: [row] });
+    try {
+      collector.on("collect", async (collected: any) => {
+        const value = collected.values[0];
+        collected.deferUpdate();
+        switch (value) {
+          case "first_option":
+            message.channel.send({ embeds: [cryptoEmbed] });
+            break;
+          case "second_option":
+            message.channel.send({ embeds: [funEmbed] });
+            break;
+          case "third_option":
+            message.channel.send({ embeds: [miscEmbed] });
+            break;
+          case "fourth_option":
+            message.channel.send({ embeds: [modEmbed] });
+            break;
+          case "fifth_option":
+            message.channel.send({ embeds: [musicEmbed] });
+            break;
+        }
+      });
+      message.channel.send({ embeds: [embed], components: [row] });
+    } catch (err) {
+      const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("We are sorry but...")
+        .setDescription(`${err}`)
+        .setFooter({
+          text: "Please try running the command again",
+        })
+        .setTimestamp();
+      return message.channel.send({ embeds: [embed] });
+    }
   },
 };
