@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 
 export const event: Event = {
   name: "messageCreate",
-  run: (client, message: Message) => {
+  run: async (client, message: Message) => {
     if (
       message.author.bot ||
       !message.guild ||
@@ -18,7 +18,8 @@ export const event: Event = {
 
     const cmd = args.shift()?.toLowerCase();
     if (!cmd) return;
-    const command = client.commands.get(cmd) || client.aliases.get(cmd);
+    const command =
+      (await client.commands.get(cmd)) || (await client.aliases.get(cmd));
     if (command) (command as Command).run(client, message, args);
   },
 };
