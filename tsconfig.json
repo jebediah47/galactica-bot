@@ -2,19 +2,19 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "esnext",
-    "sourceMap": false,
+    "target": "es6",
     "strict": true,
     "allowJs": true,
     "checkJs": true,
+    "sourceMap": false,
     "skipLibCheck": true,
     "importHelpers": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "esnext.asynciterable", "DOM"],
-    "moduleResolution": "node"
   },
   "include": ["src/**/*", "config.json"]
 }
