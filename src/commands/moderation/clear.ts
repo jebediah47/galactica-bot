@@ -1,4 +1,5 @@
 import { MessageEmbed, MessageReaction } from "discord.js";
+import { setTimeout } from "timers";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -56,29 +57,31 @@ export const command: Command = {
     if (args[0] < 1) return message.reply({ embeds: [newEmbed5] });
     await message.channel.messages
       .fetch({ limit: args[0] })
-      .then((messages) => {
+      .then(async (messages) => {
         if (message.channel.type === "GUILD_TEXT")
-          message.channel.bulkDelete(messages).catch((err) => {
+          message.channel.bulkDelete(messages).catch(async (err) => {
             const embed = new MessageEmbed()
               .setColor("RANDOM")
               .setDescription(`${err}`)
               .setTimestamp();
-            return message.reply({ embeds: [embed] });
+            (await success).delete();
+            const errReply = message.reply({ embeds: [embed] });
+            async function errReplyTimeout() {
+              (await errReply).delete();
+            }
+            setTimeout(errReplyTimeout, 15000);
           });
-        message.channel.send({ embeds: [newEmbed6] }).then((msg) => {
-          msg.react("✅");
-          const filter = (reaction: MessageReaction, user: { id: string }) => {
-            return (
-              reaction.emoji.name === "✅" && user.id === message.author.id
-            );
-          };
-          const collector = msg.createReactionCollector({
-            filter,
-            time: 30000,
-          });
-          collector.on("collect", () => {
-            msg.delete();
-          });
+        const success = message.channel.send({ embeds: [newEmbed6] });
+        (await success).react("✅");
+        const filter = (reaction: MessageReaction, user: { id: string }) => {
+          return reaction.emoji.name === "✅" && user.id === message.author.id;
+        };
+        const collector = (await success).createReactionCollector({
+          filter,
+          time: 30000,
+        });
+        collector.on("collect", async () => {
+          (await success).delete();
         });
       });
   },
