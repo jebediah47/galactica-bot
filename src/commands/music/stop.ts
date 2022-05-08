@@ -3,7 +3,7 @@ import { Command } from "../../interfaces";
 
 export const command: Command = {
   name: "stop",
-  aliases: ["s", "pause"],
+  aliases: ["pause"],
   run: (client, message) => {
     const queue = client.distube?.getQueue(message);
     if (!queue) {
