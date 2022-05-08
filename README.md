@@ -5,8 +5,8 @@
 <p align="center">A open-source Discord bot built with TypeScript</p>
 
 <p align="center">
+  <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/node.js.yml/badge.svg" alt="CI Status"></img>
   <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"></img>
-  <img src="https://img.shields.io/github/workflow/status/jebediah47/galactica-bot/CodeQL" alt="Build Status"></img>
   <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"></img>
   <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version">
 </p>
