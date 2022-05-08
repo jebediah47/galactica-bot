@@ -135,18 +135,32 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}ban\``,
           value: `**Aliases**: \`none\`\n Gives you the ability to ban any member`,
+          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}clear\``,
           value: `**Aliases**: \`["purge", "cls"]\`\n Purges a specified amount of messages`,
+          inline: true,
+        },
+        {
+          name: `\`${client.config.PREFIX}lock\``,
+          value: `**Aliases**: \`none\`\n Locks any or the current channel`,
+          inline: true,
+        },
+        {
+          name: `\`${client.config.PREFIX}unlock\``,
+          value: `**Aliases**: \`none\`\n Unlocks any or the current channel`,
+          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}kick\``,
           value: `**Aliases**: \`none\`\n Gives you the ability to kick any members`,
+          inline: true,
         },
         {
           name: `\`${client.config.PREFIX}shutdown\``,
           value: `**Aliases**: \`["poweroff"]\`\n Shuts down the bot...`,
+          inline: true,
         }
       )
       .setTimestamp();
