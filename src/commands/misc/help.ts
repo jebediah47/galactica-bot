@@ -58,15 +58,15 @@ export const command: Command = {
       .addFields(
         {
           name: `\`${client.config.PREFIX}bitcoin\``,
-          value: `Shows current [\`$BTC\`](https://coinmarketcap.com/currencies/bitcoin/) price`,
+          value: `**Aliases**: \`["btc", "BITCOIN", "BTC"]\`\n Shows current [\`$BTC\`](https://coinmarketcap.com/currencies/bitcoin/) price`,
         },
         {
           name: `\`${client.config.PREFIX}ethereum\``,
-          value: `Shows current [\`$ETH\`](https://coinmarketcap.com/currencies/ethereum/) price`,
+          value: `**Aliases**: \`["eth", "ETHEREUM", "ETH"]\`\n Shows current [\`$ETH\`](https://coinmarketcap.com/currencies/ethereum/) price`,
         },
         {
           name: `\`${client.config.PREFIX}crypto\``,
-          value: "Shows the price of any crypto",
+          value: `**Aliases**: \`["crypto-price"]\`\n Shows the price of any crypto`,
         }
       )
       .setTimestamp();
@@ -77,22 +77,21 @@ export const command: Command = {
       .addFields(
         {
           name: `\`${client.config.PREFIX}avatar\``,
-          value: "Shows you any mentioned user's avatar",
+          value: `**Aliases**: \`["pfp"]\`\n Shows you any mentioned user's avatar`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}bored\``,
-          value: "Suggests a random activity for you to do!",
+          value: `**Aliases**: \`["activity", "idea", "brd"]\`\n Suggests a random activity for you to do!`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}catfact\``,
-          value: "Sends a random cat-fact in the cat",
+          value: `**Aliases**: \`["cat-fact", "catFact"]\`\n Sends a random cat-fact in the cat`,
         },
         {
           name: `\`${client.config.PREFIX}translate\``,
-          value:
-            "Send something in any language and this command will translate it for you",
+          value: `**Aliases**: \`["langtrans", "google-translate"]\`\n Send something in any language and this command will translate it for you`,
           inline: true,
         }
       )
@@ -104,26 +103,26 @@ export const command: Command = {
       .addFields(
         {
           name: `\`${client.config.PREFIX}dictionary\``,
-          value: "A fully-fledged english dictionary",
+          value: `**Aliases**: \`["urban-dictionary"]\`\n A fully-fledged english dictionary`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}github\``,
-          value: "Search any GitHub profile with the use of this command",
+          value: `**Aliases**: \`none\`\n Search any GitHub profile with the use of this command`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}ping\``,
-          value: "Shows you the bot's ping",
+          value: `**Aliases**: \`["pp"]\`\n Shows you the bot's ping`,
         },
         {
           name: `\`${client.config.PREFIX}qr\``,
-          value: "Converts any text you enter to a QR code",
+          value: `**Aliases**: \`["qrcode", "qr-code"]\`\n Converts any text you enter to a QR code`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}stats\``,
-          value: "Shows the stats of the current bot session",
+          value: `**Aliases**: \`["bot-stats", "botstats"]\`\n Shows the stats of the current bot session`,
           inline: true,
         }
       )
@@ -135,19 +134,19 @@ export const command: Command = {
       .addFields(
         {
           name: `\`${client.config.PREFIX}ban\``,
-          value: "Gives you the ability to ban any member",
+          value: `**Aliases**: \`none\`\n Gives you the ability to ban any member`,
         },
         {
           name: `\`${client.config.PREFIX}clear\``,
-          value: "Purges a specified amount of messages",
+          value: `**Aliases**: \`["purge", "cls"]\`\n Purges a specified amount of messages`,
         },
         {
           name: `\`${client.config.PREFIX}kick\``,
-          value: "Gives you the ability to kick any members",
+          value: `**Aliases**: \`none\`\n Gives you the ability to kick any members`,
         },
         {
           name: `\`${client.config.PREFIX}shutdown\``,
-          value: "Shuts down the bot...",
+          value: `**Aliases**: \`["poweroff"]\`\n Shuts down the bot...`,
         }
       )
       .setTimestamp();
@@ -158,35 +157,35 @@ export const command: Command = {
       .addFields(
         {
           name: `\`${client.config.PREFIX}play\``,
-          value: "Plays music",
+          value: `**Aliases**: \`["p"]\`\n Plays music`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}skip\``,
-          value: "Skips the song currently playing",
+          value: `**Aliases**: \`["s", "skp"]\`\n Skips the song currently playing`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}stop\``,
-          value: "Pauses the queue",
+          value: `**Aliases**: \`["pause"]\`\n Pauses the queue`,
         },
         {
           name: `\`${client.config.PREFIX}resume\``,
-          value: "Resumes the queue",
+          value: `**Aliases**: \`["rs", "continue"]\`\n Resumes the queue`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}repeat\``,
-          value: "Sets the repeat mode of the queue",
+          value: `**Aliases**: \`["rp", "loop"]\`\n Sets the repeat mode of the queue`,
           inline: true,
         },
         {
           name: `\`${client.config.PREFIX}volume\``,
-          value: "Sets the volume of the queue",
+          value: `**Aliases**: \`["v", "vol", "set-volume"]\`\n Sets the volume of the queue`,
         },
         {
           name: `\`${client.config.PREFIX}disconnect\``,
-          value: "Disconnects the bot from the voice channel",
+          value: `**Aliases**: \`["leave"]\`\n Disconnects the bot from the voice channel`,
           inline: true,
         }
       )
