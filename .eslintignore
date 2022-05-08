@@ -1,3 +1,4 @@
+buildCleanup.mjs
 .eslintrc.js
 node_modules
 build
