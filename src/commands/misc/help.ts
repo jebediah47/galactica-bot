@@ -90,11 +90,6 @@ export const command: Command = {
           value: "Sends a random cat-fact in the cat",
         },
         {
-          name: `\`${client.config.PREFIX}meme\``,
-          value: "Sends a random meme",
-          inline: true,
-        },
-        {
           name: `\`${client.config.PREFIX}translate\``,
           value:
             "Send something in any language and this command will translate it for you",
@@ -149,6 +144,10 @@ export const command: Command = {
         {
           name: `\`${client.config.PREFIX}kick\``,
           value: "Gives you the ability to kick any members",
+        },
+        {
+          name: `\`${client.config.PREFIX}shutdown\``,
+          value: "Shuts down the bot...",
         }
       )
       .setTimestamp();
