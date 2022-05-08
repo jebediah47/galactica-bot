@@ -1,5 +1,5 @@
+import { MessageEmbed, MessageReaction } from "discord.js";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "clear",
@@ -67,7 +67,7 @@ export const command: Command = {
           });
         message.channel.send({ embeds: [newEmbed6] }).then((msg) => {
           msg.react("✅");
-          const filter = (reaction: any, user: { id: string }) => {
+          const filter = (reaction: MessageReaction, user: { id: string }) => {
             return (
               reaction.emoji.name === "✅" && user.id === message.author.id
             );
