@@ -2,7 +2,7 @@ import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
 import * as ConfigJson from "../../config.json";
 import { YtDlpPlugin } from "@distube/yt-dlp";
-import { readdirSync } from "node:fs";
+import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
 import * as path from "node:path";
 import { stdout } from "process";
@@ -20,8 +20,8 @@ class ExtendedClient extends Client {
   public async init(): Promise<void> {
     this.login(this.config.TOKEN);
     const command_files = path.join(__dirname, "..", "commands");
-    readdirSync(command_files).forEach(async (dir) => {
-      const commands = readdirSync(`${command_files}/${dir}`).filter(
+    (await readdir(command_files)).forEach(async (dir) => {
+      const commands = (await readdir(`${command_files}/${dir}`)).filter(
         (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
       );
       if (command_files.length <= 0) {
@@ -40,7 +40,7 @@ class ExtendedClient extends Client {
       }
     });
     const event_files = path.join(__dirname, "..", "events");
-    readdirSync(event_files).forEach(async (file) => {
+    (await readdir(event_files)).forEach(async (file) => {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
       this.on(event.name, event.run.bind(null, this));
