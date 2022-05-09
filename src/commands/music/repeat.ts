@@ -26,24 +26,24 @@ export const command: Command = {
         mode = 2;
         break;
     }
-    if (!args[0]) {
-      const embed = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("No repeat options sent!")
-        .setDescription(
-          `To enable repeat you need to mention one of the following modes \n` +
-            // eslint-disable-next-line prettier/prettier
+    const errEmbed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("No repeat option set!")
+      .setDescription(
+        `To enable repeat you need to mention one of the following modes \n` +
+          // eslint-disable-next-line prettier/prettier
            "\`0\` **off** \n" +
-            "This is self explanatory, it switches the repeat mode off. \n" +
-            // eslint-disable-next-line prettier/prettier
+          "This is self explanatory, it switches the repeat mode off. \n" +
+          // eslint-disable-next-line prettier/prettier
            "\`1\` **song** \n" +
-            "This mode will enable the repeat mode only in the currently playing song. \n" +
-            // eslint-disable-next-line prettier/prettier
+          "This mode will enable the repeat mode only in the currently playing song. \n" +
+          // eslint-disable-next-line prettier/prettier
            "\`2\` **queue** \n" +
-            "This one will enable repeat mode throughout the queue."
-        )
-        .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
+          "This one will enable repeat mode throughout the queue."
+      )
+      .setTimestamp();
+    if (!args[0]) {
+      return message.channel.send({ embeds: [errEmbed] });
     }
     try {
       mode = queue.setRepeatMode(mode);
