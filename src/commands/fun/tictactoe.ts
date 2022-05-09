@@ -1,4 +1,3 @@
-//@ts-ignore
 import * as TicTacToe from "discord-tictactoe";
 import { Command } from "../../interfaces";
 
