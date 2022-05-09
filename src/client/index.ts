@@ -1,5 +1,7 @@
 import { Client, Collection, Intents } from "discord.js";
 import { Command, Event, Config } from "../interfaces";
+import { SoundCloudPlugin } from "@distube/soundcloud";
+import { SpotifyPlugin } from "@distube/spotify";
 import * as ConfigJson from "../../config.json";
 import { YtDlpPlugin } from "@distube/yt-dlp";
 import { readdir } from "node:fs/promises";
@@ -54,8 +56,15 @@ class ExtendedClient extends Client {
         emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: false,
         emitAddListWhenCreatingQueue: false,
-        plugins: [new YtDlpPlugin()],
+        plugins: [
+          new YtDlpPlugin(),
+          new SpotifyPlugin(),
+          new SoundCloudPlugin(),
+        ],
         youtubeDL: false,
+      });
+      this.distube.on("error", () => {
+        return;
       });
     } else {
       process.stdout.write(
