@@ -22,11 +22,11 @@ export const command: Command = {
         .setTimestamp();
       return message.channel.send({ embeds: [noMusic] });
     }
-    //@ts-ignore
-    client.distube?.play(message.member.voice.channel, music, {
-      member: message.member,
-      textChannel: message.channel,
-      message,
-    });
+    if (message.channel.type === "GUILD_TEXT")
+      client.distube?.play(message.member.voice.channel, music, {
+        member: message.member,
+        textChannel: message.channel,
+        message,
+      });
   },
 };
