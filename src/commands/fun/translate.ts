@@ -1,4 +1,4 @@
-import translate = require("@iamtraction/google-translate");
+import * as translate from "@iamtraction/google-translate";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
