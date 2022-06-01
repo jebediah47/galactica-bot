@@ -4,24 +4,25 @@ import axios from "axios";
 
 export const command: Command = {
   name: "dictionary",
-  aliases: ["urban-dictionary"],
-  run: async (client, message, args) => {
-    let query: string = args.join(" ");
-    if (!query) {
-      const embed = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("Notice!")
-        .setDescription("Please enter a word to search for!")
-        .setTimestamp();
-      return message.reply({ embeds: [embed] });
-    }
+  description: "An urban dictionary on your fingertips.",
+  options: [
+    {
+      name: "data",
+      description: "INPUT",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
+    let query = args.getString("data");
+    if (!query) return;
 
     try {
       query = encodeURIComponent(query);
       const {
         data: { list },
       } = await axios.get(
-        `https://api.urbandictionary.com/v0/define?term=${query}`
+        `https://api.urbandictionary.com/v0/define?term=${query.toString()}`
       );
       const [answer] = list;
 
@@ -36,9 +37,12 @@ export const command: Command = {
           `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`
         )
         .setTimestamp();
-      message.channel.send({ embeds: [embed2] });
+      interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      message.channel.send("An error occurred. " + err);
+      interaction.reply(
+        "An error occurred. (This is probably because the requested word cannot be found.) " +
+          err
+      );
     }
   },
 };
