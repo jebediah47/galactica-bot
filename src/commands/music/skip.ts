@@ -3,32 +3,32 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "skip",
-  aliases: ["s", "skp"],
-  run: async (client, message) => {
-    const queue = client.distube?.getQueue(message);
+  description: "Skips a one song in the queue.",
+  run: async (client, interaction) => {
+    const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription("There is nothing in queue!")
         .setTimestamp();
-      return message.channel.send({ embeds: [noQueue] });
+      return interaction.reply({ embeds: [noQueue] });
     }
     try {
-      await client.distube?.skip(message);
+      await client.distube?.skip(interaction);
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("✅ Success!")
         .setDescription("Skipped song!")
         .setTimestamp();
-      message.channel.send({ embeds: [embed] });
+      interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
