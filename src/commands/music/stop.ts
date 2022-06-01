@@ -3,29 +3,29 @@ import { Command } from "../../interfaces";
 
 export const command: Command = {
   name: "stop",
-  aliases: ["pause"],
-  run: (client, message) => {
-    const queue = client.distube?.getQueue(message);
+  description: "Stops the song currently playing",
+  run: (client, interaction) => {
+    const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription("There is nothing in the queue right now!")
         .setTimestamp();
-      return message.channel.send({ embeds: [noQueue] });
+      return interaction.reply({ embeds: [noQueue] });
     } else if (queue.paused) {
       queue.resume();
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("The song was already paused but I resumed it for you 😃")
         .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     }
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("The queue has been stopped!")
       .setTimestamp();
-    message.channel.send({ embeds: [embed] });
-    client.distube?.pause(message);
+    interaction.reply({ embeds: [embed] });
+    client.distube?.pause(interaction);
   },
 };
