@@ -4,8 +4,8 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "stats",
-  aliases: ["bot-stats", "botstats"],
-  run: (client, message) => {
+  description: "Displays some of the bot's and guild stats.",
+  run: async (client, interaction) => {
     function formatMS(ms: number, noDetails?: boolean): string {
       const times: object = {
         week: Math.floor(ms / (1000 * 60 * 60 * 24 * 7)),
@@ -37,23 +37,25 @@ export const command: Command = {
           .setTitle(`Galactica bot stats!`)
           .setDescription(
             `
-      Guilds: \`${client.guilds.cache.size.toLocaleString()}\`
-      Users: \`${client.users.cache.size.toLocaleString()}\`
-      Channels: \`${client.channels.cache.size.toLocaleString()}\`
-      Uptime: \`${formatMS(client.uptime)}\`
-      Discord API version: \`${client.options.http?.version || "Unknown"}\`
-      WebSocket Ping: \`${client.ws.ping}\`
-      Bot Version: \`${pkg.version}\``
+            Guilds: \`${client.guilds.cache.size.toLocaleString()}\`
+            Users: \`${client.users.cache.size.toLocaleString()}\`
+            Channels: \`${client.channels.cache.size.toLocaleString()}\`
+            Uptime: \`${formatMS(client.uptime)}\`
+            Discord API version: \`${
+              client.options.http?.version || "Unknown"
+            }\`
+            WebSocket Ping: \`${client.ws.ping}\`
+            Bot Version: \`${pkg.version}\``
           )
           .setTimestamp();
-        message.channel.send({ embeds: [embed] });
+        interaction.reply({ embeds: [embed] });
       }
     } catch (err) {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     }
   },
 };
