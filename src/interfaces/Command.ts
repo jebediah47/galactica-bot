@@ -1,13 +1,24 @@
 import Client from "../client";
-import { Message } from "discord.js";
+import {
+  ChatInputApplicationCommandData,
+  CommandInteraction,
+  CommandInteractionOptionResolver,
+  GuildMember,
+} from "discord.js";
+
+export interface ExtendedInteraction extends CommandInteraction {
+  member: GuildMember;
+}
 
 interface Run {
-  (client: Client, message: Message, args: any[]): void;
+  (
+    client: Client,
+    interaction: ExtendedInteraction,
+    args: CommandInteractionOptionResolver
+  ): void;
 }
 
-export interface Command {
-  name: string;
+export type Command = {
   description?: string;
-  aliases?: string[];
   run: Run;
-}
+} & ChatInputApplicationCommandData;
