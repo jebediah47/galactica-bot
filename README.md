@@ -28,7 +28,6 @@ git clone https://github.com/jebediah47/galactica-bot
 ```json
 {
   "TOKEN": "YOUR_BOT_TOKEN",
-  "PREFIX": "YOUR_BOT_PREFIX",
   "BOT_PRESENCE": "YOUR_BOT_PRESENCE",
   "MUSIC_IS_ENABLED": true,
   "BOT_PRESENCE_TYPE": "YOUR_BOT_PRESENCE_TYPE",
