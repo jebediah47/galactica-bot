@@ -3,9 +3,9 @@ import { Command } from "../../interfaces";
 
 export const command: Command = {
   name: "tictactoe",
-  aliases: [],
-  run: (client, message) => {
+  description: "Creates a Tic-Tac-Toe game with an AI as the opponent.",
+  run: (client, interaction) => {
     const game = new TicTacToe({ language: "en" });
-    game.handleMessage(message);
+    game.handleInteraction(interaction);
   },
 };
