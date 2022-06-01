@@ -5,24 +5,40 @@ import axios from "axios";
 
 export const command: Command = {
   name: "crypto",
-  aliases: ["crypto-price"],
-  run: async (client, message, args) => {
+  description: "Displays the current price of any cryptocurrency",
+  options: [
+    {
+      name: "crypto-code",
+      description: "Cryptocurrency code e.x. dogecoin",
+      type: "STRING",
+      required: true,
+    },
+    {
+      name: "currency-code",
+      description: "Currency code e.g. eur",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Notice!")
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-          `\`\`\`${client.config.PREFIX}crypto bitcoin usd\`\`\` \n` +
+          `\`\`\`/crypto bitcoin usd\`\`\` \n` +
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
-    let token = args[0];
-    let irl_currency = args[1] || "usd";
+    let token = args.getString("crypto-code");
+    let irl_currency = args.getString("currency-code");
     try {
+      if (!token) return;
       token = token.toLowerCase();
     } catch (error) {
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
+    if (!irl_currency) return;
     irl_currency = irl_currency.toLowerCase();
 
     try {
@@ -38,7 +54,7 @@ export const command: Command = {
             "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
           )
           .setTimestamp();
-        return message.channel.send({ embeds: [embed] });
+        return interaction.reply({ embeds: [embed] });
       }
 
       if (!data) {
@@ -49,7 +65,7 @@ export const command: Command = {
             "We couldn't fetch the required data from the API, maybe try executing the command again!"
           )
           .setTimestamp();
-        return message.channel.send({ embeds: [embed2] });
+        return interaction.reply({ embeds: [embed2] });
       }
 
       const regularToken = `${data[token][irl_currency]}`;
@@ -69,9 +85,9 @@ export const command: Command = {
             `*Powered by CoinGecko API*`
         )
         .setTimestamp();
-      return message.channel.send({ embeds: [embed3] });
+      return interaction.reply({ embeds: [embed3] });
     } catch (err) {
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
