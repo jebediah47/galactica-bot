@@ -4,7 +4,7 @@ import { TextChannel } from "discord.js";
 export const event: Event = {
   name: "guildMemberAdd",
   run: async (client, member) => {
-    const channel: TextChannel = member.guild.channels.cache.find(
+    const channel: TextChannel = member.guild?.channels.cache.find(
       (c: { name: string }) => c.name == client.config.MODLOGS_CHANNEL_NAME
     ) as TextChannel;
 
