@@ -1,5 +1,4 @@
-import { Client, Collection, Intents } from "discord.js";
-import { Command, Event, Config } from "../interfaces";
+import { Command, Event, Config, RegisterCommandOptions } from "../interfaces";
 import { SoundCloudPlugin } from "@distube/soundcloud";
 import { SpotifyPlugin } from "@distube/spotify";
 import * as ConfigJson from "../../config.json";
@@ -8,6 +7,11 @@ import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
 import * as path from "node:path";
 import { stdout } from "process";
+import {
+  ApplicationCommandDataResolvable,
+  Client,
+  Collection,
+} from "discord.js";
 
 class ExtendedClient extends Client {
   public commands: Collection<string, Command> = new Collection();
@@ -15,12 +19,18 @@ class ExtendedClient extends Client {
   public events: Collection<string, Event> = new Collection();
   public distube: DisTube | undefined;
   public config: Config = ConfigJson;
-  public constructor(intents = new Intents(32767)) {
-    super({ intents });
+  public constructor() {
+    super({
+      intents: 32767,
+      partials: ["MESSAGE", "GUILD_MEMBER", "CHANNEL", "REACTION", "USER"],
+    });
   }
-
+  public async registerCommands({ commands }: RegisterCommandOptions) {
+    this.application?.commands.set(commands);
+  }
   public async init(): Promise<void> {
     this.login(this.config.TOKEN);
+    const slashCommands: ApplicationCommandDataResolvable[] = [];
     const command_files = path.join(__dirname, "..", "commands");
     (await readdir(command_files)).forEach(async (dir) => {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
@@ -33,13 +43,13 @@ class ExtendedClient extends Client {
       for (const file of commands) {
         const { command } = await import(`${command_files}/${dir}/${file}`);
         this.commands.set(command.name, command);
-
-        if (command?.aliases.length !== 0) {
-          command.aliases.forEach((alias: string) => {
-            this.aliases.set(alias, command);
-          });
-        }
+        slashCommands.push(command);
       }
+    });
+    this.on("ready", () => {
+      this.registerCommands({
+        commands: slashCommands,
+      });
     });
     const event_files = path.join(__dirname, "..", "events");
     (await readdir(event_files)).forEach(async (file) => {
