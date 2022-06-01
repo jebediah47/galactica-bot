@@ -1,14 +1,14 @@
-import { capitalize } from "../../functions";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 import axios from "axios";
+import { capitalize } from "../../functions";
 
 export const command: Command = {
   name: "bored",
-  aliases: ["activity", "idea", "brd"],
-  run: async (client, message) => {
+  description: "Suggests you something to cure your boredom.",
+  run: async (client, interaction) => {
     try {
-      const { data } = await axios.get("https://www.boredapi.com/api/activity");
+      const { data } = await axios.get("http://www.boredapi.com/api/activity");
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Here's something for you to do!")
@@ -18,14 +18,14 @@ export const command: Command = {
           { name: "Participants", value: `\`${data.participants}\`` }
         )
         .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("We are sorry but...")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
