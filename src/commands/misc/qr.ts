@@ -3,21 +3,20 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "qr",
-  aliases: ["qrcode", "qr-code"],
-  run: async (client, message, args) => {
-    let text: string = args.join(" ");
-    if (!text) {
-      const embed = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("Notice!")
-        .setDescription(
-          "You need to add a text input so it can be converted to a QR-code"
-        )
-        .setTimestamp();
-      return message.channel.send({ embeds: [embed] });
-    }
+  description: "Generates a QR-code using inputted data.",
+  options: [
+    {
+      name: "data",
+      description: "Input data to be converted to a QR-code",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
+    let text = args.getString("data");
+    if (!text) return;
     try {
-      const pleaseWait = message.channel.send(
+      await interaction.reply(
         "Please wait while your text is converted to QR-code"
       );
       text = encodeURIComponent(text);
@@ -27,13 +26,13 @@ export const command: Command = {
         )
         .setColor("RANDOM")
         .setTimestamp();
-      (await pleaseWait).edit({ embeds: [embed1] });
+      await interaction.editReply({ embeds: [embed1] });
     } catch (err) {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.reply({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     }
   },
 };
