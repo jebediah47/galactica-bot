@@ -1,18 +1,27 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
+import { isInteger } from "mathjs";
 
 export const command: Command = {
   name: "volume",
-  aliases: ["v", "vol", "set-volume"],
-  run: (client, message, args) => {
-    const queue = client.distube?.getQueue(message);
+  description: "Sets the volume of the queue.",
+  options: [
+    {
+      name: "vol",
+      description: "A value from 0 to 100",
+      type: "NUMBER",
+      required: true,
+    },
+  ],
+  run: (client, interaction, args) => {
+    const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription("There is nothing in queue!")
         .setTimestamp();
-      return message.channel.send({ embeds: [noQueue] });
+      return interaction.reply({ embeds: [noQueue] });
     }
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
@@ -21,22 +30,21 @@ export const command: Command = {
         "You **must** enter a valid number from the range 1 - 100"
       )
       .setTimestamp();
-    const volume = parseInt(args[0]);
-    if (isNaN(volume) || !args[0])
-      return message.channel.send({ embeds: [errEmbed] });
+    const volume: any = args.getNumber("vol");
+    if (!isInteger(volume)) return interaction.reply({ embeds: [errEmbed] });
 
     if (volume > 100) {
       const errEmbed2 = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Volume cannot be over 100%")
         .setTimestamp();
-      return message.channel.send({ embeds: [errEmbed2] });
+      return interaction.reply({ embeds: [errEmbed2] });
     }
     queue.setVolume(volume);
     const volume_embed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle(`🔊Set volume to \`${volume}\`%`)
       .setTimestamp();
-    message.channel.send({ embeds: [volume_embed] });
+    interaction.reply({ embeds: [volume_embed] });
   },
 };
