@@ -4,12 +4,12 @@ import { stdout } from "process";
 
 export const command: Command = {
   name: "ping",
-  aliases: ["pp"],
-  run: async (client, message) => {
+  description: "Replies with the bot's ping.",
+  run: async (client, interaction) => {
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setDescription(`The bot's ping is **${client.ws.ping}**`)
       .setTimestamp();
-    message.channel.send({ embeds: [embed] }).catch((err) => stdout.write(err));
+    interaction.reply({ embeds: [embed] }).catch((err) => stdout.write(err));
   },
 };
