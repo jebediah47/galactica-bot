@@ -4,17 +4,18 @@ import axios from "axios";
 
 export const command: Command = {
   name: "github",
-  aliases: [],
-  run: async (client, message, args) => {
-    const name = args.join(" ");
-    if (!name) {
-      const error = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("Notice!")
-        .setDescription("❎ Please provide a valid user")
-        .setTimestamp();
-      return message.channel.send({ embeds: [error] });
-    }
+  description: "Shows a requested person's GitHub info.",
+  options: [
+    {
+      name: "profile",
+      description: "User's profile name",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
+    const name = args.getString("profile");
+    if (!name) return;
 
     try {
       const { data } = await axios.get(`https://api.github.com/users/${name}`);
@@ -55,9 +56,11 @@ export const command: Command = {
         .setThumbnail(data.avatar_url)
         .setTimestamp();
 
-      message.channel.send({ embeds: [embed] });
+      interaction.reply({ embeds: [embed] });
     } catch (err) {
-      message.channel.send("An error occurred. " + err);
+      interaction.reply(
+        "An error occurred. (Error 404 means profile not found)" + err
+      );
     }
   },
 };
