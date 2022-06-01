@@ -3,16 +3,16 @@ import { Command } from "../../interfaces";
 
 export const command: Command = {
   name: "resume",
-  aliases: ["rs", "continue"],
-  run: (client, message) => {
-    const queue = client.distube?.getQueue(message);
+  description: "Resumes the queue.",
+  run: (client, interaction) => {
+    const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription("There is nothing in queue!")
         .setTimestamp();
-      return message.channel.send({ embeds: [noQueue] });
+      return interaction.reply({ embeds: [noQueue] });
     }
     try {
       queue.resume();
@@ -20,14 +20,14 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle("The song has been resumed!")
         .setTimestamp();
-      message.channel.send({ embeds: [embed] });
+      interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
