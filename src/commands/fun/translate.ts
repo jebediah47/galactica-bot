@@ -4,34 +4,33 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "translate",
-  aliases: ["langtrans", "google-translate"],
-  run: async (client, message, args) => {
-    const query = args.join(" ");
-    const embed = new MessageEmbed()
-      .setColor("RANDOM")
-      .setTitle("**Something went wrong...**")
-      .setDescription(
-        "Please specify a text to translate like the example below: \n `!translate {text}`"
-      )
-      .setTimestamp();
-
-    if (!query) return message.reply({ embeds: [embed] });
-
+  description: "Translates inputted data with Google Translate.",
+  options: [
+    {
+      name: "data",
+      description: "Data to be translated",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
+    const query = args.getString("data");
+    if (!query) return;
     try {
-      const translated = await translate(query, { to: "en" });
+      const translated = await translate(query.toString(), { to: "en" });
       const embed2 = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("**This Translates to:**")
         .setDescription(translated.text)
         .setTimestamp();
 
-      message.channel.send({ embeds: [embed2] });
+      interaction.reply({ embeds: [embed2] });
     } catch (err) {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
         .setDescription(`${err}`)
         .setTimestamp();
-      return message.reply({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     }
   },
 };
