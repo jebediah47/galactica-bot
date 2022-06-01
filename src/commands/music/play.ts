@@ -3,30 +3,32 @@ import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "play",
-  aliases: ["p"],
-  run: (client, message, args) => {
-    if (!message.member?.voice.channel) {
+  description: "Plays a song on the voice channel you are currently talking.",
+  options: [
+    {
+      name: "song",
+      description: "Any song name or url",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: (client, interaction, args) => {
+    if (!interaction.member.voice.channel) {
       const noVoiceChannel = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("❌ Error!")
         .setDescription("You must be in a voice channel to use this command!")
         .setTimestamp();
-      return message.channel.send({ embeds: [noVoiceChannel] });
+      return interaction.reply({ embeds: [noVoiceChannel] });
     }
-    const music = args.join(" ");
-    if (!music) {
-      const noMusic = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("❌ Error!")
-        .setDescription("Please enter a song URL or query to search")
-        .setTimestamp();
-      return message.channel.send({ embeds: [noMusic] });
-    }
-    if (message.channel.type === "GUILD_TEXT")
-      client.distube?.play(message.member.voice.channel, music, {
-        member: message.member,
-        textChannel: message.channel,
-        message,
+    const music = args.getString("song");
+    if (!music) return;
+    if (interaction.channel?.type === "GUILD_TEXT") {
+      client.distube?.play(interaction.member.voice.channel, music, {
+        member: interaction.member,
+        textChannel: interaction.channel,
       });
+      interaction.reply("You added a song to the queue!");
+    }
   },
 };
