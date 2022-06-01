@@ -5,18 +5,26 @@ import axios from "axios";
 
 export const command: Command = {
   name: "bitcoin",
-  aliases: ["btc", "BITCOIN", "BTC"],
-  run: async (client, message, args) => {
+  description: "Displays current Bitcoin price.",
+  options: [
+    {
+      name: "currency-code",
+      description: "Currency code e.g. eur",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
     const bitcoin = `bitcoin`;
-    let irl_currency: string = args[0] || "usd";
+    let irl_currency = args.getString("currency-code");
+    if (!irl_currency) return;
     irl_currency = irl_currency.toLowerCase();
-
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Notice!")
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-          `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+          `\`\`\`/bitcoin usd\`\`\` \n` +
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
@@ -36,7 +44,7 @@ export const command: Command = {
             `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
           )
           .setTimestamp();
-        return message.channel.send({ embeds: [embed] });
+        return interaction.reply({ embeds: [embed] });
       }
 
       const regularToken = `${data[bitcoin][irl_currency]}`;
@@ -57,9 +65,9 @@ export const command: Command = {
         )
         .setThumbnail(`https://bitcoin.org/img/icons/opengraph.png?1625742893`)
         .setTimestamp();
-      return message.channel.send({ embeds: [embed2] });
+      return interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
