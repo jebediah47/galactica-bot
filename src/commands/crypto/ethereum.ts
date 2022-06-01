@@ -5,18 +5,26 @@ import axios from "axios";
 
 export const command: Command = {
   name: "ethereum",
-  aliases: ["eth", "ETHEREUM", "ETH"],
-  run: async (client, message, args) => {
+  description: "Displays current Ethereum price.",
+  options: [
+    {
+      name: "currency-code",
+      description: "Currency code e.g. eur",
+      type: "STRING",
+      required: true,
+    },
+  ],
+  run: async (client, interaction, args) => {
     const ethereum = `ethereum`;
-    let irl_currency: string = args[0] || "usd";
+    let irl_currency = args.getString("currency-code");
+    if (!irl_currency) return;
     irl_currency = irl_currency.toLowerCase();
-
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Notice!")
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
-          `\`\`\`${client.config.PREFIX}price bitcoin usd\`\`\` \n` +
+          `\`\`\`/ethereum usd\`\`\` \n` +
           "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
       );
 
@@ -30,13 +38,13 @@ export const command: Command = {
           .setColor("RANDOM")
           .setTitle("We are sorry but...")
           .setDescription(
-            "We couldn't find your currency code on the list here are the \n supported currencies by the [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+            "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
           )
           .setThumbnail(
             `https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png`
           )
           .setTimestamp();
-        return message.channel.send({ embeds: [embed] });
+        return interaction.reply({ embeds: [embed] });
       }
 
       const regularToken = `${data[ethereum][irl_currency]}`;
@@ -61,9 +69,9 @@ export const command: Command = {
           `https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png`
         )
         .setTimestamp();
-      return message.channel.send({ embeds: [embed2] });
+      return interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      return message.channel.send({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
