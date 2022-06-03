@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://i.imgur.com/obhS6zx.png" height="165"></a></p>
+<p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://share.creavite.co/Zw3YHPDfydz0BE8D.gif" height="165"></a></p>
 
 <h1 align="center">galactica-bot</h1>
 
