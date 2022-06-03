@@ -11,13 +11,12 @@ export const command: Command = {
       name: "currency-code",
       description: "Currency code e.g. eur",
       type: "STRING",
-      required: true,
+      required: false,
     },
   ],
   run: async (client, interaction, args) => {
     const ethereum = `ethereum`;
-    let irl_currency = args.getString("currency-code");
-    if (!irl_currency) return;
+    let irl_currency = args.getString("currency-code") || "usd";
     irl_currency = irl_currency.toLowerCase();
     const errEmbed = new MessageEmbed()
       .setColor("RANDOM")
