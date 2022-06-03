@@ -17,7 +17,7 @@ export const command: Command = {
       name: "currency-code",
       description: "Currency code e.g. eur",
       type: "STRING",
-      required: true,
+      required: false,
     },
   ],
   run: async (client, interaction, args) => {
@@ -31,14 +31,13 @@ export const command: Command = {
       );
 
     let token = args.getString("crypto-code");
-    let irl_currency = args.getString("currency-code");
+    let irl_currency = args.getString("currency-code") || "usd";
     try {
       if (!token) return;
       token = token.toLowerCase();
     } catch (error) {
       return interaction.reply({ embeds: [errEmbed] });
     }
-    if (!irl_currency) return;
     irl_currency = irl_currency.toLowerCase();
 
     try {
