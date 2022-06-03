@@ -22,7 +22,6 @@ class ExtendedClient extends Client {
   public constructor() {
     super({
       intents: 32767,
-      partials: ["MESSAGE", "GUILD_MEMBER", "CHANNEL", "REACTION", "USER"],
     });
   }
   public async registerCommands({ commands }: RegisterCommandOptions) {
