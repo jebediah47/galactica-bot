@@ -15,7 +15,6 @@ import {
 
 class ExtendedClient extends Client {
   public commands: Collection<string, Command> = new Collection();
-  public aliases: Collection<string, Command> = new Collection();
   public events: Collection<string, Event> = new Collection();
   public distube: DisTube | undefined;
   public config: Config = ConfigJson;
