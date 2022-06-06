@@ -5,7 +5,6 @@ export const command: Command = {
   name: "skip",
   description: "Skips a one song in the queue.",
   run: async (client, interaction) => {
-    // @ts-ignore
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
@@ -16,7 +15,6 @@ export const command: Command = {
       return interaction.reply({ embeds: [noQueue] });
     }
     try {
-      // @ts-ignore
       await client.distube?.skip(interaction);
       const embed = new MessageEmbed()
         .setColor("RANDOM")
