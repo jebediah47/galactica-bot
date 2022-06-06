@@ -3,6 +3,7 @@ import { SoundCloudPlugin } from "@distube/soundcloud";
 import { SpotifyPlugin } from "@distube/spotify";
 import * as ConfigJson from "../../config.json";
 import { YtDlpPlugin } from "@distube/yt-dlp";
+import { galacticaServer } from "../server";
 import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
 import * as path from "node:path";
@@ -58,6 +59,9 @@ class ExtendedClient extends Client {
         ?.on(event.name, event.run.bind(null, this))
         .setMaxListeners(2);
     });
+    if (this.config.SERVER_OPTIONS.ENABLED === true) {
+      galacticaServer(this.config.SERVER_OPTIONS.PORT);
+    }
     if (this.config.MUSIC_IS_ENABLED === true) {
       this.distube = new DisTube(this, {
         searchSongs: 0,
