@@ -5,6 +5,7 @@ export const command: Command = {
   name: "stop",
   description: "Stops the song currently playing",
   run: (client, interaction) => {
+    // @ts-ignore
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
@@ -26,6 +27,7 @@ export const command: Command = {
       .setTitle("The queue has been stopped!")
       .setTimestamp();
     interaction.reply({ embeds: [embed] });
+    // @ts-ignore
     client.distube?.pause(interaction);
   },
 };
