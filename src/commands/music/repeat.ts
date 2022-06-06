@@ -13,7 +13,6 @@ export const command: Command = {
     },
   ],
   run: (client, interaction, args) => {
-    // @ts-ignore
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const nothingPlaying = new MessageEmbed()
