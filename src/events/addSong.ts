@@ -19,6 +19,7 @@ export const event: Event = {
         )
         .setTimestamp()
         .setImage(song.thumbnail);
+      // @ts-ignore
       queue.textChannel?.send({ embeds: [embed] });
     }
   },
