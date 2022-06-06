@@ -4,4 +4,8 @@ export interface Config {
   MUSIC_IS_ENABLED: boolean;
   BOT_PRESENCE_TYPE: any;
   MODLOGS_CHANNEL_NAME: string;
+  SERVER_OPTIONS: {
+    ENABLED: boolean;
+    PORT: number;
+  };
 }
