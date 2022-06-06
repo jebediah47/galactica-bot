@@ -5,7 +5,6 @@ export const command: Command = {
   name: "resume",
   description: "Resumes the queue.",
   run: (client, interaction) => {
-    // @ts-ignore
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
