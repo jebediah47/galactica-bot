@@ -6,6 +6,6 @@ export interface Config {
   MODLOGS_CHANNEL_NAME: string;
   SERVER_OPTIONS: {
     ENABLED: boolean;
-    PORT: number;
+    PORT: number | null;
   };
 }
