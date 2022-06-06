@@ -24,7 +24,6 @@ export const command: Command = {
     const music = args.getString("song");
     if (!music) return;
     if (interaction.channel?.type === "GUILD_TEXT") {
-      // @ts-ignore
       client.distube?.play(interaction.member.voice.channel, music, {
         member: interaction.member,
         textChannel: interaction.channel,
