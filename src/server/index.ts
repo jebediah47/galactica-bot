@@ -7,7 +7,12 @@ app.all("/", (req, res) => {
 });
 
 function galacticaServer(port: number) {
-  app.listen(port || 3000, () => {
+  switch (port) {
+    case null:
+      port = 3000;
+      break;
+  }
+  app.listen(port, () => {
     process.stdout.write(`Server is listening in port ${port}\n`);
   });
 }
