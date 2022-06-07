@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 
 const app = express();
 
@@ -6,7 +6,7 @@ app.all("/", (req, res) => {
   res.send("Bot is running!");
 });
 
-function galacticaServer(port: number) {
+function galacticaServer(port: number | null) {
   switch (port) {
     case null:
       port = 3000;
