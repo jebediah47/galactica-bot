@@ -13,7 +13,7 @@
 
 ## 💭 What is Galactica?
 
-[Galactica](https://github.com/jebediah47/galactica-bot) is a Discord bot built with TypeScript that can do various stuff using it's multiple commands!
+[Galactica](https://galacticabot.vercel.app/) is a Discord bot built with TypeScript that can do various stuff using it's multiple commands!
 
 ## ⚡️ Fast Implementation
 
