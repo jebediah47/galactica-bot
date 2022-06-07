@@ -9,6 +9,7 @@
     "sourceMap": false,
     "skipLibCheck": true,
     "importHelpers": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
