@@ -27,6 +27,7 @@
     "@distube/spotify": "^1.2.1",
     "@distube/yt-dlp": "^1.0.2",
     "@iamtraction/google-translate": "^1.1.2",
+    "@types/express": "^4.17.13",
     "axios": "^0.27.0",
     "discord-tictactoe": "^3.0.0",
     "discord.js": "^13.8.0",
@@ -39,7 +40,6 @@
   "devDependencies": {
     "@swc/core": "1.2.197",
     "@swc/helpers": "0.3.17",
-    "@types/express": "^4.17.13",
     "@types/node": "17.0.36",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
