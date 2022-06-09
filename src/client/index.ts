@@ -10,8 +10,8 @@ import * as path from "node:path";
 import { stdout } from "process";
 import {
   ApplicationCommandDataResolvable,
-  Client,
   Collection,
+  Client,
 } from "discord.js";
 
 class ExtendedClient extends Client {
