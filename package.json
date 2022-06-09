@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/jebediah47/galactica-bot/issues"
   },
-  "homepage": "https://github.com/jebediah47/galactica-bot#readme",
+  "homepage": "https://galacticabot.vercel.app/",
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
     "@discordjs/voice": "^0.10.0",
