@@ -1,4 +1,5 @@
 import { Command } from "../../interfaces";
+import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "nickname",
@@ -18,10 +19,15 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    const user: any = args.getMember("user") || interaction.member;
+    const user: any = args.getMember("user");
+    const usr = args.getUser("user");
     const nickname = args.getString("nickname");
     if (!user || !nickname) return;
-    interaction.reply(`Changed the username of ${user} to ${nickname}`);
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setDescription(`Changed the username of ${usr?.tag} to ${nickname}`)
+      .setTimestamp();
+    interaction.reply({ embeds: [embed] });
     await user.setNickname(nickname);
   },
 };
