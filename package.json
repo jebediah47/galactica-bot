@@ -35,6 +35,7 @@
     "distube": "^3.3.3",
     "express": "^4.18.1",
     "mathjs": "^10.6.1",
+    "random-puppy": "^1.1.0",
     "tweetnacl": "^1.0.3",
     "typescript": "^4.6.3"
   },
