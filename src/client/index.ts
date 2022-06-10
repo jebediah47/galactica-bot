@@ -6,8 +6,8 @@ import { YtDlpPlugin } from "@distube/yt-dlp";
 import { galacticaServer } from "../server";
 import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
-import * as path from "node:path";
 import { stdout } from "process";
+import path from "node:path";
 import {
   ApplicationCommandDataResolvable,
   Collection,
