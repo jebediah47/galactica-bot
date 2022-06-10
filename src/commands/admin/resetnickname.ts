@@ -1,4 +1,5 @@
 import { Command } from "../../interfaces";
+import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "resetnickname",
@@ -13,8 +14,13 @@ export const command: Command = {
   ],
   run: async (client, interaction, args) => {
     const user: any = args.getMember("user");
+    const usr = args.getUser("user");
     if (!user) return;
-    interaction.reply(`Resetted ${user}'s nickname`);
+    const embed = new MessageEmbed()
+      .setColor("RANDOM")
+      .setDescription(`Resetted ${usr?.tag}'s nickname`)
+      .setTimestamp();
+    interaction.reply({ embeds: [embed] });
     await user.setNickname(null);
   },
 };
