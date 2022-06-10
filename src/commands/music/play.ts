@@ -23,12 +23,15 @@ export const command: Command = {
     }
     const music = args.getString("song");
     if (!music) return;
+    const success = new MessageEmbed()
+      .setColor("RANDOM")
+      .setDescription("Added a song to the queue!");
     if (interaction.channel?.type === "GUILD_TEXT") {
       client.distube?.play(interaction.member.voice.channel, music, {
         member: interaction.member,
         textChannel: interaction.channel,
       });
-      interaction.reply("You added a song to the queue!");
+      interaction.reply({ embeds: [success] });
     }
   },
 };
