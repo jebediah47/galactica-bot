@@ -64,7 +64,7 @@ export const command: Command = {
         )
         .setThumbnail(`https://bitcoin.org/img/icons/opengraph.png?1625742893`)
         .setTimestamp();
-      return interaction.reply({ embeds: [embed2] });
+      await interaction.reply({ embeds: [embed2] });
     } catch (err) {
       return interaction.reply({ embeds: [errEmbed] });
     }
