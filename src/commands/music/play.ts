@@ -12,7 +12,7 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: (client, interaction, args) => {
+  run: async (client, interaction, args) => {
     if (!interaction.member.voice.channel) {
       const noVoiceChannel = new MessageEmbed()
         .setColor("RANDOM")
@@ -31,7 +31,7 @@ export const command: Command = {
         member: interaction.member,
         textChannel: interaction.channel,
       });
-      interaction.reply({ embeds: [success] });
+      await interaction.reply({ embeds: [success] });
     }
   },
 };
