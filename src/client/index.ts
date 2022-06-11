@@ -24,7 +24,7 @@ class ExtendedClient extends Client {
       intents: 32767,
     });
   }
-  public async registerCommands({ commands }: RegisterCommandOptions) {
+  public registerCommands({ commands }: RegisterCommandOptions) {
     this.application?.commands.set(commands);
   }
   public async init(): Promise<void> {
