@@ -1,4 +1,4 @@
-import * as TicTacToe from "discord-tictactoe";
+import TicTacToe from "discord-tictactoe";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
