@@ -4,7 +4,7 @@ import { Command } from "../../interfaces";
 export const command: Command = {
   name: "pause",
   description: "Pauses the song currently playing",
-  run: (client, interaction) => {
+  run: async (client, interaction) => {
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
@@ -27,7 +27,7 @@ export const command: Command = {
       .setColor("RANDOM")
       .setDescription("The queue has been stopped!")
       .setTimestamp();
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
     client.distube?.pause(interaction);
   },
 };
