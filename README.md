@@ -13,6 +13,8 @@
 
 ## 💭 What is Galactica?
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8cab354e64cd4d37952e3b0341b347cb)](https://app.codacy.com/gh/jebediah47/galactica-bot?utm_source=github.com&utm_medium=referral&utm_content=jebediah47/galactica-bot&utm_campaign=Badge_Grade_Settings)
+
 [Galactica](https://galacticabot.vercel.app/) is a Discord bot built with TypeScript that can do various stuff using it's multiple commands!
 
 ## ⚡️ Fast Implementation
