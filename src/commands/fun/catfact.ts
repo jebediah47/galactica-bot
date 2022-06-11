@@ -13,7 +13,7 @@ export const command: Command = {
         .setTitle("Here's a cat fact!")
         .setDescription(data.fact)
         .setTimestamp();
-      return interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
