@@ -16,7 +16,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Intall TypeScript globally
-          command: npm i -g typescript
+          command: sudo npm i -g typescript
       - run:
           name: Compile galactica
           command: npm run build
