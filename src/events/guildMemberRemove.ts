@@ -13,6 +13,6 @@ export const event: Event = {
         "MODLOGS_CHANNEL_NAME cannot be found, please check your config.json \n"
       );
     }
-    channel.send(`[LOGS] A member has left ${member.user.tag}`);
+    await channel.send(`[LOGS] A member has left ${member.user.tag}`);
   },
 };
