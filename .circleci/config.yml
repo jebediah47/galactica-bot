@@ -12,6 +12,9 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          name: Intall dependencies
+          command: npm i
+      - run:
           name: Intall TypeScript globally
           command: npm i -g typescript
       - run:
