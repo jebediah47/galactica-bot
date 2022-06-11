@@ -68,7 +68,7 @@ export const command: Command = {
           `https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/256/Ethereum-ETH-icon.png`
         )
         .setTimestamp();
-      return interaction.reply({ embeds: [embed2] });
+      await interaction.reply({ embeds: [embed2] });
     } catch (err) {
       return interaction.reply({ embeds: [errEmbed] });
     }
