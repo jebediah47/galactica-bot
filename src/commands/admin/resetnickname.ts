@@ -16,11 +16,14 @@ export const command: Command = {
     const user: any = args.getMember("user");
     const usr = args.getUser("user");
     if (!user) return;
+    if (!interaction.member.permissions.has("MANAGE_NICKNAMES")) {
+      return interaction.reply("You are not permitted to use this command!");
+    }
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setDescription(`Resetted ${usr?.tag}'s nickname`)
       .setTimestamp();
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
     await user.setNickname(null);
   },
 };
