@@ -37,9 +37,9 @@ export const command: Command = {
           `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`
         )
         .setTimestamp();
-      interaction.reply({ embeds: [embed2] });
+      await interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      interaction.reply(
+      return interaction.reply(
         "An error occurred. (This is probably because the requested word cannot be found.) " +
           err
       );
