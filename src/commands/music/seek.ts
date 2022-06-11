@@ -26,12 +26,12 @@ export const command: Command = {
           .setTimestamp();
         return interaction.reply({ embeds: [embed] });
       }
-      await queue?.seek(time);
+      queue?.seek(time);
       const seekSuccess = new MessageEmbed()
         .setColor("RANDOM")
         .setDescription(`Seeked song to \`${time}\` seconds.`)
         .setTimestamp();
-      interaction.reply({ embeds: [seekSuccess] });
+      await interaction.reply({ embeds: [seekSuccess] });
     } catch (err) {
       const noQueue = new MessageEmbed()
         .setColor("RANDOM")
