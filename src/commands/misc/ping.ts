@@ -10,6 +10,8 @@ export const command: Command = {
       .setColor("RANDOM")
       .setDescription(`The bot's ping is **${client.ws.ping}**`)
       .setTimestamp();
-    interaction.reply({ embeds: [embed] }).catch((err) => stdout.write(err));
+    await interaction
+      .reply({ embeds: [embed] })
+      .catch((err) => stdout.write(err));
   },
 };
