@@ -10,8 +10,10 @@
   <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml/badge.svg" alt="CodeQL Status"></img>
   <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"></img> </br>
   <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"></img>
-  <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version">
-  <img src="https://img.shields.io/discord/982186992194433054?color=%235865F2&label=Discord%20Server&logo=Discord&logoColor=white" alt="Please join our Discord server!"></img>
+  <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version"></img>
+  <a href="https://discord.gg/nQd5HeD2xz">
+    <img alt="Discord" src="https://img.shields.io/discord/982186992194433054?color=%235865F2&label=Discord%20Server&logo=Discord&logoColor=white"></img>
+  </a>
 </p>
 
 ## 💭 What is Galactica?
