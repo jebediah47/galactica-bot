@@ -56,9 +56,9 @@ export const command: Command = {
         .setThumbnail(data.avatar_url)
         .setTimestamp();
 
-      interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
-      interaction.reply(
+      return interaction.reply(
         "An error occurred. (Error 404 means profile not found)" + err
       );
     }
