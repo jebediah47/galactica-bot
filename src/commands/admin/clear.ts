@@ -40,14 +40,14 @@ export const command: Command = {
         return interaction.reply({ embeds: [embed] });
       }
       if (channel?.type === "GUILD_TEXT") channel.bulkDelete(number, true);
-      interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Operation failure")
         .setDescription(`Clear command failed with the following error: `)
         .setTimestamp();
-      interaction.reply({ embeds: [errEmbed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
