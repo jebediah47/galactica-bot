@@ -8,6 +8,6 @@ export const command: Command = {
   run: async (client, interaction) => {
     interaction.reply(`RPS game, ${interaction.user.username} vs BOT`);
     const rps = new RPS();
-    rps.solo(interaction, client);
+    await rps.solo(interaction, client);
   },
 };
