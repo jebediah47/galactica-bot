@@ -4,7 +4,7 @@ import { Command } from "../../interfaces";
 export const command: Command = {
   name: "resume",
   description: "Resumes the queue.",
-  run: (client, interaction) => {
+  run: async (client, interaction) => {
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
@@ -20,7 +20,7 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle("The song has been resumed!")
         .setTimestamp();
-      interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
