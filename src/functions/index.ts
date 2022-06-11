@@ -1,4 +1,2 @@
-import { commaFormatter } from "./commaFormatter";
-import { capitalize } from "./capitalize";
-export { commaFormatter };
-export { capitalize };
+export { commaFormatter } from "./commaFormatter";
+export { capitalize } from "./capitalize";
