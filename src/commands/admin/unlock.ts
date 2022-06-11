@@ -11,7 +11,7 @@ export const command: Command = {
       required: false,
     },
   ],
-  run: (client, interaction, args) => {
+  run: async (client, interaction, args) => {
     if (!interaction.member.permissions.has("MANAGE_CHANNELS")) {
       return interaction.reply("You are not permitted to use this command!");
     }
@@ -24,7 +24,7 @@ export const command: Command = {
       channel.permissionOverwrites.edit(everyone, {
         SEND_MESSAGES: true,
       });
-      interaction.reply("🔓 The channel has been unlocked");
+      await interaction.reply("🔓 The channel has been unlocked");
     }
   },
 };
