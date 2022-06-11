@@ -3,7 +3,7 @@ import { Event, ExtendedInteraction } from "../interfaces";
 
 export const event: Event = {
   name: "interactionCreate",
-  run: async (client, message: Interaction) => {
+  run: (client, message: Interaction) => {
     if (message.isCommand()) {
       const command = client.commands.get(message.commandName);
       if (!command)
