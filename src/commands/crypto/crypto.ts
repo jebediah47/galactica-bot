@@ -35,7 +35,7 @@ export const command: Command = {
     try {
       if (!token) return;
       token = token.toLowerCase();
-    } catch (error) {
+    } catch (err) {
       return interaction.reply({ embeds: [errEmbed] });
     }
     irl_currency = irl_currency.toLowerCase();
@@ -84,7 +84,7 @@ export const command: Command = {
             `*Powered by CoinGecko API*`
         )
         .setTimestamp();
-      return interaction.reply({ embeds: [embed3] });
+      await interaction.reply({ embeds: [embed3] });
     } catch (err) {
       return interaction.reply({ embeds: [errEmbed] });
     }
