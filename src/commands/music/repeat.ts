@@ -12,7 +12,7 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: (client, interaction, args) => {
+  run: async (client, interaction, args) => {
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const nothingPlaying = new MessageEmbed()
@@ -42,7 +42,7 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle(`Set repeat mode to \`${mode}\``)
         .setTimestamp();
-      interaction.reply({ embeds: [mode_embed] });
+      await interaction.reply({ embeds: [mode_embed] });
     } catch (err) {
       return interaction.reply(`${err}`);
     }
