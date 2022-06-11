@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Installing TypeScript globally
-      run: npm install -g typescript
+      run: npm install --location=global typescript
 
     - name: Install Packages
       run: npm install --only=production
