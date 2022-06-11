@@ -16,6 +16,6 @@ export const command: Command = {
       .setURL(`https://reddit.com/r/${random}`)
       .setImage(image)
       .setTimestamp();
-    interaction.reply({ embeds: [meme] });
+    await interaction.reply({ embeds: [meme] });
   },
 };
