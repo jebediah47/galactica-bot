@@ -26,7 +26,7 @@ export const command: Command = {
           .setTimestamp();
         return interaction.reply({ embeds: [embed] });
       }
-      queue?.seek(time);
+      await queue?.seek(time);
       const seekSuccess = new MessageEmbed()
         .setColor("RANDOM")
         .setDescription(`Seeked song to \`${time}\` seconds.`)
