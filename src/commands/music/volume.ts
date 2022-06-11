@@ -13,7 +13,7 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: (client, interaction, args) => {
+  run: async (client, interaction, args) => {
     const queue = client.distube?.getQueue(interaction);
     if (!queue) {
       const noQueue = new MessageEmbed()
@@ -45,6 +45,6 @@ export const command: Command = {
       .setColor("RANDOM")
       .setTitle(`🔊Set volume to \`${volume}\`%`)
       .setTimestamp();
-    interaction.reply({ embeds: [volume_embed] });
+    await interaction.reply({ embeds: [volume_embed] });
   },
 };
