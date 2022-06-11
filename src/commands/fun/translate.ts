@@ -1,4 +1,4 @@
-import * as translate from "@iamtraction/google-translate";
+import translate from "@iamtraction/google-translate";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
@@ -24,7 +24,7 @@ export const command: Command = {
         .setDescription(translated.text)
         .setTimestamp();
 
-      interaction.reply({ embeds: [embed2] });
+      await interaction.reply({ embeds: [embed2] });
     } catch (err) {
       const embed = new MessageEmbed()
         .setColor("RANDOM")
