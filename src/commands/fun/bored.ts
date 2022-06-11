@@ -18,7 +18,7 @@ export const command: Command = {
           { name: "Participants", value: `\`${data.participants}\`` }
         )
         .setTimestamp();
-      return interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
