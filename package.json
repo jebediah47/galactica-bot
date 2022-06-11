@@ -1,6 +1,6 @@
 {
   "name": "galactica-bot",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "A open-source Discord bot made with Typescript using the Discord.js v13 library.",
   "main": "/src/main.ts",
   "scripts": {
