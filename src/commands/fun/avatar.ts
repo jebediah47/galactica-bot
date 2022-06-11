@@ -21,6 +21,6 @@ export const command: Command = {
       .setTimestamp()
       .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
       .setTimestamp();
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
   },
 };
