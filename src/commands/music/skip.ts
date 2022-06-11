@@ -21,7 +21,7 @@ export const command: Command = {
         .setTitle("✅ Success!")
         .setDescription("Skipped song!")
         .setTimestamp();
-      interaction.reply({ embeds: [embed] });
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
