@@ -23,11 +23,14 @@ export const command: Command = {
     const usr = args.getUser("user");
     const nickname = args.getString("nickname");
     if (!user || !nickname) return;
+    if (!interaction.member.permissions.has("MANAGE_NICKNAMES")) {
+      return interaction.reply("You are not permitted to use this command!");
+    }
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setDescription(`Changed the username of ${usr?.tag} to ${nickname}`)
       .setTimestamp();
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
     await user.setNickname(nickname);
   },
 };
