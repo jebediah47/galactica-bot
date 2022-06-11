@@ -48,7 +48,7 @@ export const command: Command = {
             Bot Version: \`${pkg.version}\``
           )
           .setTimestamp();
-        interaction.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
       }
     } catch (err) {
       const embed = new MessageEmbed()
