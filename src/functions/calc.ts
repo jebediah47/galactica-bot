@@ -115,8 +115,6 @@ export async function calculator(
     };
 
     let message;
-
-    // @ts-ignore
     if (!interaction.commandId) {
       message = interaction;
     }
@@ -132,8 +130,8 @@ export async function calculator(
 
     const emb1 = new MessageEmbed()
       .setColor(options.embed?.color || "#075FFF")
-      // @ts-ignore
-      .setFooter(options.embed?.credit ? options.embed?.footer : null)
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      .setFooter((options.embed?.credit ? options.embed?.footer : null)!)
       .setDescription(
         "```js\n0\n// Result: 0\n```" +
           (options.embed?.description ? `\n${options.embed?.description}` : "")
@@ -163,8 +161,8 @@ export async function calculator(
     let elem = "0";
 
     const filter = (button: ButtonInteraction) =>
-      button.user.id === //@ts-ignore
-        (interaction.user ? interaction.user : interaction.author).id &&
+      button.user.id ===
+        (interaction.user ? interaction.user : interaction.member).id &&
       button.customId.startsWith("cal-");
 
     const collect = msg.createMessageComponentCollector({
@@ -270,31 +268,25 @@ export async function calculator(
 
     function createButton(
       label: any,
-      // @ts-ignore
-      style: MessageButtonStyle = options.buttons.numbers
+      style: MessageButtonStyle | undefined = options.buttons?.numbers
     ) {
-      // @ts-ignore
-      if (label === "Clear") style = options.buttons.delete;
-      // @ts-ignore
-      else if (label === "Delete") style = options.buttons.delete;
-      // @ts-ignore
-      else if (label === "⌫") style = options.buttons.delete;
-      // @ts-ignore
-      else if (label === "π") style = options.buttons.numbers;
-      // @ts-ignore
-      else if (label === "%") style = options.buttons.numbers;
-      // @ts-ignore
-      else if (label === "^") style = options.buttons.numbers;
-      // @ts-ignore
-      else if (label === ".") style = options.buttons.symbols;
-      else if (label === "=") style = "SUCCESS";
-      // @ts-ignore
-      else if (isNaN(label)) style = options.buttons.symbols;
-      const btn = new MessageButton()
-        .setLabel(label)
-        .setStyle(style)
-        .setCustomId("cal-" + label);
-      return btn;
+      if (style != undefined) {
+        if (label === "Clear") style = options.buttons?.delete;
+        else if (label === "Delete") style = options.buttons?.delete;
+        else if (label === "⌫") style = options.buttons?.delete;
+        else if (label === "π") style = options.buttons?.numbers;
+        else if (label === "%") style = options.buttons?.numbers;
+        else if (label === "^") style = options.buttons?.numbers;
+        else if (label === ".") style = options.buttons?.symbols;
+        else if (label === "=") style = "SUCCESS";
+        else if (isNaN(label)) style = options.buttons?.symbols;
+        const btn = new MessageButton()
+          .setLabel(label)
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          .setStyle(style!)
+          .setCustomId("cal-" + label);
+        return btn;
+      }
     }
 
     const evalRegex = /^[0-9π\+\%\^\-*\/\.\(\)]*$/;
