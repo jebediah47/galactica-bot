@@ -32,12 +32,9 @@ export const command: Command = {
         return interaction.reply({ embeds: [embed] });
       }
       if (!interaction.member.permissions.has("MANAGE_MESSAGES")) {
-        const embed = new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("Operation failure!")
-          .setDescription("You are not permitted to use this command!")
-          .setTimestamp();
-        return interaction.reply({ embeds: [embed] });
+        return interaction.reply({
+          content: "You are not permitted to use this command!",
+        });
       }
       if (channel?.type === "GUILD_TEXT") channel.bulkDelete(number, true);
       await interaction.reply({ embeds: [embed] });
@@ -45,7 +42,7 @@ export const command: Command = {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Operation failure")
-        .setDescription(`Clear command failed with the following error: `)
+        .setDescription(`Clear command failed with the following error: ${err}`)
         .setTimestamp();
       return interaction.reply({ embeds: [errEmbed] });
     }
