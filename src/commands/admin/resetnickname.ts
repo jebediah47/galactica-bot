@@ -17,7 +17,9 @@ export const command: Command = {
     const usr = args.getUser("user");
     if (!user) return;
     if (!interaction.member.permissions.has("MANAGE_NICKNAMES")) {
-      return interaction.reply("You are not permitted to use this command!");
+      return interaction.reply({
+        content: "You are not permitted to use this command!",
+      });
     }
     const embed = new MessageEmbed()
       .setColor("RANDOM")
