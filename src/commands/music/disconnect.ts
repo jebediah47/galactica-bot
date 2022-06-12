@@ -7,7 +7,7 @@ export const command: Command = {
   run: async (client, interaction) => {
     if (client.distube?.voices.has(interaction)) {
       client.distube?.voices.leave(interaction);
-      await interaction.reply("👋");
+      await interaction.reply({ content: "👋" });
     } else {
       const noVoiceChannel = new MessageEmbed()
         .setColor("RANDOM")
