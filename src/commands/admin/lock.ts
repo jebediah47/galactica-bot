@@ -13,7 +13,9 @@ export const command: Command = {
   ],
   run: async (client, interaction, args) => {
     if (!interaction.member.permissions.has("MANAGE_CHANNELS")) {
-      return interaction.reply("You are not permitted to use this command!");
+      return interaction.reply({
+        content: "You are not permitted to use this command!",
+      });
     }
     const everyone: any = interaction.guild?.roles.cache.find(
       (r) => r.name === "@everyone"
@@ -24,7 +26,7 @@ export const command: Command = {
       channel.permissionOverwrites.edit(everyone, {
         SEND_MESSAGES: false,
       });
-      await interaction.reply("🔒 The channel has been locked");
+      await interaction.reply({ content: "🔒 The channel has been locked" });
     }
   },
 };
