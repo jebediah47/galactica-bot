@@ -3,10 +3,10 @@
  * Author: Rahul Marban creator of simply-djs
  * Modified by: Christian Llupo (jebediah47) to use extended interaction and to remove bloat
  * Licensed under: https://github.com/Rahuletto/simply-djs/blob/main/LICENSE (CC BY-NC-ND 4.0)
- * Copyright: Rhaul Marban 2021-2022
+ * Copyright: Rahul Marban 2021-2022
  * Copyright: Christian Llupo 2022
  * Modifications are licensed under the GNU Affero General Public License-v3.0
- * Thanks again to Rhaul Marban for creating this code!
+ * Thanks again to Rahul Marban for creating this code!
  */
 import {
   MessageButtonStyle,
