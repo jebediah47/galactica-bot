@@ -1,12 +1,12 @@
 /* eslint-disable no-inner-declarations */
 /**
- * Author: Rahul Marban creator of simply-djs
- * Modified by: Christian Llupo (jebediah47) to use extended interaction and to remove bloat
- * Licensed under: https://github.com/Rahuletto/simply-djs/blob/main/LICENSE (CC BY-NC-ND 4.0)
- * Copyright: Rahul Marban 2021-2022
- * Copyright: Christian Llupo 2022
+ * @author Rahul Marban creator of simply-djs
+ * @author Christian Llupo (jebediah47) to use extended interaction and to remove bloat
+ * @license CC_BY-NC-NDv4.0 https://github.com/Rahuletto/simply-djs/blob/main/LICENSE
+ * @copyright Rahul Marban 2021-2022
+ * @copyright Christian Llupo 2022
  * Modifications are licensed under the GNU Affero General Public License-v3.0
- * Thanks again to Rahul Marban for creating this code!
+ * Thanks again to Rahul Marban for creating this package!
  */
 import {
   MessageButtonStyle,
@@ -48,12 +48,8 @@ export type calcOptions = {
   buttons?: calcButtons;
 };
 
-// ------------------------------
-// ------ F U N C T I O N -------
-// ------------------------------
-
 /**
- * An Unique **calculator** which can be *used inside Discord*
+ * A Unique **calculator** which can be *used inside Discord*
  * @param interaction
  * @param options
  * @link `Documentation:` ***https://simplyd.js.org/docs/General/calculator***
@@ -121,8 +117,7 @@ export async function calculator(
 
     for (let i = 0; i < text.length; i++) {
       if (button[current].length === 5) current++;
-      // @ts-ignore
-      button[current].push(createButton(text[i]));
+      button[current].push(createButton(text[i]) as never);
       if (i === text.length - 1) {
         for (const btn of button) row.push(addRow(btn));
       }
