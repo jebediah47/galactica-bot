@@ -18,6 +18,9 @@ jobs:
           name: Intall TypeScript globally
           command: sudo npm i -g typescript
       - run:
+          name: Run eslint
+          command: npm run lint
+      - run:
           name: Compile galactica
           command: npm run build
 
