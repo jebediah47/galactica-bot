@@ -60,23 +60,23 @@ git clone https://github.com/jebediah47/galactica-bot
 
 **Step 3**: Install all the required dependencies by running:
 
-`
+```css
 npm install
-`
+# or
+yarn
+# or
+pnpm install
+```
 
-or with yarn:
+**Step 4**: Running the bot:
 
-`
-yarn install
-`
-
-**Step 4**: Run the bot by running:
-
-`
+```css
 npm run dev
-`
-
-or with yarn accordingly.
+# or
+yarn dev
+# or
+pnpm dev
+```
 
 ## 🎉 You're ready!
 
