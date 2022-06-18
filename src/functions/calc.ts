@@ -280,7 +280,6 @@ export async function calculator(
             .setLabel(label)
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             .setStyle(style!)
-            
             .setCustomId("cal-" + label)
         );
       }
