@@ -31,7 +31,7 @@ class ExtendedClient extends Client {
     this.login(this.config.TOKEN).then();
     const slashCommands: ApplicationCommandDataResolvable[] = [];
     const command_files = path.join(__dirname, "..", "commands");
-    for (const dir of (await readdir(command_files))) {
+    for (const dir of await readdir(command_files)) {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
         (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
       );
@@ -51,7 +51,7 @@ class ExtendedClient extends Client {
       });
     });
     const event_files = path.join(__dirname, "..", "events");
-    for (const file of (await readdir(event_files))) {
+    for (const file of await readdir(event_files)) {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
       this.on(event.name, event.run.bind(null, this));
