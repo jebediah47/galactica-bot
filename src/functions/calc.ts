@@ -275,22 +275,24 @@ export async function calculator(
         else if (label === ".") style = options.buttons?.symbols;
         else if (label === "=") style = "SUCCESS";
         else if (isNaN(label)) style = options.buttons?.symbols;
-        const btn = new MessageButton()
-          .setLabel(label)
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          .setStyle(style!)
-          .setCustomId("cal-" + label);
-        return btn;
+        return (
+          new MessageButton()
+            .setLabel(label)
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            .setStyle(style!)
+            
+            .setCustomId("cal-" + label)
+        );
       }
     }
 
-    const evalRegex = /^[0-9π\+\%\^\-*\/\.\(\)]*$/;
+    const evalRegex = /^[\dπ+%^\-*\/.()]*$/;
     function mathEval(input: string, result = false) {
       try {
         const matched = evalRegex.exec(input);
         if (!matched) return "Invalid";
 
-        if (result === false) {
+        if (!result) {
           return `${Function(
             `"use strict";let π=Math.PI;return (${input})`
           )()}`;
