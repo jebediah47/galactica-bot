@@ -75,9 +75,6 @@ class ExtendedClient extends Client {
         ],
         youtubeDL: false,
       });
-      this.distube.on("error", () => {
-        return;
-      });
     } else {
       process.stdout.write(
         "Music has been disabled for this session due to MUSIC_IS_ENABLED value being false in the config.json \n"
