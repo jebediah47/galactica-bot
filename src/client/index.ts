@@ -55,9 +55,9 @@ class ExtendedClient extends Client {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
       this.on(event.name, event.run.bind(null, this));
-      this.distube
-        ?.on(event.name, event.run.bind(null, this))
-        .setMaxListeners(2);
+      if (this.config.MUSIC_IS_ENABLED) {
+        this.distube?.on(event.name, event.run.bind(null, this));
+      }
     }
     if (this.config.SERVER_OPTIONS.ENABLED) {
       galacticaServer(this.config.SERVER_OPTIONS.PORT);
@@ -65,7 +65,6 @@ class ExtendedClient extends Client {
     if (this.config.MUSIC_IS_ENABLED) {
       this.distube = new DisTube(this, {
         searchSongs: 0,
-        emitNewSongOnly: true,
         emitAddSongWhenCreatingQueue: false,
         emitAddListWhenCreatingQueue: false,
         plugins: [
