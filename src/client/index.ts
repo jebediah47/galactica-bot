@@ -51,14 +51,14 @@ class ExtendedClient extends Client {
       });
     });
     const event_files = path.join(__dirname, "..", "events");
-    for (const file of await readdir(event_files)) {
+    (await readdir(event_files)).forEach(async (file) => {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
       this.on(event.name, event.run.bind(null, this));
       if (this.config.MUSIC_IS_ENABLED) {
         this.distube?.on(event.name, event.run.bind(null, this));
       }
-    }
+    });
     if (this.config.SERVER_OPTIONS.ENABLED) {
       galacticaServer(this.config.SERVER_OPTIONS.PORT);
     }
@@ -76,7 +76,7 @@ class ExtendedClient extends Client {
       });
     } else {
       process.stdout.write(
-        "Music has been disabled for this session due to MUSIC_IS_ENABLED value being false in the config.json \n"
+        `MUSIC_IS_ENABLED: ${this.config.MUSIC_IS_ENABLED}\n`
       );
     }
   }
