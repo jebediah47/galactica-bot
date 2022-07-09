@@ -1,6 +1,6 @@
 FROM archlinux:latest
 
-RUN pacman -Syyu git nodejs npm typescript python3 --noconfirm
+RUN pacman -Syyu git nodejs ffmpeg npm typescript python3 --noconfirm
 RUN pacman-key --init
 RUN pacman-key --populate archlinux
 
