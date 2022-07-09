@@ -8,7 +8,8 @@
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
     "build": "node buildCleanup.mjs && tsc",
     "clean": "node buildCleanup.mjs",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "fix": "eslint . --fix .ts"
   },
   "repository": {
     "type": "git",
@@ -31,10 +32,10 @@
     "discord-rock-paper-scissor": "^1.1.1",
     "discord-tictactoe": "^3.0.0",
     "discord.js": "^13.8.0",
-    "distube": "^3.3.3",
+    "distube": "^3.3.4",
     "express": "^4.18.1",
     "figlet": "^1.5.2",
-    "got": "11",
+    "got": "11.8.5",
     "mathjs": "^10.6.1",
     "tweetnacl": "^1.0.3",
     "typescript": "^4.7.3"
