@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "nodemon",
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
-    "build": "node buildCleanup.mjs && tsc",
     "clean": "node buildCleanup.mjs",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "got": "11.8.5",
     "mathjs": "^10.6.1",
     "tweetnacl": "^1.0.3",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@swc/core": "1.2.211",
