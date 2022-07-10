@@ -1,42 +1,9 @@
-#!/bin/bash
-cd /root/
+#!/bin/sh
+# Entering the bot's direcotory.
+cd /root/galactica-bot
 
-mkdir galactica-bot
-
-# file name vars
-SRC="src"
-TSCONFIG="tsconfig.json"
-CONFIG="config.json"
-PACKAGE="package.json"
-
-# file exists message
-FILE_EXISTS="file exists, ignoring."
-DIR_EXISTS="directory exists, ignoring."
-
-if test -d "$SRC"; then
-    echo "$SRC, $DIR_EXISTS"
-else
-    cp -r src /root/galactica-bot/
-fi
-
-if test -f "$TSCONFIG"; then
-    echo "$TSCONFIG, $FILE_EXISTS"
-else
-    cp tsconfig.json /root/galactica-bot/
-fi
-
-if test -f "$CONFIG"; then
-    echo "$CONFIG, $FILE_EXISTS"
-else
-    cp config.json /root/galactica-bot/
-fi
-
-if test -f "$PACKAGE"; then
-    echo "$PACKAGE, $FILE_EXISTS"
-else
-    cp package.json /root/galactica-bot/
-fi
-
-cd galactica-bot
+# Intalling ALL packages.
 npm install
+
+# Building the bot and running it.
 npm run build && node ./dist/src/main.js
