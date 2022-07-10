@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add nodejs npm gcc ffmpeg
+RUN apk update && apk add nodejs npm ffmpeg
 RUN [ "mkdir", "-p", "/root/galactica-bot" ]
 
 WORKDIR /root/galactica-bot
