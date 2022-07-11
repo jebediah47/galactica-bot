@@ -39,10 +39,12 @@ export const command: Command = {
         .setTimestamp();
       await interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      return interaction.reply(
-        "An error occurred. (This is probably because the requested word cannot be found.) " +
-          err
-      );
+      const errEmbed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
