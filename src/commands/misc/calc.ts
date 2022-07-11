@@ -6,6 +6,6 @@ export const command: Command = {
   description: "Evaluates math problems.",
   run: async (client, interaction) => {
     await interaction.deferReply();
-    await calc(interaction);
+    calc(interaction);
   },
 };
