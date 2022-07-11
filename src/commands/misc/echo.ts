@@ -12,6 +12,6 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    await interaction.reply(`${args.getString("input")}`);
+    await interaction.reply({ content: `${args.getString("input")}` });
   },
 };
