@@ -51,11 +51,12 @@ export const command: Command = {
         await interaction.reply({ embeds: [embed] });
       }
     } catch (err) {
-      const embed = new MessageEmbed()
+      const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
+        .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
-      return interaction.reply({ embeds: [embed] });
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
