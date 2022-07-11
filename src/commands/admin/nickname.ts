@@ -33,6 +33,6 @@ export const command: Command = {
       .setDescription(`Changed the username of ${usr?.tag} to ${nickname}`)
       .setTimestamp();
     await interaction.reply({ embeds: [embed] });
-    await user.setNickname(nickname);
+    user.setNickname(nickname);
   },
 };
