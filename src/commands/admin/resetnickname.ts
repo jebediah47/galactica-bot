@@ -26,6 +26,6 @@ export const command: Command = {
       .setDescription(`Resetted ${usr?.tag}'s nickname`)
       .setTimestamp();
     await interaction.reply({ embeds: [embed] });
-    await user.setNickname(null);
+    user.setNickname(null);
   },
 };
