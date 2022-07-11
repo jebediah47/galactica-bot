@@ -17,7 +17,7 @@ export const command: Command = {
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
-        .setTitle("We are sorry but...")
+        .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
       return interaction.reply({ embeds: [errEmbed] });
