@@ -58,9 +58,12 @@ export const command: Command = {
 
       await interaction.reply({ embeds: [embed] });
     } catch (err) {
-      return interaction.reply(
-        "An error occurred. (Error 404 means profile not found)" + err
-      );
+      const errEmbed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("❌ Error!")
+        .setDescription(`${err}`)
+        .setTimestamp();
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
 };
