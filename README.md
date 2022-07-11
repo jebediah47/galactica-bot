@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"></img>
   </a>
   <a href="https://github.com/jebediah47/galactica-bot/blob/main/package.json">
-    <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version"></img>
+    <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=re" alt="GitHub package.json version"></img>
   </a>
   <a href="https://discord.gg/nQd5HeD2xz">
     <img alt="Discord" src="https://img.shields.io/discord/982186992194433054?color=%235865F2&label=Discord%20Server&logo=Discord&logoColor=white"></img>
