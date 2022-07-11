@@ -8,7 +8,8 @@
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
     "clean": "node buildCleanup.mjs",
     "lint": "eslint . --ext .ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prisma:generate": "prisma generate"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@distube/spotify": "^1.2.1",
     "@distube/yt-dlp": "^1.0.2",
     "@iamtraction/google-translate": "^1.1.2",
+    "@prisma/client": "^4.0.0",
     "axios": "^0.27.0",
     "discord-rock-paper-scissor": "^1.1.1",
     "discord-tictactoe": "^3.0.0",
@@ -52,6 +54,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "nodemon": "2.0.19",
     "prettier": "2.7.1",
+    "prisma": "^4.0.0",
     "regenerator-runtime": "0.13.9",
     "ts-node": "10.8.2",
     "tslib": "2.4.0"
