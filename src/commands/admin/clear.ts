@@ -41,8 +41,8 @@ export const command: Command = {
     } catch (err) {
       const errEmbed = new MessageEmbed()
         .setColor("RANDOM")
-        .setTitle("Operation failure")
-        .setDescription(`Clear command failed with the following error: ${err}`)
+        .setTitle("❌ Error!")
+        .setDescription(`${err}`)
         .setTimestamp();
       return interaction.reply({ embeds: [errEmbed] });
     }
