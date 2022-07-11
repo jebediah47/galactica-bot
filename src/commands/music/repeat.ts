@@ -1,5 +1,6 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
+import { RepeatMode } from "distube";
 
 export const command: Command = {
   name: "repeat",
@@ -8,43 +9,56 @@ export const command: Command = {
     {
       name: "mode",
       description: "Sets the repeat mode",
-      type: "STRING",
+      type: "INTEGER",
       required: true,
+      choices: [
+        {
+          name: "off",
+          value: RepeatMode.DISABLED,
+        },
+        {
+          name: "song",
+          value: RepeatMode.SONG,
+        },
+        {
+          name: "queue",
+          value: RepeatMode.QUEUE,
+        },
+      ],
     },
   ],
   run: async (client, interaction, args) => {
-    const queue = client.distube?.getQueue(interaction);
-    if (!queue) {
-      const nothingPlaying = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("❌ Error!")
-        .setDescription("There is nothing playing!")
-        .setTimestamp();
-      return interaction.reply({ embeds: [nothingPlaying] });
-    }
-    let mode;
-    switch (args.getString("mode")) {
-      case "off":
-        mode = 0;
-        break;
-      case "song":
-        mode = 1;
-        break;
-      case "queue":
-        mode = 2;
-        break;
-    }
-    if (!args.getString("mode")) return;
-    try {
-      mode = queue.setRepeatMode(mode);
-      mode = mode ? (mode === 2 ? "Repeat queue" : "Repeat song") : "Off";
-      const mode_embed = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle(`Set repeat mode to \`${mode}\``)
-        .setTimestamp();
-      await interaction.reply({ embeds: [mode_embed] });
-    } catch (err) {
-      return interaction.reply(`${err}`);
+    if (client.config.MUSIC_IS_ENABLED) {
+      const queue = client.distube?.getQueue(interaction);
+      if (!queue) {
+        const nothingPlaying = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("❌ Error!")
+          .setDescription("There is nothing playing!")
+          .setTimestamp();
+        return interaction.reply({ embeds: [nothingPlaying] });
+      }
+      try {
+        const loopMode = args.get("mode")?.value;
+        queue.setRepeatMode(loopMode as RepeatMode);
+        const mode =
+          loopMode === RepeatMode.QUEUE
+            ? "Repeat queue"
+            : loopMode === RepeatMode.SONG
+            ? "Repeat song"
+            : "Off";
+        const mode_embed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle(`Set repeat mode to \`${mode}\``)
+          .setTimestamp();
+        await interaction.reply({ embeds: [mode_embed] });
+      } catch (err) {
+        return interaction.reply(`${err}`);
+      }
+    } else {
+      return interaction.reply({
+        content: "Music commands have been disabled by the owner.",
+      });
     }
   },
 };
