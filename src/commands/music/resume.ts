@@ -8,20 +8,13 @@ export const command: Command = {
     if (client.config.MUSIC_IS_ENABLED) {
       const queue = client.distube?.getQueue(interaction);
       if (!queue) {
-        const noQueue = new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("❌ Error!")
-          .setDescription("There is nothing in queue!")
-          .setTimestamp();
-        return interaction.reply({ embeds: [noQueue] });
+        return interaction.reply({
+          content: "There is nothing currently playing in the queue!",
+        });
       }
       try {
         queue.resume();
-        const embed = new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("The song has been resumed!")
-          .setTimestamp();
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({ content: "The queue has been resumed." });
       } catch (err) {
         const errEmbed = new MessageEmbed()
           .setColor("RANDOM")
