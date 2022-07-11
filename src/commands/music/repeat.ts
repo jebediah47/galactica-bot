@@ -31,12 +31,9 @@ export const command: Command = {
     if (client.config.MUSIC_IS_ENABLED) {
       const queue = client.distube?.getQueue(interaction);
       if (!queue) {
-        const nothingPlaying = new MessageEmbed()
-          .setColor("RANDOM")
-          .setTitle("❌ Error!")
-          .setDescription("There is nothing playing!")
-          .setTimestamp();
-        return interaction.reply({ embeds: [nothingPlaying] });
+        return interaction.reply({
+          content: "There is nothing currently playing in the queue!",
+        });
       }
       try {
         const loopMode = args.get("mode")?.value;
@@ -53,7 +50,12 @@ export const command: Command = {
           .setTimestamp();
         await interaction.reply({ embeds: [mode_embed] });
       } catch (err) {
-        return interaction.reply(`${err}`);
+        const errEmbed = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("❌ Error!")
+          .setDescription(`${err}`)
+          .setTimestamp();
+        return interaction.reply({ embeds: [errEmbed] });
       }
     } else {
       return interaction.reply({
