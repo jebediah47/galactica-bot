@@ -14,31 +14,37 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    let time: any = args.getString("time");
-    if (!time) return;
-    const queue = client.distube?.getQueue(interaction);
-    try {
-      time = Number(time);
-      if (!isInteger(time)) {
-        const embed = new MessageEmbed()
+    if (client.config.MUSIC_IS_ENABLED) {
+      let time: any = args.getString("time");
+      if (!time) return;
+      const queue = client.distube?.getQueue(interaction);
+      try {
+        time = Number(time);
+        if (!isInteger(time)) {
+          const embed = new MessageEmbed()
+            .setColor("RANDOM")
+            .setDescription("Please enter a valid number!")
+            .setTimestamp();
+          return interaction.reply({ embeds: [embed] });
+        }
+        queue?.seek(time);
+        const seekSuccess = new MessageEmbed()
           .setColor("RANDOM")
-          .setDescription("Please enter a valid number!")
+          .setDescription(`Seeked song to \`${time}\` seconds.`)
           .setTimestamp();
-        return interaction.reply({ embeds: [embed] });
+        await interaction.reply({ embeds: [seekSuccess] });
+      } catch (err) {
+        const noQueue = new MessageEmbed()
+          .setColor("RANDOM")
+          .setTitle("❌ Error!")
+          .setDescription("There is nothing in queue!")
+          .setTimestamp();
+        return interaction.reply({ embeds: [noQueue] });
       }
-      queue?.seek(time);
-      const seekSuccess = new MessageEmbed()
-        .setColor("RANDOM")
-        .setDescription(`Seeked song to \`${time}\` seconds.`)
-        .setTimestamp();
-      await interaction.reply({ embeds: [seekSuccess] });
-    } catch (err) {
-      const noQueue = new MessageEmbed()
-        .setColor("RANDOM")
-        .setTitle("❌ Error!")
-        .setDescription("There is nothing in queue!")
-        .setTimestamp();
-      return interaction.reply({ embeds: [noQueue] });
+    } else {
+      return interaction.reply({
+        content: "Music commands have been disabled by the owner.",
+      });
     }
   },
 };
