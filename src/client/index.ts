@@ -2,6 +2,7 @@ import { Command, Event, Config, RegisterCommandOptions } from "../interfaces";
 import { SoundCloudPlugin } from "@distube/soundcloud";
 import { SpotifyPlugin } from "@distube/spotify";
 import * as ConfigJson from "../../config.json";
+import { PrismaClient } from "@prisma/client";
 import { YtDlpPlugin } from "@distube/yt-dlp";
 import { galacticaServer } from "../server";
 import { readdir } from "node:fs/promises";
@@ -19,6 +20,7 @@ class ExtendedClient extends Client {
   public events: Collection<string, Event> = new Collection();
   public distube: DisTube | undefined;
   public config: Config = ConfigJson;
+  public prisma!: PrismaClient;
   public constructor() {
     super({
       intents: 32767,
@@ -28,6 +30,7 @@ class ExtendedClient extends Client {
     await this.application?.commands.set(commands);
   }
   public async init(): Promise<void> {
+    this.prisma = new PrismaClient();
     this.login(this.config.TOKEN).then();
     const slashCommands: ApplicationCommandDataResolvable[] = [];
     const command_files = path.join(__dirname, "..", "commands");
