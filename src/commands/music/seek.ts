@@ -34,12 +34,12 @@ export const command: Command = {
           .setTimestamp();
         await interaction.reply({ embeds: [seekSuccess] });
       } catch (err) {
-        const noQueue = new MessageEmbed()
+        const errEmbed = new MessageEmbed()
           .setColor("RANDOM")
           .setTitle("❌ Error!")
-          .setDescription("There is nothing in queue!")
+          .setDescription(`${err}`)
           .setTimestamp();
-        return interaction.reply({ embeds: [noQueue] });
+        return interaction.reply({ embeds: [errEmbed] });
       }
     } else {
       return interaction.reply({
