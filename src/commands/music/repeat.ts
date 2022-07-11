@@ -42,9 +42,9 @@ export const command: Command = {
         const loopMode = args.get("mode")?.value;
         queue.setRepeatMode(loopMode as RepeatMode);
         const mode =
-          loopMode === RepeatMode.QUEUE
+          queue.repeatMode === 2
             ? "Repeat queue"
-            : loopMode === RepeatMode.SONG
+            : queue.repeatMode === 1
             ? "Repeat song"
             : "Off";
         const mode_embed = new MessageEmbed()
