@@ -18,9 +18,9 @@ import {
 class ExtendedClient extends Client {
   public commands: Collection<string, Command> = new Collection();
   public events: Collection<string, Event> = new Collection();
+  public prisma: PrismaClient = new PrismaClient();
   public distube: DisTube | undefined;
   public config: Config = ConfigJson;
-  public prisma!: PrismaClient;
   public constructor() {
     super({
       intents: 32767,
@@ -30,7 +30,6 @@ class ExtendedClient extends Client {
     await this.application?.commands.set(commands);
   }
   public async init(): Promise<void> {
-    this.prisma = new PrismaClient();
     this.login(this.config.TOKEN).then();
     const slashCommands: ApplicationCommandDataResolvable[] = [];
     const command_files = path.join(__dirname, "..", "commands");
@@ -58,30 +57,18 @@ class ExtendedClient extends Client {
       const { event } = await import(`${event_files}/${file}`);
       this.events.set(event.name, event);
       this.on(event.name, event.run.bind(null, this));
-      if (this.config.MUSIC_IS_ENABLED) {
-        this.distube?.on(event.name, event.run.bind(null, this));
-      }
+      this.distube?.on(event.name, event.run.bind(null, this));
     });
     if (this.config.SERVER_OPTIONS.ENABLED) {
       galacticaServer(this.config.SERVER_OPTIONS.PORT);
     }
-    if (this.config.MUSIC_IS_ENABLED) {
-      this.distube = new DisTube(this, {
-        searchSongs: 0,
-        emitAddSongWhenCreatingQueue: false,
-        emitAddListWhenCreatingQueue: false,
-        plugins: [
-          new YtDlpPlugin(),
-          new SpotifyPlugin(),
-          new SoundCloudPlugin(),
-        ],
-        youtubeDL: false,
-      });
-    } else {
-      process.stdout.write(
-        `MUSIC_IS_ENABLED: ${this.config.MUSIC_IS_ENABLED}\n`
-      );
-    }
+    this.distube = new DisTube(this, {
+      searchSongs: 0,
+      emitAddSongWhenCreatingQueue: false,
+      emitAddListWhenCreatingQueue: false,
+      plugins: [new YtDlpPlugin(), new SpotifyPlugin(), new SoundCloudPlugin()],
+      youtubeDL: false,
+    });
   }
 }
 
