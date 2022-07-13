@@ -14,7 +14,15 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    if (client.config.MUSIC_IS_ENABLED) {
+    const db = await client.prisma.guildConfigs.findUnique({
+      where: {
+        guildID: `${interaction.guild?.id}`,
+      },
+      select: {
+        musicIsEnabled: true,
+      },
+    });
+    if (db?.musicIsEnabled) {
       let time: any = args.getString("time");
       if (!time) return;
       const queue = client.distube?.getQueue(interaction);
