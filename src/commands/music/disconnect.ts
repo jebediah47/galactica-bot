@@ -5,7 +5,15 @@ export const command: Command = {
   name: "disconnect",
   description: "Disconnects the bot from current voice channel.",
   run: async (client, interaction) => {
-    if (client.config.MUSIC_IS_ENABLED) {
+    const db = await client.prisma.guildConfigs.findUnique({
+      where: {
+        guildID: `${interaction.guild?.id}`,
+      },
+      select: {
+        musicIsEnabled: true,
+      },
+    });
+    if (db?.musicIsEnabled) {
       if (client.distube?.voices.has(interaction)) {
         client.distube?.voices.leave(interaction);
         await interaction.reply({ content: "👋" });
