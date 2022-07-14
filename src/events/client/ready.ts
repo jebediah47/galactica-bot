@@ -1,6 +1,6 @@
 import { ActivityTypes } from "discord.js/typings/enums";
 import { ExcludeEnum } from "discord.js";
-import { Event } from "../interfaces";
+import { Event } from "../../interfaces";
 
 export const event: Event = {
   name: "ready",

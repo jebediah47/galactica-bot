@@ -1,5 +1,5 @@
 import { GuildMember, TextChannel } from "discord.js";
-import { Event } from "../interfaces";
+import { Event } from "../../interfaces";
 
 export const event: Event = {
   name: "guildMemberAdd",
