@@ -2,14 +2,14 @@ import express from "express";
 
 const app = express();
 
-app.all("/", (req, res) => {
-  res.send("Bot is running!");
+app.all("/", (_req, res) => {
+  res.status(200).send("Bot is running!");
 });
 
 function galacticaServer(port: number | null) {
   switch (port) {
     case null:
-      port = 3000;
+      port = 3001;
       break;
   }
   app.listen(port, () => {
