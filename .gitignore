@@ -109,3 +109,8 @@ dist
 
 # Build directory
 *build
+
+# Prisma stuff
+*migrations/
+*.db-journal
+*.db
