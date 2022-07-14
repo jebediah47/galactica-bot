@@ -7,7 +7,6 @@ import { YtDlpPlugin } from "@distube/yt-dlp";
 import { galacticaServer } from "../server";
 import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
-import { stdout } from "process";
 import path from "node:path";
 import {
   ApplicationCommandDataResolvable,
@@ -35,11 +34,8 @@ class ExtendedClient extends Client {
     const command_files = path.join(__dirname, "..", "commands");
     for (const dir of await readdir(command_files)) {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
-        (file) => file.endsWith(".ts") || file.endsWith(".js") // the second filter is for when the bot is built in JS
+        (file) => file.endsWith(".ts") || file.endsWith(".js")
       );
-      if (command_files.length <= 0) {
-        stdout.write("[LOGS] Couldn't Find Commands!");
-      }
 
       for (const file of commands) {
         const { command } = await import(`${command_files}/${dir}/${file}`);
@@ -53,12 +49,18 @@ class ExtendedClient extends Client {
       });
     });
     const event_files = path.join(__dirname, "..", "events");
-    (await readdir(event_files)).forEach(async (file) => {
-      const { event } = await import(`${event_files}/${file}`);
-      this.events.set(event.name, event);
-      this.on(event.name, event.run.bind(null, this));
-      this.distube?.on(event.name, event.run.bind(null, this));
-    });
+    for (const dir of await readdir(event_files)) {
+      const events = (await readdir(`${event_files}/${dir}`)).filter(
+        (file) => file.endsWith(".ts") || file.endsWith(".js")
+      );
+
+      for (const file of events) {
+        const { event } = await import(`${event_files}/${dir}/${file}`);
+        this.events.set(event.name, event);
+        this.on(event.name, event.run.bind(null, this));
+        this.distube?.on(event.name, event.run.bind(null, this));
+      }
+    }
     if (this.config.SERVER_OPTIONS.ENABLED) {
       galacticaServer(this.config.SERVER_OPTIONS.PORT);
     }
