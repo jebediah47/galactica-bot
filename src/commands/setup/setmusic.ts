@@ -23,6 +23,9 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
+    if (!interaction.member.permissions.has("MANAGE_GUILD")) {
+      return interaction.reply("You are not permitted to use this command!");
+    }
     let bool = false;
     switch (args.get("mode")?.value) {
       case "true":
