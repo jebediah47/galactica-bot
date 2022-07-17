@@ -9,6 +9,9 @@ jobs:
       - image: cimg/node:16.16
     steps:
       - checkout
+      - run:
+          name: Ignore yarn interity checking
+          command: sudo yarn config set unsafe-disable-integrity-migration true -g
       - node/install-packages:
           pkg-manager: yarn-berry
       - run:
