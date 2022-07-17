@@ -68,7 +68,11 @@ class ExtendedClient extends Client {
       searchSongs: 0,
       emitAddSongWhenCreatingQueue: false,
       emitAddListWhenCreatingQueue: false,
-      plugins: [new YtDlpPlugin(), new SpotifyPlugin(), new SoundCloudPlugin()],
+      plugins: [
+        new YtDlpPlugin({ update: true }),
+        new SpotifyPlugin(),
+        new SoundCloudPlugin(),
+      ],
       youtubeDL: false,
     });
   }
