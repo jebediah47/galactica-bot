@@ -6,20 +6,17 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:16.10
+      - image: cimg/node:16.16
     steps:
       - checkout
-      - run:
-          name: Install pnpm package manager & TypeScript globally
-          command: sudo npm i -g pnpm typescript
       - node/install-packages:
-          pkg-manager: pnpm
+          pkg-manager: yarn-berry
       - run:
           name: Run eslint
-          command: pnpm lint
+          command: yarn lint
       - run:
           name: Compile galactica
-          command: pnpm build
+          command: yarn build
 
 workflows:
   sample:
