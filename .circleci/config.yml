@@ -6,14 +6,15 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:16.16
+      - image: 'cimg/base:stable'
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: yarn-berry
+          node-version: '16.16'
       - run:
           name: Ignore yarn interity checking
           command: sudo yarn config set unsafe-disable-integrity-migration true -g
-      - node/install-packages:
-          pkg-manager: yarn-berry
       - run:
           name: Run eslint
           command: yarn lint
