@@ -9,9 +9,8 @@ jobs:
       - image: cimg/node:16.16
     steps:
       - checkout
-      - run:
-          name: Install packages
-          command: yarn install --frozen-lockfile
+      - node/install-packages:
+          pkg-manager: yarn-berry
       - run:
           name: Run eslint
           command: yarn lint
