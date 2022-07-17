@@ -13,6 +13,9 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
+    if (!interaction.member.permissions.has("MANAGE_CHANNELS")) {
+      return interaction.reply("You are not permitted to use this command!");
+    }
     const embed = new MessageEmbed()
       .setColor("RANDOM")
       .setDescription(`Set modlogsChannelID to \`${args.getString("name")}\``)
