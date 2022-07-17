@@ -10,19 +10,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Generate package-lock.json
-          command: npm i --package-lock-only
+          name: Install pnpm package manager & TypeScript globally
+          command: sudo npm i -g pnpm typescript
       - node/install-packages:
-          pkg-manager: npm
-      - run:
-          name: Intall TypeScript globally
-          command: sudo npm i -g typescript
+          pkg-manager: pnpm
       - run:
           name: Run eslint
-          command: npm run lint
+          command: pnpm lint
       - run:
           name: Compile galactica
-          command: npm run build
+          command: pnpm build
 
 workflows:
   sample:
