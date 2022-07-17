@@ -1,23 +1,25 @@
 version: 2.1
-
 orbs:
   node: circleci/node@5.0.2
-
 jobs:
   build:
     docker:
-      - image: cimg/node:16.16
+      - image: 'cimg/base:stable'
     steps:
       - checkout
+      - node/install:
+          node-version: '16.16'
+      - run:
+          name: Generate package-lock.json
+          command: npm i --package-lock-only
       - node/install-packages:
-          pkg-manager: yarn-berry
+          pkg-manager: npm
       - run:
           name: Run eslint
-          command: yarn lint
+          command: npm run lint
       - run:
           name: Compile galactica
-          command: yarn build
-
+          command: npm run build
 workflows:
   sample:
     jobs:
