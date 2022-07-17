@@ -10,19 +10,15 @@ jobs:
     steps:
       - checkout
       - node/install:
-          install-yarn: true
           node-version: '16.16'
       - node/install-packages:
-          pkg-manager: yarn-berry
-      - run:
-          name: Ignore yarn interity checking
-          command: sudo yarn config set unsafe-disable-integrity-migration true -g
+          pkg-manager: npm
       - run:
           name: Run eslint
-          command: yarn lint
+          command: npm run lint
       - run:
           name: Compile galactica
-          command: yarn build
+          command: npm run build
 
 workflows:
   sample:
