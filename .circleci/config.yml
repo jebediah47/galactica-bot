@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: Install packages
-          command: yarn install --no-lockfile
+          command: yarn install --frozen-lockfile
       - run:
           name: Run eslint
           command: yarn lint
