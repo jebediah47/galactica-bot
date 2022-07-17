@@ -26,7 +26,7 @@
     "@discordjs/voice": "^0.10.0",
     "@distube/soundcloud": "^1.1.0",
     "@distube/spotify": "^1.2.1",
-    "@distube/yt-dlp": "^1.0.2",
+    "@distube/yt-dlp": "^1.1.1",
     "@iamtraction/google-translate": "^1.1.2",
     "@prisma/client": "^4.0.0",
     "axios": "^0.27.0",
