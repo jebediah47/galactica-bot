@@ -54,7 +54,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "nodemon": "2.0.19",
     "prettier": "2.7.1",
-    "prisma": "4.0.0",
+    "prisma": "4.1.0",
     "regenerator-runtime": "0.13.9",
     "ts-node": "10.9.1",
     "tslib": "2.4.0"
