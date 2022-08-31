@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@swc/core": "1.2.245",
-    "@swc/helpers": "0.4.3",
+    "@swc/helpers": "0.4.11",
     "@types/express": "4.17.13",
     "@types/figlet": "1.5.5",
     "@types/node": "17.0.36",
