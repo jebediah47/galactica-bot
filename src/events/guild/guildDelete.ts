@@ -1,5 +1,6 @@
 import { Event } from "../../interfaces";
 import { Guild } from "discord.js";
+import { refreshConfigCache } from "../../functions";
 
 export const event: Event = {
   name: "guildDelete",
@@ -19,5 +20,6 @@ export const event: Event = {
         },
       });
     }
+    refreshConfigCache(client);
   },
 };
