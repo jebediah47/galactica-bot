@@ -1,3 +1,4 @@
+import { refreshConfigCache } from "../../functions";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
@@ -47,6 +48,7 @@ export const command: Command = {
         musicIsEnabled: bool,
       },
     });
+    refreshConfigCache(client);
     interaction.reply({ embeds: [embed] });
   },
 };
