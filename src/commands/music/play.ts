@@ -12,15 +12,7 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    const db = await client.prisma.guildConfigs.findUnique({
-      where: {
-        guildID: `${interaction.guild?.id}`,
-      },
-      select: {
-        musicIsEnabled: true,
-      },
-    });
-    if (db?.musicIsEnabled) {
+    if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
       if (!interaction.member.voice.channel) {
         return interaction.reply({
           content: "You must be in a voice channel to use this command!",
@@ -29,7 +21,7 @@ export const command: Command = {
       const music = args.getString("song");
       if (!music) return;
       if (interaction.channel?.type === "GUILD_TEXT") {
-        client.distube?.play(interaction.member.voice.channel, music, {
+        client.distube.play(interaction.member.voice.channel, music, {
           member: interaction.member,
           textChannel: interaction.channel,
         });
