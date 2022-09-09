@@ -1,3 +1,4 @@
+import { refreshConfigCache } from "../../functions";
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
 
@@ -21,15 +22,7 @@ export const command: Command = {
       .setDescription(`Set modlogsChannelID to \`${args.getString("name")}\``)
       .setTimestamp();
 
-    const db = await client.prisma.guildConfigs.findUniqueOrThrow({
-      where: {
-        guildID: `${interaction.guild?.id}`,
-      },
-      select: {
-        modLogsIsEnabled: true,
-      },
-    });
-    if (await db.modLogsIsEnabled) {
+    if (client.configs.get(interaction.guildId!)?.modLogsIsEnabled) {
       await client.prisma.guildConfigs.update({
         where: {
           guildID: `${interaction.guild?.id}`,
@@ -38,6 +31,7 @@ export const command: Command = {
           modLogsChannelID: args.getString("name"),
         },
       });
+      refreshConfigCache(client);
       interaction.reply({ embeds: [embed] });
     } else {
       return interaction.reply({
