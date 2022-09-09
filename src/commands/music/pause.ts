@@ -5,16 +5,8 @@ export const command: Command = {
   name: "pause",
   description: "Pauses the song currently playing",
   run: async (client, interaction) => {
-    const db = await client.prisma.guildConfigs.findUnique({
-      where: {
-        guildID: `${interaction.guild?.id}`,
-      },
-      select: {
-        musicIsEnabled: true,
-      },
-    });
-    if (db?.musicIsEnabled) {
-      const queue = client.distube?.getQueue(interaction);
+    if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
+      const queue = client.distube.getQueue(interaction);
       try {
         if (!queue) {
           return interaction.reply({
@@ -35,7 +27,7 @@ export const command: Command = {
         return interaction.reply({ embeds: [errEmbed] });
       }
       await interaction.reply({ content: "The queue has been paused." });
-      client.distube?.pause(interaction);
+      client.distube.pause(interaction);
     } else {
       return interaction.reply({
         content: "Music commands have been disabled by the owner.",
