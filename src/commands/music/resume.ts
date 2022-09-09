@@ -5,16 +5,8 @@ export const command: Command = {
   name: "resume",
   description: "Resumes the queue.",
   run: async (client, interaction) => {
-    const db = await client.prisma.guildConfigs.findUnique({
-      where: {
-        guildID: `${interaction.guild?.id}`,
-      },
-      select: {
-        musicIsEnabled: true,
-      },
-    });
-    if (db?.musicIsEnabled) {
-      const queue = client.distube?.getQueue(interaction);
+    if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
+      const queue = client.distube.getQueue(interaction);
       if (!queue) {
         return interaction.reply({
           content: "There is nothing currently playing in the queue!",
