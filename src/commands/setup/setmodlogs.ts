@@ -1,5 +1,6 @@
 import { Command } from "../../interfaces";
 import { MessageEmbed } from "discord.js";
+import { refreshConfigCache } from "../../functions";
 
 export const command: Command = {
   name: "setmodlogs",
@@ -47,6 +48,7 @@ export const command: Command = {
         modLogsIsEnabled: bool,
       },
     });
+    refreshConfigCache(client);
     interaction.reply({ embeds: [embed] });
   },
 };
