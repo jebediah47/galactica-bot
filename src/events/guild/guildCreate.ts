@@ -1,5 +1,6 @@
 import { Event } from "../../interfaces";
 import { Guild } from "discord.js";
+import { refreshConfigCache } from "../../functions";
 
 export const event: Event = {
   name: "guildCreate",
@@ -19,5 +20,6 @@ export const event: Event = {
         guildName: `${guild.name}`,
       },
     });
+    refreshConfigCache(client);
   },
 };
