@@ -30,11 +30,13 @@ export const command: Command = {
         .setColor("RANDOM")
         .setTitle(answer.word)
         .setURL(answer.permalink)
-        .addField("Definition:", trim(answer.definition))
-        .addField("Example:", trim(answer.example))
-        .addField(
-          "Ratings:",
-          `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`
+        .addFields(
+          { name: "Definition:", value: trim(answer.definition) },
+          { name: "Example:", value: trim(answer.example) },
+          {
+            name: "Ratings",
+            value: `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`,
+          }
         )
         .setTimestamp();
       await interaction.reply({ embeds: [embed2] });
