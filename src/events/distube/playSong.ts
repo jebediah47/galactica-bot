@@ -10,29 +10,39 @@ export const event: Event = {
         .setTitle("Playing a song...")
         .setColor("RANDOM")
         .setDescription(`Song: [\`${song.name}\`](${song.url})`)
-        .addField("💡 Requested by:", `>>> ${song.user}`, true)
-        .addField("⏱ Duration:", `>>> \`${song.formattedDuration}\``, true)
-        .addField(
-          "🌀 Queue:",
-          `>>> \`${queue.songs.length} song(s) - ${queue.formattedDuration}\``,
-          true
-        )
-        .addField("🔊 Volume:", `>>> \`${queue.volume} %\``, true)
-        .addField(
-          "♾ Loop:",
-          `>>> ${
-            queue.repeatMode
-              ? queue.repeatMode === 2
-                ? "✅ Queue"
-                : "✅ Song"
-              : "❌"
-          }`,
-          true
-        )
-        .addField(
-          "❔ Download Song:",
-          `>>> [\`Click here\`](${song.streamURL})`,
-          true
+        .addFields(
+          { name: "💡 Requested by:", value: `>>> ${song.user}`, inline: true },
+          {
+            name: "⏱ Duration:",
+            value: `>>> \`${song.formattedDuration}\``,
+            inline: true,
+          },
+          {
+            name: "🌀 Queue:",
+            value: `>>> \`${queue.songs.length} song(s) - ${queue.formattedDuration}\``,
+            inline: true,
+          },
+          {
+            name: "🔊 Volume:",
+            value: `>>> \`${queue.volume} %\``,
+            inline: true,
+          },
+          {
+            name: "♾ Loop:",
+            value: `>>> ${
+              queue.repeatMode
+                ? queue.repeatMode === 2
+                  ? "✅ Queue"
+                  : "✅ Song"
+                : "❌"
+            }`,
+            inline: true,
+          },
+          {
+            name: "❔ Download Song:",
+            value: `>>> [\`Click here\`](${song.streamURL})`,
+            inline: true,
+          }
         )
         .setTimestamp()
         .setImage(song.thumbnail);

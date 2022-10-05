@@ -14,6 +14,7 @@ module.exports = {
       rules: {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "prettier/prettier": ["error", { endOfLine: "auto" }],
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "no-useless-escape": 0,

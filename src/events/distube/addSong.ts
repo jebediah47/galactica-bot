@@ -10,12 +10,22 @@ export const event: Event = {
         .setTitle("Added a song to queue...")
         .setColor("RANDOM")
         .setDescription(`Song: [\`${song.name}\`](${song.url})`)
-        .addField("💡 Requested by:", `>>> ${song.user}`, true)
-        .addField("⏱ Duration:", `>>> \`${song.formattedDuration}\``, true)
-        .addField(
-          "🌀 Queue:",
-          `>>> \`${queue.songs.length} song(s) - ${queue.formattedDuration}\``,
-          true
+        .addFields(
+          {
+            name: "💡 Requested by:",
+            value: `>>> ${song.user}`,
+            inline: true,
+          },
+          {
+            name: "⏱ Duration:",
+            value: `>>> \`${song.formattedDuration}\``,
+            inline: true,
+          },
+          {
+            name: "🌀 Queue:",
+            value: `>>> \`${queue.songs.length} song(s) - ${queue.formattedDuration}\``,
+            inline: true,
+          }
         )
         .setTimestamp()
         .setImage(song.thumbnail);

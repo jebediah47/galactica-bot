@@ -2,7 +2,7 @@ import express from "express";
 
 const app = express();
 
-app.all("/", (_req, res) => {
+app.get("/", (_req, res) => {
   res.status(200).send("Bot is running!");
 });
 

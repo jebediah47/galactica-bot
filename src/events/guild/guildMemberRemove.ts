@@ -4,18 +4,9 @@ import { Event } from "../../interfaces";
 export const event: Event = {
   name: "guildMemberRemove",
   run: async (client, member: GuildMember) => {
-    const db = await client.prisma.guildConfigs.findUnique({
-      where: {
-        guildID: `${member.guild.id}`,
-      },
-      select: {
-        modLogsIsEnabled: true,
-        modLogsChannelID: true,
-      },
-    });
-    if (db?.modLogsIsEnabled === true) {
+    if (client.configs.get(member.guild.id)?.modLogsIsEnabled === true) {
       const channel: TextChannel = member.guild.channels.cache.get(
-        db.modLogsChannelID as string
+        client.configs.get(member.guild.id)?.modLogsChannelID as string
       ) as TextChannel;
 
       if (!channel || member.user.tag === `${client.user?.tag}`) {
