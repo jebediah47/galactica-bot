@@ -1,36 +1,39 @@
 /* eslint-disable no-inner-declarations */
 /**
  * @author Rahul Marban creator of simply-djs
- * @author Christian Llupo (jebediah47) to use extended interaction and to remove bloat
+ * @author Christian Llupo (jebediah47) member of of the simply-devlop GitHub organization
  * @license CC_BY-NC-NDv4.0 https://github.com/Rahuletto/simply-djs/blob/main/LICENSE
  * @copyright Rahul Marban 2021-2022
  * @copyright Christian Llupo 2022
  * Modifications are licensed under the GNU Affero General Public License-v3.0
  * Thanks again to Rahul Marban for creating this package!
  */
+
 import {
-  MessageButtonStyle,
-  MessageEmbed,
-  MessageButton,
-  MessageActionRow,
-  MessageEmbedAuthor,
-  MessageEmbedFooter,
-  ColorResolvable,
+  ActionRowBuilder,
+  ButtonBuilder,
   ButtonInteraction,
+  ButtonStyle,
+  ColorResolvable,
+  EmbedAuthorOptions,
+  EmbedBuilder,
+  ComponentType,
 } from "discord.js";
 import { ExtendedInteraction } from "../interfaces";
+
+// ------------------------------
+// ------- T Y P I N G S --------
+// ------------------------------
 
 /**
  * **URL** of the Type: *https://simplyd.js.org/docs/types/CustomizableEmbed*
  */
+
 interface CustomizableEmbed {
-  author?: MessageEmbedAuthor;
+  author?: EmbedAuthorOptions;
   title?: string;
-  footer?: MessageEmbedFooter;
   color?: ColorResolvable;
   description?: string;
-
-  credit?: boolean;
 }
 
 /**
@@ -38,9 +41,9 @@ interface CustomizableEmbed {
  */
 
 interface calcButtons {
-  numbers?: MessageButtonStyle;
-  symbols?: MessageButtonStyle;
-  delete?: MessageButtonStyle;
+  numbers?: ButtonStyle;
+  symbols?: ButtonStyle;
+  delete?: ButtonStyle;
 }
 
 export type calcOptions = {
@@ -48,8 +51,12 @@ export type calcOptions = {
   buttons?: calcButtons;
 };
 
+// ------------------------------
+// ------ F U N C T I O N -------
+// ------------------------------
+
 /**
- * A Unique **calculator** which can be *used inside Discord*
+ * An Unique **calculator** which can be *used inside Discord*
  * @param interaction
  * @param options
  * @link `Documentation:` ***https://simplyd.js.org/docs/General/calculator***
@@ -59,7 +66,11 @@ export type calcOptions = {
 export async function calculator(
   interaction: ExtendedInteraction,
   options: calcOptions = {
-    buttons: { numbers: "SECONDARY", symbols: "PRIMARY", delete: "DANGER" },
+    buttons: {
+      numbers: ButtonStyle.Secondary,
+      symbols: ButtonStyle.Primary,
+      delete: ButtonStyle.Danger,
+    },
   }
 ): Promise<void> {
   try {
@@ -96,18 +107,14 @@ export async function calculator(
 
     if (!options.embed) {
       options.embed = {
-        footer: {
-          text: "Console output.",
-        },
         color: "#075FFF",
-        credit: true,
       };
     }
 
     options.buttons = {
-      numbers: options.buttons?.numbers || "SECONDARY",
-      symbols: options.buttons?.symbols || "PRIMARY",
-      delete: options.buttons?.delete || "DANGER",
+      numbers: options.buttons?.numbers,
+      symbols: options.buttons?.symbols,
+      delete: options.buttons?.delete,
     };
 
     let message;
@@ -123,10 +130,8 @@ export async function calculator(
       }
     }
 
-    const emb1 = new MessageEmbed()
+    const emb1 = new EmbedBuilder()
       .setColor(options.embed?.color || "#075FFF")
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      .setFooter((options.embed?.credit ? options.embed?.footer : null)!)
       .setDescription(
         "```js\n0\n// Result: 0\n```" +
           (options.embed?.description ? `\n${options.embed?.description}` : "")
@@ -151,6 +156,7 @@ export async function calculator(
 
       msg = await int.fetchReply();
     }
+
     const time = 300000;
 
     let elem = "0";
@@ -160,9 +166,8 @@ export async function calculator(
         (interaction.user ? interaction.user : interaction.member).id &&
       button.customId.startsWith("cal-");
 
-    const collect = msg.createMessageComponentCollector({
-      filter,
-      componentType: "BUTTON",
+    const collect = msg.createMessageComponentCollector(filter, {
+      componentType: ComponentType.Button,
       time: time,
     });
 
@@ -253,8 +258,8 @@ export async function calculator(
       }
     }, time);
 
-    function addRow(btns: MessageButton[]) {
-      const row1 = new MessageActionRow();
+    function addRow(btns: ButtonBuilder[]) {
+      const row1 = new ActionRowBuilder();
       for (const btn of btns) {
         row1.addComponents(btn);
       }
@@ -263,29 +268,25 @@ export async function calculator(
 
     function createButton(
       label: any,
-      style: MessageButtonStyle | undefined = options.buttons?.numbers
+      style: ButtonStyle | undefined = options.buttons?.numbers
     ) {
-      if (style != undefined) {
-        if (label === "Clear") style = options.buttons?.delete;
-        else if (label === "Delete") style = options.buttons?.delete;
-        else if (label === "⌫") style = options.buttons?.delete;
-        else if (label === "π") style = options.buttons?.numbers;
-        else if (label === "%") style = options.buttons?.numbers;
-        else if (label === "^") style = options.buttons?.numbers;
-        else if (label === ".") style = options.buttons?.symbols;
-        else if (label === "=") style = "SUCCESS";
-        else if (isNaN(label)) style = options.buttons?.symbols;
-        return (
-          new MessageButton()
-            .setLabel(label)
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            .setStyle(style!)
-            .setCustomId("cal-" + label)
-        );
-      }
+      if (label === "Clear") style = options.buttons?.delete;
+      else if (label === "Delete") style = options.buttons?.delete;
+      else if (label === "⌫") style = options.buttons?.delete;
+      else if (label === "π") style = options.buttons?.numbers;
+      else if (label === "%") style = options.buttons?.numbers;
+      else if (label === "^") style = options.buttons?.numbers;
+      else if (label === ".") style = options.buttons?.symbols;
+      else if (label === "=") style = ButtonStyle.Success;
+      else if (isNaN(label)) style = options.buttons?.symbols;
+
+      return new ButtonBuilder()
+        .setLabel(label)
+        .setStyle(style as ButtonStyle)
+        .setCustomId("cal-" + label);
     }
 
-    const evalRegex = /^[\dπ+%^\-*\/.()]*$/;
+    const evalRegex = /^[0-9π\+\%\^\-*\/\.\(\)]*$/;
     function mathEval(input: string, result = false) {
       try {
         const matched = evalRegex.exec(input);
@@ -306,6 +307,6 @@ export async function calculator(
       }
     }
   } catch (err) {
-    process.stdout.write(`${err}`);
+    process.stdout.write(`An error occurred: ${err}`);
   }
 }
