@@ -1,9 +1,4 @@
-import {
-  ApplicationCommandOptionType,
-  BaseInteraction,
-  CacheType,
-  Role,
-} from "discord.js";
+import { ApplicationCommandOptionType, Role } from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
