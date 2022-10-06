@@ -1,3 +1,4 @@
+import { ApplicationCommandOptionType } from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -7,7 +8,7 @@ export const command: Command = {
     {
       name: "input",
       description: "The input to be echoed",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
