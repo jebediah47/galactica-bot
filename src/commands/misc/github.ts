@@ -1,5 +1,5 @@
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import {ApplicationCommandOptionType, EmbedBuilder} from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
@@ -9,7 +9,7 @@ export const command: Command = {
     {
       name: "profile",
       description: "User's profile name",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -19,8 +19,8 @@ export const command: Command = {
 
     try {
       const { data } = await axios.get(`https://api.github.com/users/${name}`);
-      const embed = new MessageEmbed()
-        .setColor("RANDOM")
+      const embed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle(`${data.login}`)
         .setDescription(data.bio ? data.bio : "None")
         .addFields(
@@ -58,8 +58,8 @@ export const command: Command = {
 
       await interaction.reply({ embeds: [embed] });
     } catch (err) {
-      const errEmbed = new MessageEmbed()
-        .setColor("RANDOM")
+      const errEmbed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
