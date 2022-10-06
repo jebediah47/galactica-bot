@@ -1,10 +1,10 @@
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import got from "got";
 
 export const command: Command = {
   name: "meme",
-  description: "Sends you an EPICO meme!",
+  description: "Sends you an EPIC meme!",
   run: async (client, interaction) => {
     const subReddits = [
       "meme",
@@ -26,10 +26,10 @@ export const command: Command = {
         const memeTitle = post.data.title;
         const memeUpvotes = post.data.ups;
         const memeNumComments = post.data.num_comments;
-        const meme = new MessageEmbed()
+        const meme = new EmbedBuilder()
           .setTitle(`${memeTitle}`)
           .setURL(`${memeUrl}`)
-          .setColor("RANDOM")
+          .setColor("Random")
           .setImage(memeImage)
           .setFooter({
             text: `👍 ${memeUpvotes} 💬 ${memeNumComments}`,
