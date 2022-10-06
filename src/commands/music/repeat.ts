@@ -1,6 +1,6 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import { GuildIdResolvable, RepeatMode } from "distube";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
-import { RepeatMode } from "distube";
 
 export const command: Command = {
   name: "repeat",
@@ -9,7 +9,7 @@ export const command: Command = {
     {
       name: "mode",
       description: "Sets the repeat mode",
-      type: "INTEGER",
+      type: ApplicationCommandOptionType.Integer,
       required: true,
       choices: [
         {
@@ -29,7 +29,7 @@ export const command: Command = {
   ],
   run: async (client, interaction, args) => {
     if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
-      const queue = client.distube.getQueue(interaction);
+      const queue = client.distube.getQueue(interaction as GuildIdResolvable);
       if (!queue) {
         return interaction.reply({
           content: "There is nothing currently playing in the queue!",
@@ -44,14 +44,14 @@ export const command: Command = {
             : queue.repeatMode === 1
             ? "Repeat song"
             : "Off";
-        const mode_embed = new MessageEmbed()
-          .setColor("RANDOM")
+        const mode_embed = new EmbedBuilder()
+          .setColor("Random")
           .setTitle(`Set repeat mode to \`${mode}\``)
           .setTimestamp();
         await interaction.reply({ embeds: [mode_embed] });
       } catch (err) {
-        const errEmbed = new MessageEmbed()
-          .setColor("RANDOM")
+        const errEmbed = new EmbedBuilder()
+          .setColor("Random")
           .setTitle("❌ Error!")
           .setDescription(`${err}`)
           .setTimestamp();
