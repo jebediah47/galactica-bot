@@ -1,6 +1,6 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { capitalize, commaFormatter } from "../../functions";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
@@ -10,7 +10,7 @@ export const command: Command = {
     {
       name: "currency-code",
       description: "Currency code e.g. eur",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: false,
     },
   ],
@@ -18,8 +18,8 @@ export const command: Command = {
     const bitcoin = `bitcoin`;
     let irl_currency = args.getString("currency-code") || "usd";
     irl_currency = irl_currency.toLowerCase();
-    const errEmbed = new MessageEmbed()
-      .setColor("RANDOM")
+    const errEmbed = new EmbedBuilder()
+      .setColor("Random")
       .setTitle("Notice!")
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
@@ -33,8 +33,8 @@ export const command: Command = {
       );
 
       if (data[bitcoin][irl_currency] === undefined) {
-        const embed = new MessageEmbed()
-          .setColor("RANDOM")
+        const embed = new EmbedBuilder()
+          .setColor("Random")
           .setTitle("We are sorry but...")
           .setDescription(
             "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
@@ -51,8 +51,8 @@ export const command: Command = {
         0,
         `${data[bitcoin][irl_currency + "_24h_change"]}`.length - 13
       );
-      const embed2 = new MessageEmbed()
-        .setColor("RANDOM")
+      const embed2 = new EmbedBuilder()
+        .setColor("Random")
         .setTitle(
           capitalize(bitcoin) + " " + irl_currency.toUpperCase() + " price!"
         )
