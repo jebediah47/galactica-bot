@@ -1,4 +1,8 @@
 import { Command } from "../../interfaces";
+import {
+  ApplicationCommandOptionType,
+  GuildTextBasedChannel,
+} from "discord.js";
 
 export const command: Command = {
   name: "play",
@@ -7,7 +11,7 @@ export const command: Command = {
     {
       name: "song",
       description: "Any song name or url",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -20,13 +24,12 @@ export const command: Command = {
       }
       const music = args.getString("song");
       if (!music) return;
-      if (interaction.channel?.type === "GUILD_TEXT") {
-        client.distube.play(interaction.member.voice.channel, music, {
-          member: interaction.member,
-          textChannel: interaction.channel,
-        });
-        await interaction.reply({ content: "Added a song to the queue!" });
-      }
+      await interaction.deferReply();
+      await client.distube.play(interaction.member.voice.channel, music, {
+        member: interaction.member,
+        textChannel: interaction.channel as GuildTextBasedChannel,
+      });
+      await interaction.editReply({ content: "Added a song to the queue!" });
     } else {
       return interaction.reply({
         content: "Music commands have been disabled by the owner.",
