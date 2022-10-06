@@ -1,5 +1,5 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "avatar",
@@ -8,18 +8,18 @@ export const command: Command = {
     {
       name: "user",
       description: "Mention any user for his avatar to be displayed.",
-      type: "USER",
+      type: ApplicationCommandOptionType.User,
       required: false,
     },
   ],
   run: async (client, interaction, args) => {
     const user = args.getUser("user") || interaction.user;
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setAuthor({
         name: `${user.tag} 's avatar`,
       })
       .setTimestamp()
-      .setImage(user.displayAvatarURL({ size: 4096, dynamic: true }))
+      .setImage(user.displayAvatarURL({ size: 4096, forceStatic: false }))
       .setTimestamp();
     await interaction.reply({ embeds: [embed] });
   },
