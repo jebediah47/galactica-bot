@@ -1,11 +1,10 @@
-import { ActivityTypes } from "discord.js/typings/enums";
-import { ExcludeEnum } from "discord.js";
+import { ActivityType } from "discord.js";
 import { Event } from "../../interfaces";
 
 export const event: Event = {
   name: "ready",
   run: async (client) => {
-    client.registerCommands({
+    await client.registerCommands({
       commands: client.slashCommands,
     });
     const guildConfigs = await client.prisma.guildConfigs.findMany();
@@ -13,9 +12,33 @@ export const event: Event = {
       client.configs.set(config.guildID, config)
     );
     process.stdout.write(`We have logged in as ${client.user!.tag} \n`);
+
+    let activityType;
+    switch (client.config.BOT_PRESENCE_TYPE) {
+      case "PLAYING":
+        activityType = ActivityType.Playing;
+        break;
+      case "STREAMING":
+        activityType = ActivityType.Streaming;
+        break;
+      case "LISTENING":
+        activityType = ActivityType.Listening;
+        break;
+      case "WATCHING":
+        activityType = ActivityType.Watching;
+        break;
+      case "COMPETING":
+        activityType = ActivityType.Competing;
+        break;
+    }
+
     client.user!.setActivity(`${client.config.BOT_PRESENCE}`, {
-      type: client.config.BOT_PRESENCE_TYPE as
-        | ExcludeEnum<typeof ActivityTypes, "CUSTOM">
+      type: activityType as
+        | ActivityType.Playing
+        | ActivityType.Streaming
+        | ActivityType.Listening
+        | ActivityType.Watching
+        | ActivityType.Competing
         | undefined,
     });
   },
