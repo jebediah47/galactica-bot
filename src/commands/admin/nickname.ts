@@ -1,5 +1,5 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "nickname",
@@ -8,13 +8,13 @@ export const command: Command = {
     {
       name: "user",
       description: "The user to have his nickname changed",
-      type: "USER",
+      type: ApplicationCommandOptionType.User,
       required: true,
     },
     {
       name: "nickname",
       description: "The new nickname to be set",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -23,16 +23,16 @@ export const command: Command = {
     const usr = args.getUser("user");
     const nickname = args.getString("nickname");
     if (!user || !nickname) return;
-    if (!interaction.member.permissions.has("MANAGE_NICKNAMES")) {
+    if (!interaction.member.permissions.has("ManageNicknames")) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
       });
     }
-    const embed = new MessageEmbed()
-      .setColor("RANDOM")
+    const embed = new EmbedBuilder()
+      .setColor("Random")
       .setDescription(`Changed the username of ${usr?.tag} to ${nickname}`)
       .setTimestamp();
     await interaction.reply({ embeds: [embed] });
-    user.setNickname(nickname);
+    await user.setNickname(nickname);
   },
 };
