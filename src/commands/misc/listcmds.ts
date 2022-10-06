@@ -1,5 +1,5 @@
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export const command: Command = {
   name: "listcmds",
@@ -7,8 +7,8 @@ export const command: Command = {
   run: async (client, interaction) => {
     interaction.reply({
       embeds: [
-        new MessageEmbed()
-          .setColor("RANDOM")
+        new EmbedBuilder()
+          .setColor("Random")
           .setTitle("These are all of the available commands.")
           .setDescription(
             client.commands.map((cmd) => `\`${cmd.name}\``).join(", ")
