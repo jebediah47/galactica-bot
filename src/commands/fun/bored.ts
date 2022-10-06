@@ -1,5 +1,5 @@
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import axios from "axios";
 import { capitalize } from "../../functions";
 
@@ -9,8 +9,8 @@ export const command: Command = {
   run: async (client, interaction) => {
     try {
       const { data } = await axios.get("http://www.boredapi.com/api/activity");
-      const embed = new MessageEmbed()
-        .setColor("RANDOM")
+      const embed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("Here's something for you to do!")
         .setDescription(data.activity)
         .addFields(
@@ -20,8 +20,8 @@ export const command: Command = {
         .setTimestamp();
       await interaction.reply({ embeds: [embed] });
     } catch (err) {
-      const errEmbed = new MessageEmbed()
-        .setColor("RANDOM")
+      const errEmbed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
