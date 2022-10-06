@@ -1,3 +1,4 @@
+import { ApplicationCommandOptionType, Role } from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -7,17 +8,17 @@ export const command: Command = {
     {
       name: "channel",
       description: "Channel name",
-      type: "CHANNEL",
+      type: ApplicationCommandOptionType.Channel,
       required: false,
     },
   ],
   run: async (client, interaction, args) => {
-    if (!interaction.member.permissions.has("MANAGE_CHANNELS")) {
+    if (!interaction.member.permissions.has("ManageChannels")) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
       });
     }
-    const everyone: any = interaction.guild?.roles.cache.find(
+    const everyone: Role | undefined = interaction.guild?.roles.cache.find(
       (r) => r.name === "@everyone"
     );
     let channel: any = args.getChannel("channel");
