@@ -1,5 +1,5 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
@@ -9,7 +9,7 @@ export const command: Command = {
     {
       name: "data",
       description: "INPUT",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -26,8 +26,8 @@ export const command: Command = {
       );
       const [answer] = list;
 
-      const embed2 = new MessageEmbed()
-        .setColor("RANDOM")
+      const embed2 = new EmbedBuilder()
+        .setColor("Random")
         .setTitle(answer.word)
         .setURL(answer.permalink)
         .addFields(
@@ -41,8 +41,8 @@ export const command: Command = {
         .setTimestamp();
       await interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      const errEmbed = new MessageEmbed()
-        .setColor("RANDOM")
+      const errEmbed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
