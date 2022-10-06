@@ -1,3 +1,4 @@
+import { ApplicationCommandOptionType } from "discord.js";
 import { Command } from "../../interfaces";
 import util from "node:util";
 import figlet from "figlet";
@@ -9,7 +10,7 @@ export const command: Command = {
     {
       name: "input",
       description: "Input to be converted to ascii",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
