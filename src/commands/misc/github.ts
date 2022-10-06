@@ -1,5 +1,5 @@
 import { Command } from "../../interfaces";
-import {ApplicationCommandOptionType, EmbedBuilder} from "discord.js";
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import axios from "axios";
 
 export const command: Command = {
