@@ -1,7 +1,7 @@
 /* eslint-disable no-inner-declarations */
 /**
  * @author Rahul Marban creator of simply-djs
- * @author Christian Llupo (jebediah47) member of of the simply-devlop GitHub organization
+ * @author Christian Llupo (jebediah47) member of the simply-devlop GitHub organization
  * @license CC_BY-NC-NDv4.0 https://github.com/Rahuletto/simply-djs/blob/main/LICENSE
  * @copyright Rahul Marban 2021-2022
  * @copyright Christian Llupo 2022
