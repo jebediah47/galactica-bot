@@ -1,5 +1,6 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import { GuildIdResolvable } from "distube";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 import { isInteger } from "mathjs";
 
 export const command: Command = {
@@ -9,7 +10,7 @@ export const command: Command = {
     {
       name: "time",
       description: "Enter the time to seek (number of seconds)",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -17,25 +18,25 @@ export const command: Command = {
     if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
       let time: any = args.getString("time");
       if (!time) return;
-      const queue = client.distube.getQueue(interaction);
+      const queue = client.distube.getQueue(interaction as GuildIdResolvable);
       try {
         time = Number(time);
         if (!isInteger(time)) {
-          const embed = new MessageEmbed()
-            .setColor("RANDOM")
+          const embed = new EmbedBuilder()
+            .setColor("Random")
             .setDescription("Please enter a valid number!")
             .setTimestamp();
           return interaction.reply({ embeds: [embed] });
         }
         queue?.seek(time);
-        const seekSuccess = new MessageEmbed()
-          .setColor("RANDOM")
+        const seekSuccess = new EmbedBuilder()
+          .setColor("Random")
           .setDescription(`Seeked song to \`${time}\` seconds.`)
           .setTimestamp();
         await interaction.reply({ embeds: [seekSuccess] });
       } catch (err) {
-        const errEmbed = new MessageEmbed()
-          .setColor("RANDOM")
+        const errEmbed = new EmbedBuilder()
+          .setColor("Random")
           .setTitle("❌ Error!")
           .setDescription(`${err}`)
           .setTimestamp();
