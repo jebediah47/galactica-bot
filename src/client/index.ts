@@ -29,7 +29,6 @@ class ExtendedClient extends Client {
       new SpotifyPlugin(),
       new SoundCloudPlugin(),
     ],
-    youtubeDL: false,
   });
   public config: Config = ConfigJson;
   public constructor() {
