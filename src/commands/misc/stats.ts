@@ -1,6 +1,6 @@
 import * as pkg from "../../../package.json";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export const command: Command = {
   name: "stats",
@@ -32,8 +32,8 @@ export const command: Command = {
     }
     try {
       if (typeof client.uptime === "number") {
-        const embed = new MessageEmbed()
-          .setColor("RANDOM")
+        const embed = new EmbedBuilder()
+          .setColor("Random")
           .setTitle(`Galactica bot stats!`)
           .setDescription(
             `
@@ -42,7 +42,7 @@ export const command: Command = {
             Channels: \`${client.channels.cache.size.toLocaleString()}\`
             Uptime: \`${formatMS(client.uptime)}\`
             Discord API version: \`${
-              client.options.http?.version || "Unknown"
+              client.options.rest?.version || "Unknown"
             }\`
             WebSocket Ping: \`${client.ws.ping}\`
             Bot Version: \`${pkg.version}\``
@@ -51,8 +51,8 @@ export const command: Command = {
         await interaction.reply({ embeds: [embed] });
       }
     } catch (err) {
-      const errEmbed = new MessageEmbed()
-        .setColor("RANDOM")
+      const errEmbed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
