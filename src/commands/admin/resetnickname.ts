@@ -1,5 +1,5 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "resetnickname",
@@ -8,7 +8,7 @@ export const command: Command = {
     {
       name: "user",
       description: "The user to have his nickname reset",
-      type: "USER",
+      type: ApplicationCommandOptionType.User,
       required: true,
     },
   ],
@@ -16,16 +16,16 @@ export const command: Command = {
     const user: any = args.getMember("user");
     const usr = args.getUser("user");
     if (!user) return;
-    if (!interaction.member.permissions.has("MANAGE_NICKNAMES")) {
+    if (!interaction.member.permissions.has("ManageNicknames")) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
       });
     }
-    const embed = new MessageEmbed()
-      .setColor("RANDOM")
+    const embed = new EmbedBuilder()
+      .setColor("Random")
       .setDescription(`Resetted ${usr?.tag}'s nickname`)
       .setTimestamp();
     await interaction.reply({ embeds: [embed] });
-    user.setNickname(null);
+    await user.setNickname(null);
   },
 };
