@@ -1,6 +1,6 @@
-import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import { refreshConfigCache } from "../../functions";
+import { Command } from "../../interfaces";
 
 export const command: Command = {
   name: "setmodlogs",
@@ -9,7 +9,7 @@ export const command: Command = {
     {
       name: "mode",
       description: "Sets the mode",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
       choices: [
         {
@@ -24,7 +24,7 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    if (!interaction.member.permissions.has("MANAGE_CHANNELS")) {
+    if (!interaction.member.permissions.has("ManageChannels")) {
       return interaction.reply("You are not permitted to use this command!");
     }
     let bool = false;
@@ -36,8 +36,8 @@ export const command: Command = {
         bool = false;
         break;
     }
-    const embed = new MessageEmbed()
-      .setColor("RANDOM")
+    const embed = new EmbedBuilder()
+      .setColor("Random")
       .setDescription(`Set modlogsIsEnabled to \`${bool}\``)
       .setTimestamp();
     await client.prisma.guildConfigs.update({
@@ -48,7 +48,7 @@ export const command: Command = {
         modLogsIsEnabled: bool,
       },
     });
-    refreshConfigCache(client);
-    interaction.reply({ embeds: [embed] });
+    await refreshConfigCache(client);
+    await interaction.reply({ embeds: [embed] });
   },
 };
