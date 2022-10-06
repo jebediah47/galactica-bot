@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import { Queue, Song } from "distube";
 import { Event } from "../../interfaces";
 
@@ -6,9 +6,9 @@ export const event: Event = {
   name: "playSong",
   run: (client, queue: Queue, song: Song) => {
     if (typeof song.thumbnail === "string") {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("Playing a song...")
-        .setColor("RANDOM")
+        .setColor("Random")
         .setDescription(`Song: [\`${song.name}\`](${song.url})`)
         .addFields(
           { name: "💡 Requested by:", value: `>>> ${song.user}`, inline: true },
