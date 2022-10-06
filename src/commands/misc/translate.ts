@@ -1,6 +1,6 @@
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import translate from "@iamtraction/google-translate";
 import { Command } from "../../interfaces";
-import { MessageEmbed } from "discord.js";
 
 export const command: Command = {
   name: "translate",
@@ -9,7 +9,7 @@ export const command: Command = {
     {
       name: "data",
       description: "Data to be translated",
-      type: "STRING",
+      type: ApplicationCommandOptionType.String,
       required: true,
     },
   ],
@@ -18,16 +18,16 @@ export const command: Command = {
     if (!query) return;
     try {
       const translated = await translate(query.toString(), { to: "en" });
-      const embed2 = new MessageEmbed()
-        .setColor("RANDOM")
+      const embed2 = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("**This Translates to:**")
         .setDescription(translated.text)
         .setTimestamp();
 
       await interaction.reply({ embeds: [embed2] });
     } catch (err) {
-      const errEmbed = new MessageEmbed()
-        .setColor("RANDOM")
+      const errEmbed = new EmbedBuilder()
+        .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
         .setTimestamp();
