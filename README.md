@@ -40,7 +40,7 @@
 git clone https://github.com/jebediah47/galactica-bot
 `
 
-**Step 2**: Edit the `.env` file and change:
+**Step 2**: Edit the `.env.example` file and change:
 
 ```python
 ### Galactica bot related vars ###
