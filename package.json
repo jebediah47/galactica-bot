@@ -9,7 +9,8 @@
     "clean": "node buildCleanup.mjs",
     "lint": "eslint . --ext .ts",
     "build": "tsc",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma"
   },
   "repository": {
     "type": "git",
