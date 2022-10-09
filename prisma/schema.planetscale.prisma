@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model GuildConfigs {
+  id               Int      @id @default(autoincrement())
+  guildID          String   @unique
+  guildName        String
+  dateJoined       DateTime @default(now())
+  modLogsIsEnabled Boolean  @default(false)
+  modLogsChannelID String?  @unique
+  musicIsEnabled   Boolean  @default(true)
+
+  @@index([guildID])
+}
