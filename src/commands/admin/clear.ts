@@ -19,7 +19,7 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    const number: any = args.getNumber("messages");
+    const number: number | null = args.getNumber("messages");
     const channel = interaction.channel;
     const embed = new EmbedBuilder()
       .setColor("Random")
