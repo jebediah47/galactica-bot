@@ -1,4 +1,8 @@
-import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import {
+  ApplicationCommandOptionType,
+  EmbedBuilder,
+  GuildMember,
+} from "discord.js";
 import { Command } from "../../interfaces";
 
 export const command: Command = {
@@ -19,7 +23,7 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    const user: any = args.getMember("user");
+    const user: GuildMember = args.getMember("user") as GuildMember;
     const usr = args.getUser("user");
     const nickname = args.getString("nickname");
     if (!user || !nickname) return;
