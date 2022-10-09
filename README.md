@@ -52,8 +52,7 @@ SERVER_ENABLED=false
 SERVER_PORT=3001
 
 ### Prisma related vars ###
-DATABASE_TYPE=sqlite
-DATABASE_URL="file:./database.db"
+DATABASE_URL=YOUR_DATABASE_URL
 ```
 
 💡 Quick tip: If you don't know how to configure galactica you can check it's documentation website [here](https://galacticabot.vercel.app/)
