@@ -1,13 +1,13 @@
-import { Command, Event, Config, RegisterCommandOptions } from "../interfaces";
+import { Command, Event, RegisterCommandOptions } from "../interfaces";
 import { PrismaClient, GuildConfigs } from "@prisma/client";
 import { SoundCloudPlugin } from "@distube/soundcloud";
 import { SpotifyPlugin } from "@distube/spotify";
-import * as ConfigJson from "../../config.json";
 import { YtDlpPlugin } from "@distube/yt-dlp";
 import { galacticaServer } from "../server";
 import { readdir } from "node:fs/promises";
 import { DisTube } from "distube";
 import path from "node:path";
+import "dotenv/config";
 import {
   ApplicationCommandDataResolvable,
   Collection,
@@ -30,7 +30,6 @@ class ExtendedClient extends Client {
       new SoundCloudPlugin(),
     ],
   });
-  public config: Config = ConfigJson;
   public constructor() {
     super({
       intents: 32767,
@@ -40,11 +39,11 @@ class ExtendedClient extends Client {
     await this.application?.commands.set(commands);
   }
   public async init(): Promise<void> {
-    this.login(this.config.TOKEN).then();
+    this.login(process.env.TOKEN).then();
     const command_files = path.join(__dirname, "..", "commands");
     for (const dir of await readdir(command_files)) {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
-        (file) => file.endsWith(".ts") || file.endsWith(".js")
+        (file: string) => file.endsWith(".ts") || file.endsWith(".js")
       );
 
       for (const file of commands) {
@@ -66,8 +65,8 @@ class ExtendedClient extends Client {
         this.distube?.on(event.name, event.run.bind(null, this));
       }
     }
-    if (this.config.SERVER_OPTIONS.ENABLED) {
-      galacticaServer(this.config.SERVER_OPTIONS.PORT);
+    if (process.env.SERVER_ENABLED) {
+      galacticaServer(process.env.SERVER_PORT);
     }
   }
 }
