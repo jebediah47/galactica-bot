@@ -16,7 +16,7 @@ export const command: Command = {
   ],
   run: async (client, interaction, args) => {
     if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
-      let time: any = args.getString("time");
+      let time: number | null = args.getString("time") as unknown as number;
       if (!time) return;
       const queue = client.distube.getQueue(interaction as GuildIdResolvable);
       try {
