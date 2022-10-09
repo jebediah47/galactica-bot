@@ -18,6 +18,9 @@ jobs:
           name: Run eslint
           command: npm run lint
       - run:
+          name: Generate prisma client
+          command: npx prisma generate
+      - run:
           name: Compile galactica
           command: npm run build
 workflows:
