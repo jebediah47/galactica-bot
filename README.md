@@ -40,18 +40,20 @@
 git clone https://github.com/jebediah47/galactica-bot
 `
 
-**Step 2**: Edit the `config.json` file and change:
+**Step 2**: Edit the `.env` file and change:
 
-```json
-{
-  "TOKEN": "YOUR_BOT_TOKEN",
-  "BOT_PRESENCE": "YOUR_BOT_PRESENCE",
-  "BOT_PRESENCE_TYPE": "WATCHING",
-  "SERVER_OPTIONS": {
-    "ENABLED": true,
-    "PORT": null
-  }
-}
+```python
+### Galactica bot related vars ###
+TOKEN=YOUR_BOT_TOKEN
+BOT_PRESENCE=YOUR_BOT_PRESENCE
+# Values: PLAYING, LISTENING, WATCHING, STREAMING, COMPETING
+BOT_PRESENCE_TYPE=WATCHING
+SERVER_ENABLED=false
+SERVER_PORT=3001
+
+### Prisma related vars ###
+DATABASE_TYPE=sqlite
+DATABASE_URL="file:./database.db"
 ```
 
 💡 Quick tip: If you don't know how to configure galactica you can check it's documentation website [here](https://galacticabot.vercel.app/)
