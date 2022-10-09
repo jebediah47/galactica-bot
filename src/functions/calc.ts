@@ -174,7 +174,7 @@ export async function calculator(
     collect.on("collect", async (button: ButtonInteraction) => {
       await button.deferUpdate();
 
-      const btnName: any = button.customId.replace("cal-", "");
+      const btnName: string = button.customId.replace("cal-", "");
 
       if (elem === "0") elem = "";
 
@@ -207,7 +207,7 @@ export async function calculator(
       else if (btnName === "Clear") elem = "0";
       if (btnName === "⌫") elem = elem.slice(0, -2);
 
-      if (isNaN(btnName) && btnName !== "⌫") {
+      if (isNaN(Number(btnName)) && btnName !== "⌫") {
         emb1.setDescription(
           `\`\`\`js\n${elem
             .replaceAll("+", " + ")
@@ -267,7 +267,7 @@ export async function calculator(
     }
 
     function createButton(
-      label: any,
+      label: string,
       style: ButtonStyle | undefined = options.buttons?.numbers
     ) {
       if (label === "Clear") style = options.buttons?.delete;
@@ -278,7 +278,7 @@ export async function calculator(
       else if (label === "^") style = options.buttons?.numbers;
       else if (label === ".") style = options.buttons?.symbols;
       else if (label === "=") style = ButtonStyle.Success;
-      else if (isNaN(label)) style = options.buttons?.symbols;
+      else if (isNaN(Number(label))) style = options.buttons?.symbols;
 
       return new ButtonBuilder()
         .setLabel(label)
