@@ -44,15 +44,15 @@ git clone https://github.com/jebediah47/galactica-bot
 
 ```python
 ### Galactica bot related vars ###
-TOKEN=YOUR_BOT_TOKEN
-BOT_PRESENCE=YOUR_BOT_PRESENCE
+TOKEN="YOUR_BOT_TOKEN"
+BOT_PRESENCE="YOUR_BOT_PRESENCE"
 # Values: PLAYING, LISTENING, WATCHING, STREAMING, COMPETING
-BOT_PRESENCE_TYPE=WATCHING
+BOT_PRESENCE_TYPE="WATCHING"
 SERVER_ENABLED=false
 SERVER_PORT=3001
 
 ### Prisma related vars ###
-DATABASE_URL=YOUR_DATABASE_URL
+DATABASE_URL="YOUR_DATABASE_URL"
 ```
 
 💡 Quick tip: If you don't know how to configure galactica you can check it's documentation website [here](https://galacticabot.vercel.app/)
