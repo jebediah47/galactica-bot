@@ -14,7 +14,7 @@ export const event: Event = {
     process.stdout.write(`We have logged in as ${client.user!.tag} \n`);
 
     let activityType;
-    switch (client.config.BOT_PRESENCE_TYPE) {
+    switch (process.env.BOT_PRESENCE_TYPE) {
       case "PLAYING":
         activityType = ActivityType.Playing;
         break;
@@ -32,7 +32,7 @@ export const event: Event = {
         break;
     }
 
-    client.user!.setActivity(`${client.config.BOT_PRESENCE}`, {
+    client.user!.setActivity(`${process.env.BOT_PRESENCE}`, {
       type: activityType as
         | ActivityType.Playing
         | ActivityType.Streaming
