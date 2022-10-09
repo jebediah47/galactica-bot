@@ -29,10 +29,11 @@ export const command: Command = {
           "You **must** enter a valid number from the range 1 - 100"
         )
         .setTimestamp();
-      const volume: any = args.getNumber("vol");
-      if (!isInteger(volume)) return interaction.reply({ embeds: [errEmbed] });
+      const volume: number | null = args.getNumber("vol");
+      if (!isInteger(volume as number))
+        return interaction.reply({ embeds: [errEmbed] });
 
-      if (volume > 100) {
+      if (volume! > 100) {
         const errEmbed2 = new EmbedBuilder()
           .setColor("Random")
           .setTitle("Volume cannot be over 100%")
@@ -40,7 +41,9 @@ export const command: Command = {
         return interaction.reply({ embeds: [errEmbed2] });
       }
       try {
-        queue.setVolume(volume);
+        if (typeof volume === "number") {
+          queue.setVolume(volume);
+        }
         const volume_embed = new EmbedBuilder()
           .setColor("Random")
           .setTitle(`🔊Set volume to \`${volume}\`%`)
