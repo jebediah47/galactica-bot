@@ -30,7 +30,7 @@ jobs:
     - name: Run eslint
       run: npm run lint
       
-    - name: Build prisma client
+    - name: Generate prisma client
       run: npx prisma generate
 
     - name: Build TypeScript
