@@ -65,7 +65,8 @@ class ExtendedClient extends Client {
         this.distube?.on(event.name, event.run.bind(null, this));
       }
     }
-    if (process.env.SERVER_ENABLED === true) {
+
+    if (process.env.SERVER_ENABLED === "true") {
       galacticaServer(process.env.SERVER_PORT);
     }
   }

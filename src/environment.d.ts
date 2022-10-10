@@ -4,7 +4,7 @@ declare global {
       TOKEN: string;
       BOT_PRESENCE: string;
       BOT_PRESENCE_TYPE: string;
-      SERVER_ENABLED: boolean;
+      SERVER_ENABLED: string;
       SERVER_PORT: number;
     }
   }
