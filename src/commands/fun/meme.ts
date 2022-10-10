@@ -1,42 +1,43 @@
 import { Command } from "../../interfaces";
 import { EmbedBuilder } from "discord.js";
-import got from "got";
+import axios from "axios";
 
 export const command: Command = {
   name: "meme",
   description: "Sends you an EPIC meme!",
   run: async (client, interaction) => {
     const subReddits = [
-      "meme",
-      "memes",
-      "terriblefacebookmemes",
-      "dankmemes",
-      "PewdiepieSubmissions",
-      "MemeEconomy",
+      "r/meme",
+      "r/memes",
+      "r/terriblefacebookmemes",
+      "r/dankmemes",
+      "r/PewdiepieSubmissions",
+      "r/MemeEconomy",
     ];
-    const random = subReddits[Math.floor(Math.random() * subReddits.length)];
-    await got(`https://www.reddit.com/r/${random}/random/.json`).then(
-      async (response) => {
-        const [list] = JSON.parse(response.body);
-        const [post] = list.data.children;
-
-        const permalink = post.data.permalink;
-        const memeUrl = `https://reddit.com${permalink}`;
-        const memeImage = post.data.url;
-        const memeTitle = post.data.title;
-        const memeUpvotes = post.data.ups;
-        const memeNumComments = post.data.num_comments;
+    function randomInt(min: number, max: number) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    const randomIndex = randomInt(0, subReddits.length);
+    function getRandomPost(posts: any) {
+      const randomIndex = randomInt(0, posts.length);
+      return posts[randomIndex].data;
+    }
+    await axios
+      .get(`https://reddit.com/${subReddits[randomIndex]}/.json`)
+      .then(async (resp) => {
+        const {
+          title,
+          url,
+          subreddit_name_prefixed: subreddit,
+        } = getRandomPost(resp.data.data.children);
         const meme = new EmbedBuilder()
-          .setTitle(`${memeTitle}`)
-          .setURL(`${memeUrl}`)
+          .setTitle(`${title}`)
+          .setURL(`${url}`)
           .setColor("Random")
-          .setImage(memeImage)
-          .setFooter({
-            text: `👍 ${memeUpvotes} 💬 ${memeNumComments}`,
-          });
+          .setImage(`${url}`)
+          .setFooter({ text: `From ${subreddit}` });
 
         await interaction.reply({ embeds: [meme] });
-      }
-    );
+      });
   },
 };
