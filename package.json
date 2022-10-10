@@ -11,7 +11,6 @@
     "build": "tsc",
     "prisma:generate": "prisma generate",
     "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma",
-    "start": "npm run prisma:planetscale && tsc && node dist/src/main.js"
   },
   "repository": {
     "type": "git",
