@@ -23,6 +23,7 @@
   },
   "homepage": "https://galacticabot.vercel.app/",
   "dependencies": {
+    "@devraelfreeze/discordjs-pagination": "^2.6.4",
     "@discordjs/opus": "^0.8.0",
     "@discordjs/voice": "^0.13.0",
     "@distube/soundcloud": "^1.1.0",
