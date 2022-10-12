@@ -40,6 +40,10 @@ export const command: Command = {
         interaction: interaction,
         time: 30000,
       });
+    } else {
+      return interaction.reply({
+        content: "Music commands have been disabled by the owner.",
+      });
     }
   },
 };
