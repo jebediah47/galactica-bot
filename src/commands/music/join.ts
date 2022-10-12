@@ -36,6 +36,10 @@ export const command: Command = {
 
       await interaction.reply({ content: "Joined the voice channel!" });
       await client.distube.voices.join(voiceChannel as VoiceBasedChannel);
+    } else {
+      return interaction.reply({
+        content: "Music commands have been disabled by the owner.",
+      });
     }
   },
 };
