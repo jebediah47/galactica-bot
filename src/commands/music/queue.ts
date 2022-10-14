@@ -7,8 +7,8 @@ export const command: Command = {
   name: "queue",
   description: "Shows the music queue.",
   run: async (client, interaction) => {
-    const queue = client.distube.getQueue(interaction as GuildIdResolvable);
     if (client.configs.get(interaction.guildId!)?.musicIsEnabled) {
+      const queue = client.distube.getQueue(interaction as GuildIdResolvable);
       if (!queue)
         return interaction.reply({
           content: "There is nothing currently playing in the queue!",
