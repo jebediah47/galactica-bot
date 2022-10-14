@@ -17,5 +17,5 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2021", "es2017", "esnext.asynciterable", "DOM"],
   },
-  "include": ["src/**/*", ".env"]
+  "include": ["src/**/*", "config.js"]
 }
