@@ -8,7 +8,7 @@ COPY config.json .
 COPY docker.build.sh .
 COPY src src
 COPY prisma prisma
-COPY .env .
+COPY config.js .
 COPY tsconfig.json .
 COPY package.json .
 
