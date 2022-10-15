@@ -40,24 +40,14 @@
 git clone https://github.com/jebediah47/galactica-bot
 `
 
-**Step 2**: Edit the `.env.example` file and change:
-
-```python
-### Galactica bot related vars ###
-TOKEN="YOUR_BOT_TOKEN"
-BOT_PRESENCE="YOUR_BOT_PRESENCE"
-# Values: PLAYING, LISTENING, WATCHING, STREAMING, COMPETING
-BOT_PRESENCE_TYPE="WATCHING"
-SERVER_ENABLED=false
-SERVER_PORT=3001
-
-### Prisma related vars ###
-DATABASE_URL="YOUR_DATABASE_URL"
+**Step 2**: Export the token environment variable:
+```bash
+export GALACTICA_TOKEN="your-token-here"
 ```
 
-💡 Quick tip: If you don't know how to configure galactica you can check it's documentation website [here](https://galacticabot.vercel.app/)
+**Step 3** Read the Galactica Bot documentation https://galacticabot.vercel.app for more info.
 
-**Step 3**: Install all the required dependencies by running:
+**Step 4**: Install all the required dependencies by running:
 
 ```css
 npm install
@@ -67,7 +57,7 @@ yarn
 pnpm install
 ```
 
-**Step 4**: Running the bot:
+**Step 5**: Running the bot:
 
 ```css
 npm run dev
