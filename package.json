@@ -17,7 +17,7 @@
     "url": "git+https://github.com/jebediah47/galactica-bot.git"
   },
   "author": "jebediah47",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/jebediah47/galactica-bot/issues"
   },
