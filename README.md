@@ -77,6 +77,4 @@ We have logged in as [your_bot_name#discriminator]
 
 If you got this output you are ready to go!
 
-Special thanks to [DontEatOreo](https://github.com/DontEatOreo) for hosting the bot on our [Discord server](https://discord.gg/nQd5HeD2xz) ♥️.
-
 <sup>Christian Llupo and contributors © 2022</sup>
