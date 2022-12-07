@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .ts",
     "build": "tsc",
     "prisma:generate": "prisma generate",
-    "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma"
+    "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma",
+    "prisma:sqlite": "prisma db push"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
     "@distube/yt-dlp": "^1.1.1",
     "@iamtraction/google-translate": "^2.0.0",
     "@prisma/client": "^4.4.0",
-    "axios": "^1.0.0",
+    "axios": "^1.2.1",
     "discord-tictactoe": "^4.0.0",
     "discord.js": "^14.5.0",
     "distube": "^4.0.0",
