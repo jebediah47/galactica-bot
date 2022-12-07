@@ -157,7 +157,7 @@ export async function calculator(
       msg = await int.fetchReply();
     }
 
-    const time = 300000;
+    const time = 30000;
 
     let elem = "0";
 
@@ -248,7 +248,7 @@ export async function calculator(
       if (msg) {
         if (msg.editable) {
           emb1.setDescription(
-            "Your Time for using the calculator ran out (5 minutes)"
+            "Your Time for using the calculator ran out (30 seconds)"
           );
           emb1.setColor(0xc90000);
           await msg
@@ -286,7 +286,7 @@ export async function calculator(
         .setCustomId("cal-" + label);
     }
 
-    const evalRegex = /^[0-9π\+\%\^\-*\/\.\(\)]*$/;
+    const evalRegex = /^[0-9π+%^\-*\/.()]*$/;
     function mathEval(input: string, result = false) {
       try {
         const matched = evalRegex.exec(input);
