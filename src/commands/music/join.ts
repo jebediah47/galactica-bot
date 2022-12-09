@@ -4,7 +4,6 @@ import {
   ChannelType,
   VoiceBasedChannel,
 } from "discord.js";
-import { Channel } from "diagnostics_channel";
 
 export const command: Command = {
   name: "join",
