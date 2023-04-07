@@ -36,8 +36,8 @@ export const command: Command = {
 
       await pagination({
         embeds: embeds as unknown as Embed[],
-        author: interaction.member.user,
-        interaction: interaction,
+        author: interaction.member.user as any,
+        interaction: interaction as any,
         time: 30000,
       });
     } else {
