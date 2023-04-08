@@ -1,11 +1,7 @@
 import { Command, Event, RegisterCommandOptions, Config } from "../interfaces";
 import { PrismaClient, GuildConfigs } from "@prisma/client";
-import { SoundCloudPlugin } from "@distube/soundcloud";
-import { SpotifyPlugin } from "@distube/spotify";
-import { YtDlpPlugin } from "@distube/yt-dlp";
 import { readdir } from "node:fs/promises";
 import { config } from "../../config";
-import { DisTube } from "distube";
 import path from "node:path";
 import {
   ApplicationCommandDataResolvable,
@@ -19,16 +15,6 @@ class ExtendedClient extends Client {
   public slashCommands: ApplicationCommandDataResolvable[] = [];
   public events: Collection<string, Event> = new Collection();
   public prisma: PrismaClient = new PrismaClient();
-  public distube: DisTube = new DisTube(this, {
-    searchSongs: 0,
-    emitAddSongWhenCreatingQueue: false,
-    emitAddListWhenCreatingQueue: false,
-    plugins: [
-      new YtDlpPlugin({ update: true }),
-      new SpotifyPlugin(),
-      new SoundCloudPlugin(),
-    ],
-  });
   public config: Config = config;
   public constructor() {
     super({
@@ -62,7 +48,6 @@ class ExtendedClient extends Client {
         const { event } = await import(`${event_files}/${dir}/${file}`);
         this.events.set(event.name, event);
         this.on(event.name, event.run.bind(null, this));
-        this.distube?.on(event.name, event.run.bind(null, this));
       }
     }
   }

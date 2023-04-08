@@ -16,7 +16,6 @@ model GuildConfigs {
   dateJoined       DateTime @default(now())
   modLogsIsEnabled Boolean  @default(false)
   modLogsChannelID String?  @unique
-  musicIsEnabled   Boolean  @default(true)
 
   @@index([guildID])
 }
