@@ -33,7 +33,7 @@
     "mathjs": "^11.0.0",
     "prisma": "^4.4.0",
     "tslib": "^2.4.0",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
     "@swc/core": "1.3.46",
