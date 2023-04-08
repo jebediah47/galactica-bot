@@ -2,6 +2,10 @@ import { pagination } from "@devraelfreeze/discordjs-pagination";
 import { Embed, EmbedBuilder } from "discord.js";
 import { GuildIdResolvable } from "distube";
 import { Command } from "../../interfaces";
+import {
+  User, // Added due to TypeErrors when using pagination
+  CommandInteraction,
+} from "../../../node_modules/@devraelfreeze/discordjs-pagination/node_modules/discord.js/typings/index";
 
 export const command: Command = {
   name: "queue",
@@ -36,8 +40,8 @@ export const command: Command = {
 
       await pagination({
         embeds: embeds as unknown as Embed[],
-        author: interaction.member.user as any,
-        interaction: interaction as any,
+        author: interaction.member.user as unknown as User,
+        interaction: interaction as unknown as CommandInteraction,
         time: 30000,
       });
     } else {
