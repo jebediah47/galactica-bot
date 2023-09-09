@@ -11,7 +11,7 @@ export const command: Command = {
           .setColor("Random")
           .setTitle("These are all of the available commands.")
           .setDescription(
-            client.commands.map((cmd) => `\`${cmd.name}\``).join(", ")
+            client.commands.map((cmd) => `\`${cmd.name}\``).join(", "),
           ),
       ],
     });

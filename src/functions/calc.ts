@@ -71,7 +71,7 @@ export async function calculator(
       symbols: ButtonStyle.Primary,
       delete: ButtonStyle.Danger,
     },
-  }
+  },
 ): Promise<void> {
   try {
     const button = [[], [], [], [], []];
@@ -134,7 +134,7 @@ export async function calculator(
       .setColor(options.embed?.color || "#075FFF")
       .setDescription(
         "```js\n0\n// Result: 0\n```" +
-          (options.embed?.description ? `\n${options.embed?.description}` : "")
+          (options.embed?.description ? `\n${options.embed?.description}` : ""),
       );
 
     if (options.embed.author) {
@@ -185,7 +185,7 @@ export async function calculator(
           `\`\`\`js\n${elem}\n\`\`\`` +
             (options.embed?.description
               ? `\n${options.embed?.description}`
-              : "")
+              : ""),
         );
 
         elem = "0";
@@ -214,7 +214,7 @@ export async function calculator(
             .replaceAll("*", " * ")}\n\t\n\`\`\`` +
             (options.embed?.description
               ? `\n${options.embed?.description}`
-              : "")
+              : ""),
         );
         return await msg
           .edit({
@@ -231,7 +231,7 @@ export async function calculator(
           .replaceAll("^", "**")
           .replaceAll("%", "/100")
           .replace(" ", "")}\n\`\`\`` +
-          (options.embed?.description ? `\n${options.embed?.description}` : "")
+          (options.embed?.description ? `\n${options.embed?.description}` : ""),
       );
       await msg
         .edit({
@@ -248,7 +248,7 @@ export async function calculator(
       if (msg) {
         if (msg.editable) {
           emb1.setDescription(
-            "Your Time for using the calculator ran out (30 seconds)"
+            "Your Time for using the calculator ran out (30 seconds)",
           );
           emb1.setColor(0xc90000);
           await msg
@@ -268,7 +268,7 @@ export async function calculator(
 
     function createButton(
       label: string,
-      style: ButtonStyle | undefined = options.buttons?.numbers
+      style: ButtonStyle | undefined = options.buttons?.numbers,
     ) {
       if (label === "Clear") style = options.buttons?.delete;
       else if (label === "Delete") style = options.buttons?.delete;
@@ -294,13 +294,13 @@ export async function calculator(
 
         if (!result) {
           return `${Function(
-            `"use strict";let π=Math.PI;return (${input})`
+            `"use strict";let π=Math.PI;return (${input})`,
           )()}`;
         } else
           return `${input
             .replaceAll("**", "^")
             .replaceAll("/100", "%")} = ${Function(
-            `"use strict";let π=Math.PI;return (${input})`
+            `"use strict";let π=Math.PI;return (${input})`,
           )()}`;
       } catch {
         return "Wrong Input";

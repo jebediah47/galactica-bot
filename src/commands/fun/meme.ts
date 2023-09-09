@@ -29,7 +29,7 @@ export const command: Command = {
       .get(`https://reddit.com/${subReddits[randomIndex]}/.json`)
       .then(async (response) => {
         const { url, ups, title, permalink, num_comments } = getRandomPost(
-          response.data.data.children
+          response.data.data.children,
         );
         const meme = new EmbedBuilder()
           .setTitle(`${title}`)

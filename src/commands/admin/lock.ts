@@ -24,7 +24,7 @@ export const command: Command = {
       });
     }
     const everyone: Role | undefined = interaction.guild?.roles.cache.find(
-      (r) => r.name === "@everyone"
+      (r) => r.name === "@everyone",
     );
     let channel: GuildChannel = args.getChannel("channel") as GuildChannel;
     if (!channel) (channel as typeof interaction.channel) = interaction.channel;

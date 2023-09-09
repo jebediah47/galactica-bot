@@ -17,12 +17,12 @@ export const command: Command = {
     if (!text) return;
     try {
       await interaction.reply(
-        "Please wait while your text is converted to QR-code"
+        "Please wait while your text is converted to QR-code",
       );
       text = encodeURIComponent(text);
       const embed1 = new EmbedBuilder()
         .setImage(
-          `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`
+          `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`,
         )
         .setColor("Random")
         .setTimestamp();

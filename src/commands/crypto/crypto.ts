@@ -27,7 +27,7 @@ export const command: Command = {
       .setDescription(
         "You need to add the full name of the cryptocurrency and your currency id e.x. \n" +
           `\`\`\`/crypto bitcoin usd\`\`\` \n` +
-          "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com"
+          "And here is a list of all the available cryptos/tokens and currency codes \n https://www.coingecko.com",
       );
 
     let token = args.getString("crypto-code");
@@ -42,7 +42,7 @@ export const command: Command = {
 
     try {
       const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=${irl_currency}&include_market_cap=true&include_24hr_change=true`
+        `https://api.coingecko.com/api/v3/simple/price?ids=${token}&vs_currencies=${irl_currency}&include_market_cap=true&include_24hr_change=true`,
       );
 
       if (data[token][irl_currency] === undefined) {
@@ -50,7 +50,7 @@ export const command: Command = {
           .setColor("Random")
           .setTitle("We are sorry but...")
           .setDescription(
-            "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)"
+            "We couldn't find your currency code on the list here are the supported currencies by the \n [CoinGecko API](https://api.coingecko.com/api/v3/simple/supported_vs_currencies)",
           )
           .setTimestamp();
         return interaction.reply({ embeds: [embed] });
@@ -61,7 +61,7 @@ export const command: Command = {
           .setColor("Random")
           .setTitle("We are sorry but...")
           .setDescription(
-            "We couldn't fetch the required data from the API, maybe try executing the command again!"
+            "We couldn't fetch the required data from the API, maybe try executing the command again!",
           )
           .setTimestamp();
         return interaction.reply({ embeds: [embed2] });
@@ -70,18 +70,18 @@ export const command: Command = {
       const regularToken = `${data[token][irl_currency]}`;
       const change = `${data[token][irl_currency + "_24h_change"]}`.substring(
         0,
-        `${data[token][irl_currency + "_24h_change"]}`.length - 13
+        `${data[token][irl_currency + "_24h_change"]}`.length - 13,
       );
       const embed3 = new EmbedBuilder()
         .setColor("Random")
         .setTitle(
-          capitalize(token) + " " + irl_currency.toUpperCase() + " price!"
+          capitalize(token) + " " + irl_currency.toUpperCase() + " price!",
         )
         .setDescription(
           `**Price:** \`${commaFormatter(regularToken)}\` ` +
             irl_currency.toUpperCase() +
             `\n **(24hr) Change:** \`${change}%\` \n` +
-            `*Powered by CoinGecko API*`
+            `*Powered by CoinGecko API*`,
         )
         .setTimestamp();
       await interaction.reply({ embeds: [embed3] });

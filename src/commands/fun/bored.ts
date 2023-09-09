@@ -15,7 +15,7 @@ export const command: Command = {
         .setDescription(data.activity)
         .addFields(
           { name: "Type", value: capitalize(`${data.type}`) },
-          { name: "Participants", value: `\`${data.participants}\`` }
+          { name: "Participants", value: `\`${data.participants}\`` },
         )
         .setTimestamp();
       await interaction.reply({ embeds: [embed] });

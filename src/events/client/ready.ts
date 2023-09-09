@@ -9,7 +9,7 @@ export const event: Event = {
     });
     const guildConfigs = await client.prisma.guildConfigs.findMany();
     guildConfigs.forEach((config) =>
-      client.configs.set(config.guildID, config)
+      client.configs.set(config.guildID, config),
     );
     process.stdout.write(`We have logged in as ${client.user!.tag} \n`);
 

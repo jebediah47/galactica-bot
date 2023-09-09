@@ -22,7 +22,7 @@ export const command: Command = {
       const {
         data: { list },
       } = await axios.get(
-        `https://api.urbandictionary.com/v0/define?term=${query.toString()}`
+        `https://api.urbandictionary.com/v0/define?term=${query.toString()}`,
       );
       const [answer] = list;
 
@@ -36,7 +36,7 @@ export const command: Command = {
           {
             name: "Ratings",
             value: `${answer.thumbs_up} 👍   ${answer.thumbs_down} 👎`,
-          }
+          },
         )
         .setTimestamp();
       await interaction.reply({ embeds: [embed2] });

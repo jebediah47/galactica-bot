@@ -14,7 +14,7 @@ interface Run {
   (
     client: Client,
     interaction: ExtendedInteraction,
-    args: CommandInteractionOptionResolver
+    args: CommandInteractionOptionResolver,
   ): void;
 }
 

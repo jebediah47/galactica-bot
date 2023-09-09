@@ -20,7 +20,9 @@ export const command: Command = {
       for (const [key, value] of noDetails === true
         ? Object.entries(times).filter(
             (value: [string, any]) =>
-              value[0] != "hour" && value[0] != "minute" && value[0] != "second"
+              value[0] != "hour" &&
+              value[0] != "minute" &&
+              value[0] != "second",
           )
         : Object.entries(times)) {
         if (value > 0) string += ` ${value} ${key}${value > 1 ? "s, " : ","}`;
@@ -45,7 +47,7 @@ export const command: Command = {
               client.options.rest?.version || "Unknown"
             }\`
             WebSocket Ping: \`${client.ws.ping}\`
-            Bot Version: \`${pkg.version}\``
+            Bot Version: \`${pkg.version}\``,
           )
           .setTimestamp();
         await interaction.reply({ embeds: [embed] });

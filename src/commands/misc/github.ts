@@ -50,7 +50,7 @@ export const command: Command = {
           {
             name: "📍 Location",
             value: `\`\`\`${data.location ? data.location : "None"}\`\`\``,
-          }
+          },
         )
         .setURL(data.html_url)
         .setThumbnail(data.avatar_url)

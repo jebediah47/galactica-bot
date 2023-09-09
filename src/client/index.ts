@@ -29,7 +29,7 @@ class ExtendedClient extends Client {
     const command_files = path.join(__dirname, "..", "commands");
     for (const dir of await readdir(command_files)) {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
-        (file: string) => file.endsWith(".ts") || file.endsWith(".js")
+        (file: string) => file.endsWith(".ts") || file.endsWith(".js"),
       );
 
       for (const file of commands) {
@@ -41,7 +41,7 @@ class ExtendedClient extends Client {
     const event_files = path.join(__dirname, "..", "events");
     for (const dir of await readdir(event_files)) {
       const events = (await readdir(`${event_files}/${dir}`)).filter(
-        (file) => file.endsWith(".ts") || file.endsWith(".js")
+        (file) => file.endsWith(".ts") || file.endsWith(".js"),
       );
 
       for (const file of events) {
