@@ -24,16 +24,16 @@
   },
   "homepage": "https://galacticabot.vercel.app/",
   "dependencies": {
-    "@iamtraction/google-translate": "^2.0.0",
+    "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^5.0.0",
-    "axios": "^1.2.1",
+    "axios": "^1.6.7",
     "discord-tictactoe": "^4.0.0",
-    "discord.js": "^14.5.0",
-    "figlet": "^1.5.2",
-    "mathjs": "^11.0.0",
+    "discord.js": "^14.14.1",
+    "figlet": "^1.7.0",
+    "mathjs": "^12.4.0",
     "prisma": "^5.0.0",
-    "tslib": "^2.4.0",
-    "typescript": "^5.0.0"
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@swc/core": "1.4.2",
