@@ -3,7 +3,7 @@ import {
   EmbedBuilder,
   GuildMember,
 } from "discord.js";
-import { Command } from "../../interfaces";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "nickname",

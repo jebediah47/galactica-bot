@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import translate from "@iamtraction/google-translate";
-import { Command } from "../../interfaces";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "translate",

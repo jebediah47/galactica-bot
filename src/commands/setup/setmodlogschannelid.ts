@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
-import { refreshConfigCache } from "../../functions";
-import { Command } from "../../interfaces";
+import { refreshConfigCache } from "@/functions";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "setmodlogschannelid",

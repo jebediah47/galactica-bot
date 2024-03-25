@@ -1,7 +1,7 @@
-import { Command } from "../../interfaces";
 import { EmbedBuilder } from "discord.js";
 import axios from "axios";
-import { capitalize } from "../../functions";
+import { Command } from "@/interfaces";
+import { capitalize } from "@/functions";
 
 export const command: Command = {
   name: "bored",

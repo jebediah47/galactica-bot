@@ -1,6 +1,6 @@
-import { Command } from "../../interfaces";
-import { EmbedBuilder } from "discord.js";
 import { stdout } from "process";
+import { EmbedBuilder } from "discord.js";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "ping",

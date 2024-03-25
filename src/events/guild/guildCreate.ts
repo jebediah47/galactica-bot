@@ -1,8 +1,8 @@
-import { Event } from "../../interfaces";
 import { Guild } from "discord.js";
-import { refreshConfigCache } from "../../functions";
+import { Event } from "@/interfaces";
+import { refreshConfigCache } from "@/functions";
 
-export const event: Event = {
+export const event: Event<"guildCreate"> = {
   name: "guildCreate",
   run: async (client, guild: Guild) => {
     const data = await client.prisma.guildConfigs.findUnique({
@@ -20,6 +20,6 @@ export const event: Event = {
         guildName: `${guild.name}`,
       },
     });
-    refreshConfigCache(client);
+    await refreshConfigCache(client);
   },
 };

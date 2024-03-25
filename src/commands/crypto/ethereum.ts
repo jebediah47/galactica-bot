@@ -1,7 +1,7 @@
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
-import { capitalize, commaFormatter } from "../../functions";
-import { Command } from "../../interfaces";
 import axios from "axios";
+import { capitalize, commaFormatter } from "@/functions";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "ethereum",

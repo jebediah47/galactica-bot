@@ -1,6 +1,6 @@
-import * as pkg from "../../../package.json";
-import { Command } from "../../interfaces";
 import { EmbedBuilder } from "discord.js";
+import * as pkg from "../../../package.json";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "stats",

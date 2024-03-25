@@ -19,7 +19,7 @@ import {
   EmbedBuilder,
   ComponentType,
 } from "discord.js";
-import { ExtendedInteraction } from "../interfaces";
+import { ExtendedInteraction } from "@/interfaces";
 
 // ------------------------------
 // ------- T Y P I N G S --------

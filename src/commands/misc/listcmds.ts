@@ -1,11 +1,11 @@
-import { Command } from "../../interfaces";
 import { EmbedBuilder } from "discord.js";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "listcmds",
   description: "Lists all of the bot's commands.",
   run: async (client, interaction) => {
-    interaction.reply({
+    await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setColor("Random")

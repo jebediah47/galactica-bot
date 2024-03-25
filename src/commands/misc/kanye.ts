@@ -1,5 +1,5 @@
-import { Command } from "../../interfaces";
 import axios from "axios";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "kanyewest",

@@ -1,19 +1,19 @@
-import { GuildMember, TextChannel } from "discord.js";
-import { Event } from "../../interfaces";
+import { GuildMember, PartialGuildMember, TextChannel } from "discord.js";
+import { Event } from "@/interfaces";
 
-export const event: Event = {
+export const event: Event<"guildMemberRemove"> = {
   name: "guildMemberRemove",
-  run: async (client, member: GuildMember) => {
-    if (client.configs.get(member.guild.id)?.modLogsIsEnabled === true) {
-      const channel: TextChannel = member.guild.channels.cache.get(
-        client.configs.get(member.guild.id)?.modLogsChannelID as string,
-      ) as TextChannel;
+  run: async (client, member: GuildMember | PartialGuildMember) => {
+    if (!member.partial) {
+      if (client.configs.get(member.guild.id)?.modLogsIsEnabled === true) {
+        const channel: TextChannel = member.guild.channels.cache.get(
+          client.configs.get(member.guild.id)?.modLogsChannelID as string,
+        ) as TextChannel;
 
-      if (!channel || member.user.tag === `${client.user?.tag}`) {
-        return;
+        if (!channel || member.user.tag === `${client.user?.tag}`) return;
+
+        await channel.send(`[LOGS] A member has left ${member.user.tag}`);
       }
-
-      await channel.send(`[LOGS] A member has left ${member.user.tag}`);
     }
   },
 };

@@ -1,7 +1,7 @@
 import { CommandInteractionOptionResolver, Interaction } from "discord.js";
-import { Event, ExtendedInteraction } from "../../interfaces";
+import { Event, ExtendedInteraction } from "@/interfaces";
 
-export const event: Event = {
+export const event: Event<"interactionCreate"> = {
   name: "interactionCreate",
   run: (client, message: Interaction) => {
     if (message.isCommand()) {

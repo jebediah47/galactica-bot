@@ -10,6 +10,7 @@ module.exports = {
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
+        "plugin:import/recommended",
       ],
       rules: {
         "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -17,6 +18,8 @@ module.exports = {
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/ban-ts-comment": "off",
+        "import/no-unresolved": "off",
+        "import/order": "error",
         "no-useless-escape": 0,
         "no-console": 1,
       },

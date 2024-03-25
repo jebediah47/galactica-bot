@@ -1,7 +1,7 @@
-import { Event } from "../../interfaces";
 import { ActivityType } from "discord.js";
+import { Event } from "@/interfaces";
 
-export const event: Event = {
+export const event: Event<"ready"> = {
   name: "ready",
   run: async (client) => {
     await client.registerCommands({

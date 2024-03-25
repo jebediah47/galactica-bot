@@ -1,6 +1,6 @@
-import { Command } from "../../interfaces";
 import { EmbedBuilder } from "discord.js";
 import axios from "axios";
+import { Command } from "@/interfaces";
 
 function randomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;

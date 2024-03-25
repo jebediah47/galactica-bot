@@ -1,7 +1,7 @@
-import { ApplicationCommandOptionType } from "discord.js";
-import { Command } from "../../interfaces";
 import util from "node:util";
+import { ApplicationCommandOptionType } from "discord.js";
 import figlet from "figlet";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "figlet",

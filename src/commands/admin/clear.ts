@@ -1,10 +1,10 @@
-import { Command } from "../../interfaces";
 import { isInteger } from "mathjs";
 import {
   ApplicationCommandOptionType,
   EmbedBuilder,
   TextChannel,
 } from "discord.js";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "clear",

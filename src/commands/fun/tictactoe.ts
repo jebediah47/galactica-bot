@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction } from "discord.js";
-import { Command } from "../../interfaces";
 import TicTacToe from "discord-tictactoe";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "tictactoe",

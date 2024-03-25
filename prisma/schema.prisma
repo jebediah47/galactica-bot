@@ -17,3 +17,15 @@ model GuildConfigs {
 
   @@index([guildID])
 }
+
+model LevelModel {
+  id        String   @id @default(uuid())
+  userID    String
+  guildID   String
+  xp        BigInt   @default(0)
+  level     Int      @default(0)
+  lastXpMsg DateTime @default(now())
+
+  @@unique([userID, guildID])
+  @@index([userID, guildID])
+}

@@ -1,6 +1,6 @@
-import { Command } from "../../interfaces";
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
 import axios from "axios";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "github",

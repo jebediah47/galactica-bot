@@ -1,10 +1,10 @@
-import { Command } from "../../interfaces";
 import {
   ApplicationCommandOptionType,
   GuildChannel,
   Role,
   RoleResolvable,
 } from "discord.js";
+import { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "lock",
