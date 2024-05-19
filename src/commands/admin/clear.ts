@@ -2,7 +2,7 @@ import { isInteger } from "mathjs";
 import {
   ApplicationCommandOptionType,
   EmbedBuilder,
-  TextChannel,
+  ChannelType,
 } from "discord.js";
 import { Command } from "@/interfaces";
 
@@ -12,15 +12,14 @@ export const command: Command = {
     "Deletes specified number of messages that are up to 14 days old.",
   options: [
     {
-      name: "messages",
-      description: "Messages to be deleted",
-      type: ApplicationCommandOptionType.Number,
+      name: "msgnum",
+      description: "Number of messages to be deleted.",
+      type: ApplicationCommandOptionType.Integer,
       required: true,
     },
   ],
   run: async (client, interaction, args) => {
-    const number: number | null = args.getNumber("messages");
-    const channel = interaction.channel;
+    const number = args.getInteger("messages");
     const embed = new EmbedBuilder()
       .setColor("Random")
       .setDescription(`🧹 Deleted \`${number}\` messages!`)
@@ -30,7 +29,7 @@ export const command: Command = {
       if (!isInteger(number)) {
         const embed = new EmbedBuilder()
           .setColor("Random")
-          .setTitle("Operation failure!")
+          .setTitle("❌ Error!")
           .setDescription("The input must explicitly be an `INTEGER`")
           .setTimestamp();
         return interaction.reply({ embeds: [embed] });
@@ -40,7 +39,11 @@ export const command: Command = {
           content: "You are not permitted to use this command!",
         });
       }
-      await (channel as TextChannel).bulkDelete(number, true);
+      if (
+        interaction.channel &&
+        interaction.channel.type == ChannelType.GuildText
+      )
+        await interaction.channel.bulkDelete(number);
       await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new EmbedBuilder()
