@@ -1,14 +1,12 @@
 import { LevelModel, PrismaClient } from "@prisma/client";
-import { Message } from "discord.js";
-import ExtendedClient from "@/client";
+import { Message, Snowflake } from "discord.js";
+import { ExtendedInteraction } from "@/interfaces";
 
 export class Leveling {
   private _prisma: PrismaClient;
-  private _client: ExtendedClient;
 
-  public constructor(client: ExtendedClient, prisma: PrismaClient) {
+  public constructor(prisma: PrismaClient) {
     this._prisma = prisma;
-    this._client = client;
   }
   private getRandomXp(message: Message): number {
     const msgLength = message.content.length;
@@ -17,18 +15,59 @@ export class Leveling {
   }
 
   private async createXpUser(
-    userID: string,
-    guildID: string,
-    xp: number,
+    userID: Snowflake,
+    guildID: Snowflake,
+    xp?: number,
   ): Promise<void> {
     await this._prisma.levelModel.create({
       data: {
         userID: userID,
         guildID: guildID,
-        xp: BigInt(xp),
+        xp: BigInt(xp || 0),
         level: 0,
       },
     });
+  }
+
+  private async findXpUser(
+    userID: Snowflake,
+    guildID: Snowflake,
+  ): Promise<LevelModel | null> {
+    const userLevel = await this._prisma.levelModel.findFirst({
+      where: { userID: userID, guildID: guildID },
+    });
+
+    if (!userLevel) {
+      return null;
+    }
+
+    return userLevel;
+  }
+
+  private async getUserLevel(
+    guildID: Snowflake,
+    userID: Snowflake,
+  ): Promise<number | null> {
+    const userLevel = await this.findXpUser(guildID, userID);
+
+    if (!userLevel) {
+      return null;
+    }
+
+    return userLevel.level;
+  }
+
+  private async getUserXp(
+    userID: Snowflake,
+    guildID: Snowflake,
+  ): Promise<number | null> {
+    const userLevel = await this.findXpUser(guildID, userID);
+
+    if (!userLevel) {
+      return null;
+    }
+
+    return Number(userLevel.xp);
   }
 
   public async giveXp(message: Message): Promise<void> {
@@ -36,9 +75,8 @@ export class Leveling {
     const userID = message.author.id;
     const guildID = message.guild!.id;
     const channelID = message.channel.id;
-    const userLevel = await this._prisma.levelModel.findFirst({
-      where: { userID: userID, guildID: guildID },
-    });
+
+    const userLevel = await this.findXpUser(userID, guildID);
 
     if (!userLevel) {
       await this.createXpUser(userID, guildID, randomXP);
@@ -53,7 +91,10 @@ export class Leveling {
 
       if (newXP >= xpToLevelUp) {
         userLvl += 1;
-        this._client.emit("levelUp", { userID, channelID, userLvl });
+        process.stdout.write(
+          `User ${userID} has leveled up to level ${userLvl} ${channelID} \n`,
+        );
+        await message.reply(`You've leveled up to level ${userLvl}!`);
       }
 
       await this._prisma.levelModel.update({
@@ -66,18 +107,23 @@ export class Leveling {
     }
   }
 
-  public async getUserLevel(
-    guildID: string,
-    userID: string,
-  ): Promise<LevelModel | null> {
-    const userLevel = await this._prisma.levelModel.findFirst({
-      where: { userID: userID, guildID: guildID },
-    });
+  public async getUserStats(interaction: ExtendedInteraction) {
+    const userID = interaction.user.id;
+    const guildID = interaction.guild!.id;
 
-    if (!userLevel) {
-      return null;
+    const userLevel = await this.getUserLevel(userID, guildID);
+    const userXp = await this.getUserXp(userID, guildID);
+
+    if (!userXp || userXp < 25) {
+      await interaction.reply({
+        content: "You don't have enough XP to run this command!",
+        ephemeral: true,
+      });
     }
 
-    return userLevel;
+    return {
+      level: Number(userLevel),
+      xp: Number(userXp),
+    };
   }
 }
