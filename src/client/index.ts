@@ -1,31 +1,25 @@
 import { readdir } from "node:fs/promises";
-import { EventEmitter } from "node:events";
 import path from "node:path";
 import {
   ApplicationCommandDataResolvable,
   Collection,
   Client,
   GatewayIntentBits,
+  ClientEvents,
 } from "discord.js";
 import { PrismaClient, GuildConfigs } from "@prisma/client";
 import { config } from "../../config";
 import { Leveling } from "@/classes/Leveling";
-import {
-  Command,
-  Event,
-  RegisterCommandOptions,
-  Config,
-  ExtendedEvents,
-} from "@/interfaces";
+import { Command, Event, RegisterCommandOptions, Config } from "@/interfaces";
 
 class ExtendedClient extends Client {
   public configs: Collection<string, GuildConfigs> = new Collection();
   public commands: Collection<string, Command> = new Collection();
   public slashCommands: ApplicationCommandDataResolvable[] = [];
-  public events: Collection<string, Event<keyof ExtendedEvents>> =
+  public events: Collection<string, Event<keyof ClientEvents>> =
     new Collection();
   public prisma: PrismaClient = new PrismaClient();
-  public levels: Leveling = new Leveling(this, this.prisma);
+  public levels: Leveling = new Leveling(this.prisma);
   public config: Config = config;
   public constructor() {
     super({
@@ -43,12 +37,9 @@ class ExtendedClient extends Client {
       ],
     });
   }
+
   public async registerCommands({ commands }: RegisterCommandOptions) {
     await this.application?.commands.set(commands);
-  }
-
-  public emit(event: keyof ExtendedEvents, ...args: unknown[]) {
-    return EventEmitter.prototype.emit.call(this, event, ...args);
   }
 
   public async init(): Promise<void> {
