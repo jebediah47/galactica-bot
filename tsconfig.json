@@ -15,7 +15,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["ES2021", "es2017", "esnext.asynciterable", "DOM"],
+    "lib": [
+      "ES2021",
+      "es2017",
+      "esnext.asynciterable",
+      "es6",
+      "dom",
+      "dom.iterable"
+    ],
     "paths": {
       "@/*": ["./src/*"]
     }
