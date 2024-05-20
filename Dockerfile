@@ -1,21 +1,31 @@
-FROM alpine:latest
-
-RUN apk --no-cache add nodejs npm ffmpeg
-RUN [ "mkdir", "-p", "/root/galactica-bot" ]
-
-WORKDIR /root/galactica-bot
-COPY config.json .
-COPY docker.build.sh .
-COPY src src
-COPY prisma prisma
-COPY config.js .
+FROM oven:1-alpine
+WORKDIR /usr/src/app
+COPY LICENSE .
+COPY config.ts .
 COPY tsconfig.json .
 COPY package.json .
+COPY src src
+COPY prisma prisma
 
-RUN ["npm", "install"]
+FROM base AS install
+RUN mkdir -p /temp/dev
+COPY package.json bun.lockb /temp/dev/
+RUN cd /temp/dev && bun install --frozen-lockfile
 
-RUN [ "chmod", "+x", "/root/galactica-bot/docker.build.sh" ]
+RUN mkdir -p /temp/prod
+COPY package.json bun.lockb /temp/prod/
+RUN cd /temp/prod && bun install --frozen-lockfile --production
 
-EXPOSE 3001
+FROM base AS prerelease
+COPY --from=install /temp/dev/node_modules node_modules
+COPY . .
 
-ENTRYPOINT [ "/root/galactica-bot/docker.build.sh" ]
+ENV NODE_ENV=production
+RUN bun run build
+
+FROM base AS release
+COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=prerelease /usr/src/app/dist dist
+
+USER bun
+ENTRYPOINT [ "bun", "run", "dist/src/main.js" ]
