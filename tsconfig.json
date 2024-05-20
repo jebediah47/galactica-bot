@@ -2,16 +2,14 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "ESNext",
-    "target": "es6",
+    "target": "ESNext",
     "strict": true,
-    "allowJs": true,
-    "checkJs": true,
     "sourceMap": false,
     "skipLibCheck": true,
     "importHelpers": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -30,5 +28,5 @@
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["src/**/*", "config.js"]
+  "include": ["src/**/*", "config.ts", "package.json"]
 }

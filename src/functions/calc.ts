@@ -1,10 +1,10 @@
 /* eslint-disable no-inner-declarations */
 /**
  * @author Rahul Marban creator of simply-djs
- * @author Christian Llupo (jebediah47) member of the simply-devlop GitHub organization
+ * @author Christian Llupo (jebediah47) contributor of simply-djs
  * @license CC_BY-NC-NDv4.0 https://github.com/Rahuletto/simply-djs/blob/main/LICENSE
- * @copyright Rahul Marban 2021-2022
- * @copyright Christian Llupo 2022
+ * @copyright Rahul Marban 2021-2024
+ * @copyright Christian Llupo 2024
  * Modifications are licensed under the GNU Affero General Public License-v3.0
  * Thanks again to Rahul Marban for creating this package!
  */
@@ -56,9 +56,7 @@ export type calcOptions = {
 // ------------------------------
 
 /**
- * An Unique **calculator** which can be *used inside Discord*
- * @param interaction
- * @param options
+ * A Unique **calculator** which can be *used inside Discord*
  * @link `Documentation:` ***https://simplyd.js.org/docs/General/calculator***
  * @example simplydjs.calculator(interaction)
  */
