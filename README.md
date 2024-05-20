@@ -1,36 +1,30 @@
-<p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://share.creavite.co/Zw3YHPDfydz0BE8D.gif" height="165"></a></p>
+<p align="center"><a href="https://github.com/jebediah47/galactica-bot"><img src="https://share.creavite.co/Zw3YHPDfydz0BE8D.gif" alt="Galactica Bot logo" height="165"></a></p>
 
 <h1 align="center">galactica-bot</h1>
 
-<p align="center">A open-source Discord bot built with TypeScript</p>
+<p align="center">An open-source Discord bot built with TypeScript</p>
 
 <p align="center">
-  <a href="https://app.circleci.com/pipelines/github/jebediah47/galactica-bot/">
-    <img src="https://circleci.com/gh/jebediah47/galactica-bot.svg?style=svg" alt="CircleCI Status"></img>
-  </a>
-  <a href="https://github.com/jebediah47/galactica-bot/actions/workflows/node.js.yml">
-    <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/node.js.yml/badge.svg" alt="CI Status"></img>
+  <a href="https://github.com/jebediah47/galactica-bot/actions/workflows/bun.js.yml">
+    <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/bun.js.yml/badge.svg" alt="CI Status"/>
   </a>
   <a href="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml">
-  <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml/badge.svg" alt="CodeQL Status"></img>
+  <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml/badge.svg" alt="CodeQL Status"/>
   </a>
   <a href="https://www.codefactor.io/repository/github/jebediah47/galactica-bot">
-    <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"></img>
+    <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"/>
   </a> </br>
   <a href="https://github.com/jebediah47/galactica-bot/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"></img>
+    <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"/>
   </a>
   <a href="https://github.com/jebediah47/galactica-bot/blob/main/package.json">
-    <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version"></img>
-  </a>
-  <a href="https://discord.gg/nQd5HeD2xz">
-    <img alt="Discord" src="https://img.shields.io/discord/982186992194433054?color=%235865F2&label=Discord%20Server&logo=Discord&logoColor=white"></img>
+    <img src="https://img.shields.io/github/package-json/v/jebediah47/galactica-bot?color=red" alt="GitHub package.json version"/>
   </a>
 </p>
 
 ## 💭 What is Galactica?
 
-[Galactica](https://galacticabot.vercel.app/) is a Discord bot built with TypeScript that can do various stuff using it's multiple commands!
+[Galactica](https://galacticabot.vercel.app/) is a powerful Discord bot written in TypeScript which can elevate your server to the next level. It has a lot of features like moderation, fun, utility, and more.
 
 ## ⚡️ Fast Implementation
 
@@ -49,7 +43,7 @@ export GALACTICA_TOKEN="your-token-here"
 
 **Step 4**: Install all the required dependencies by running:
 
-```css
+```bash
 npm install
 # or
 yarn
@@ -59,7 +53,7 @@ pnpm install
 
 **Step 5**: Running the bot:
 
-```css
+```bash
 npm run dev
 # or
 yarn dev
