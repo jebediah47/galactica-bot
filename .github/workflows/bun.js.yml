@@ -1,0 +1,31 @@
+name: Bun.sh CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Bun.sh
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+    - name: Install TypeScript
+      run: bun install --global typescript
+
+    - name: Install packages
+      run: bun install
+
+    - name: Run eslint
+      run: bun run lint
+      
+    - name: Generate Prisma client
+      run: bunx prisma generate
+
+    - name: Build TypeScript
+      run: bun run build
