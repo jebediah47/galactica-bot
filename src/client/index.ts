@@ -1,5 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "url";
 import {
   ApplicationCommandDataResolvable,
   Collection,
@@ -44,6 +45,7 @@ class ExtendedClient extends Client {
 
   public async init(): Promise<void> {
     this.login(process.env.GALACTICA_TOKEN).then();
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
     const command_files = path.join(__dirname, "..", "commands");
     for (const dir of await readdir(command_files)) {
       const commands = (await readdir(`${command_files}/${dir}`)).filter(
