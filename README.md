@@ -10,7 +10,7 @@
   </a>
   <a href="https://www.codefactor.io/repository/github/jebediah47/galactica-bot">
     <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"/>
-  </a> </br>
+  </a>
   <a href="https://github.com/jebediah47/galactica-bot/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/jebediah47/galactica-bot" alt="License"/>
   </a>
