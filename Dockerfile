@@ -1,4 +1,4 @@
-FROM oven:1-alpine
+FROM oven:1-alpine as BASE
 WORKDIR /usr/src/app
 COPY LICENSE .
 COPY config.ts .
