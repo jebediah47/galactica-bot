@@ -8,9 +8,6 @@
   <a href="https://github.com/jebediah47/galactica-bot/actions/workflows/bun.js.yml">
     <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/bun.js.yml/badge.svg" alt="CI Status"/>
   </a>
-  <a href="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml">
-  <img src="https://github.com/jebediah47/galactica-bot/actions/workflows/codeql.yml/badge.svg" alt="CodeQL Status"/>
-  </a>
   <a href="https://www.codefactor.io/repository/github/jebediah47/galactica-bot">
     <img src="https://www.codefactor.io/repository/github/jebediah47/galactica-bot/badge/main" alt="CodeFactor"/>
   </a> </br>
