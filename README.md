@@ -21,7 +21,7 @@
 
 ## 💭 What is Galactica?
 
-[Galactica](https://galacticabot.vercel.app/) is a powerful Discord bot written in TypeScript which can elevate your server to the next level. It has a lot of features like moderation, fun, utility, and more.
+[Galactica](https://galacticabot.vercel.app/) is a powerful Discord bot written in TypeScript that can elevate your server to the next level. It has a lot of features like moderation, fun, utility, and more.
 
 ## ⚡️ Fast Implementation
 
@@ -67,5 +67,3 @@ We have logged in as [your_bot_name#discriminator]
 `
 
 If you got this output you are ready to go!
-
-<sup>Christian Llupo and contributors © 2022</sup>
