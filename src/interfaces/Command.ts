@@ -1,25 +1,25 @@
 import {
-	ChatInputApplicationCommandData,
-	CommandInteraction,
-	CommandInteractionOptionResolver,
-	GuildMember,
+  ChatInputApplicationCommandData,
+  CommandInteraction,
+  CommandInteractionOptionResolver,
+  GuildMember,
 } from "discord.js";
 import Client from "../client";
 
 export interface ExtendedInteraction extends CommandInteraction {
-	member: GuildMember;
+  member: GuildMember;
 }
 
 interface Run {
-	(
-		client: Client,
-		interaction: ExtendedInteraction,
-		args: CommandInteractionOptionResolver,
-		...extra: any[]
-	): void;
+  (
+    client: Client,
+    interaction: ExtendedInteraction,
+    args: CommandInteractionOptionResolver,
+    ...extra: any[]
+  ): void;
 }
 
 export type Command = {
-	description?: string;
-	run: Run;
+  description?: string;
+  run: Run;
 } & ChatInputApplicationCommandData;
