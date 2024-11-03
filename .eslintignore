@@ -1,5 +1,7 @@
 buildCleanup.mjs
-.eslintrc.js
+.eslintrc.json
+tsconfig.json
+package.json
 node_modules
 build
 dist
