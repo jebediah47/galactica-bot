@@ -13,7 +13,7 @@
     "prisma:generate": "prisma generate",
     "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma",
     "prisma:sqlite": "prisma db push",
-		"prepush": "bun run clean && bun run lint && bun run testbuild && bun run clean",
+    "prepush": "bun run clean && bun run lint && bun run testbuild && bun run clean",
     "prepare": "husky"
   },
   "repository": {
@@ -29,6 +29,7 @@
   "dependencies": {
     "@apollo/server": "^4.11.2",
     "@elysiajs/apollo": "^1.1.1",
+    "@elysiajs/bearer": "^1.1.2",
     "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^5.21.1",
     "axios": "^1.7.7",
