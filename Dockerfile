@@ -1,7 +1,6 @@
 FROM oven:1-alpine as base
 WORKDIR /usr/src/app
 COPY LICENSE .
-COPY config.ts .
 COPY tsconfig.json .
 COPY package.json .
 COPY src src
