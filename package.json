@@ -31,7 +31,7 @@
     "@elysiajs/apollo": "^1.1.1",
     "@elysiajs/bearer": "^1.1.2",
     "@iamtraction/google-translate": "^2.0.1",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "^6.0.0",
     "axios": "^1.7.7",
     "conf": "^13.0.1",
     "discord-tictactoe": "^4.2.0",
@@ -41,7 +41,7 @@
     "graphql": "^16.9.0",
     "mathjs": "^14.0.0",
     "pino": "^9.5.0",
-    "prisma": "^5.21.1"
+    "prisma": "^6.0.0"
   },
   "devDependencies": {
     "@types/bun": "1.1.14",
