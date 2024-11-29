@@ -1,20 +1,20 @@
-import { EmbedBuilder } from "discord.js";
-import axios from "axios";
-import { Command } from "@/interfaces";
+import { Command } from "@/interfaces"
+import axios from "axios"
+import { EmbedBuilder } from "discord.js"
 
 function randomInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 function getRandomPost(posts: string | any[]) {
-  const randomIndex = randomInt(0, posts.length);
-  return posts[randomIndex].data;
+  const randomIndex = randomInt(0, posts.length)
+  return posts[randomIndex].data
 }
 
 export const command: Command = {
   name: "meme",
   description: "Sends you an EPIC meme!",
-  run: async (client, interaction) => {
+  run: async (_client, interaction) => {
     const subReddits = [
       "r/meme",
       "r/memes",
@@ -22,23 +22,23 @@ export const command: Command = {
       "r/dankmemes",
       "r/PewdiepieSubmissions",
       "r/MemeEconomy",
-    ];
-    const randomIndex = randomInt(0, subReddits.length);
+    ]
+    const randomIndex = randomInt(0, subReddits.length)
 
     await axios
       .get(`https://reddit.com/${subReddits[randomIndex]}/.json`)
       .then(async (response) => {
         const { url, ups, title, permalink, num_comments } = getRandomPost(
           response.data.data.children,
-        );
+        )
         const meme = new EmbedBuilder()
           .setTitle(`${title}`)
           .setURL(`https://reddit.com${permalink}`)
           .setColor("Random")
           .setImage(`${url}`)
-          .setFooter({ text: `👍 ${ups} 💬 ${num_comments}` });
+          .setFooter({ text: `👍 ${ups} 💬 ${num_comments}` })
 
-        await interaction.reply({ embeds: [meme] });
-      });
+        await interaction.reply({ embeds: [meme] })
+      })
   },
-};
+}

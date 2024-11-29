@@ -1,4 +1,4 @@
-import { gql } from "@elysiajs/apollo";
+import { gql } from "@elysiajs/apollo"
 
 export const schema = gql`
   type PresenceConfig {
@@ -18,4 +18,4 @@ export const schema = gql`
   type Query {
     getPresenceConfig: PresenceConfig
   }
-`;
+`

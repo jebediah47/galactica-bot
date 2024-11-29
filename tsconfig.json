@@ -4,7 +4,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "strict": true,
-		"baseUrl": ".",
+    "baseUrl": ".",
     "sourceMap": false,
     "skipLibCheck": true,
     "importHelpers": true,
@@ -23,7 +23,7 @@
       "dom.iterable"
     ],
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   },
   "ts-node": {

@@ -1,6 +1,6 @@
-import { Guild } from "discord.js";
-import { refreshConfigCache } from "@/functions";
-import { Event } from "@/interfaces";
+import { refreshConfigCache } from "@/functions"
+import { Event } from "@/interfaces"
+import { Guild } from "discord.js"
 
 export const event: Event<"guildDelete"> = {
   name: "guildDelete",
@@ -12,14 +12,14 @@ export const event: Event<"guildDelete"> = {
       select: {
         guildID: true,
       },
-    });
+    })
     if (data) {
       await client.prisma.guildConfigs.delete({
         where: {
           guildID: `${guild.id}`,
         },
-      });
+      })
     }
-    await refreshConfigCache(client);
+    await refreshConfigCache(client)
   },
-};
+}

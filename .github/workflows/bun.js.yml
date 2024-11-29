@@ -21,8 +21,8 @@ jobs:
     - name: Install packages
       run: bun install
 
-    - name: Run eslint
-      run: bun run lint
+    - name: Run biome lint
+      run: bun run lint:check
       
     - name: Generate Prisma client
       run: bunx prisma generate

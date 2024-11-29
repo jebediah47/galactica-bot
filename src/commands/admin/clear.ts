@@ -1,10 +1,10 @@
-import { isInteger } from "mathjs";
+import { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
-  EmbedBuilder,
   ChannelType,
-} from "discord.js";
-import { Command } from "@/interfaces";
+  EmbedBuilder,
+} from "discord.js"
+import { isInteger } from "mathjs"
 
 export const command: Command = {
   name: "clear",
@@ -18,40 +18,40 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
-    const number = args.getInteger("messages");
+  run: async (_client, interaction, args) => {
+    const number = args.getInteger("messages")
     const embed = new EmbedBuilder()
       .setColor("Random")
       .setDescription(`🧹 Deleted \`${number}\` messages!`)
-      .setTimestamp();
+      .setTimestamp()
     try {
-      if (!number) return;
+      if (!number) return
       if (!isInteger(number)) {
         const embed = new EmbedBuilder()
           .setColor("Random")
           .setTitle("❌ Error!")
           .setDescription("The input must explicitly be an `INTEGER`")
-          .setTimestamp();
-        return interaction.reply({ embeds: [embed] });
+          .setTimestamp()
+        return interaction.reply({ embeds: [embed] })
       }
       if (!interaction.member.permissions.has("ManageMessages")) {
         return interaction.reply({
           content: "You are not permitted to use this command!",
-        });
+        })
       }
       if (
         interaction.channel &&
         interaction.channel.type == ChannelType.GuildText
       )
-        await interaction.channel.bulkDelete(number);
-      await interaction.reply({ embeds: [embed] });
+        await interaction.channel.bulkDelete(number)
+      await interaction.reply({ embeds: [embed] })
     } catch (err) {
       const errEmbed = new EmbedBuilder()
         .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
-        .setTimestamp();
-      return interaction.reply({ embeds: [errEmbed] });
+        .setTimestamp()
+      return interaction.reply({ embeds: [errEmbed] })
     }
   },
-};
+}

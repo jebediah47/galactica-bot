@@ -1,4 +1,3 @@
-/* eslint-disable no-inner-declarations */
 /**
  * @author Rahul Marban creator of simply-djs
  * @author Christian Llupo (jebediah47) contributor of simply-djs
@@ -9,17 +8,17 @@
  * Thanks again to Rahul Marban for creating this package!
  */
 
+import { ExtendedInteraction } from "@/interfaces"
 import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonInteraction,
   ButtonStyle,
   ColorResolvable,
+  ComponentType,
   EmbedAuthorOptions,
   EmbedBuilder,
-  ComponentType,
-} from "discord.js";
-import { ExtendedInteraction } from "@/interfaces";
+} from "discord.js"
 
 // ------------------------------
 // ------- T Y P I N G S --------
@@ -30,10 +29,10 @@ import { ExtendedInteraction } from "@/interfaces";
  */
 
 interface CustomizableEmbed {
-  author?: EmbedAuthorOptions;
-  title?: string;
-  color?: ColorResolvable;
-  description?: string;
+  author?: EmbedAuthorOptions
+  title?: string
+  color?: ColorResolvable
+  description?: string
 }
 
 /**
@@ -41,15 +40,15 @@ interface CustomizableEmbed {
  */
 
 interface calcButtons {
-  numbers?: ButtonStyle;
-  symbols?: ButtonStyle;
-  delete?: ButtonStyle;
+  numbers?: ButtonStyle
+  symbols?: ButtonStyle
+  delete?: ButtonStyle
 }
 
 export type calcOptions = {
-  embed?: CustomizableEmbed;
-  buttons?: calcButtons;
-};
+  embed?: CustomizableEmbed
+  buttons?: calcButtons
+}
 
 // ------------------------------
 // ------ F U N C T I O N -------
@@ -72,8 +71,8 @@ export async function calculator(
   },
 ): Promise<void> {
   try {
-    const button = [[], [], [], [], []];
-    const row: any[] = [];
+    const button = [[], [], [], [], []]
+    const row: any[] = []
     const text: string[] = [
       "Clear",
       "(",
@@ -100,31 +99,31 @@ export async function calculator(
       "00",
       "=",
       "Delete",
-    ];
-    let current = 0;
+    ]
+    let current = 0
 
     if (!options.embed) {
       options.embed = {
         color: "#075FFF",
-      };
+      }
     }
 
     options.buttons = {
       numbers: options.buttons?.numbers,
       symbols: options.buttons?.symbols,
       delete: options.buttons?.delete,
-    };
+    }
 
-    let message;
+    let message
     if (!interaction.commandId) {
-      message = interaction;
+      message = interaction
     }
 
     for (let i = 0; i < text.length; i++) {
-      if (button[current].length === 5) current++;
-      button[current].push(createButton(text[i]) as never);
+      if (button[current].length === 5) current++
+      button[current].push(createButton(text[i]) as never)
       if (i === text.length - 1) {
-        for (const btn of button) row.push(addRow(btn));
+        for (const btn of button) row.push(addRow(btn))
       }
     }
 
@@ -133,77 +132,77 @@ export async function calculator(
       .setDescription(
         "```js\n0\n// Result: 0\n```" +
           (options.embed?.description ? `\n${options.embed?.description}` : ""),
-      );
+      )
 
     if (options.embed.author) {
-      emb1.setAuthor(options.embed.author);
+      emb1.setAuthor(options.embed.author)
     }
     if (options.embed.title) {
-      emb1.setTitle(options.embed.title);
+      emb1.setTitle(options.embed.title)
     }
 
-    let msg: any;
+    let msg: any
 
-    const int = interaction as ExtendedInteraction;
+    const int = interaction as ExtendedInteraction
 
     if (!message) {
       await int.followUp({
         embeds: [emb1],
         components: row,
-      });
+      })
 
-      msg = await int.fetchReply();
+      msg = await int.fetchReply()
     }
 
-    const time = 30000;
+    const time = 30000
 
-    let elem = "0";
+    let elem = "0"
 
     const filter = (button: ButtonInteraction) =>
       button.user.id ===
         (interaction.user ? interaction.user : interaction.member).id &&
-      button.customId.startsWith("cal-");
+      button.customId.startsWith("cal-")
 
     const collect = msg.createMessageComponentCollector(filter, {
       componentType: ComponentType.Button,
       time: time,
-    });
+    })
 
     collect.on("collect", async (button: ButtonInteraction) => {
-      await button.deferUpdate();
+      await button.deferUpdate()
 
-      const btnName: string = button.customId.replace("cal-", "");
+      const btnName: string = button.customId.replace("cal-", "")
 
-      if (elem === "0") elem = "";
+      if (elem === "0") elem = ""
 
       if (btnName === "=") {
-        elem = mathEval(elem, true);
+        elem = mathEval(elem, true)
 
         emb1.setDescription(
           `\`\`\`js\n${elem}\n\`\`\`` +
             (options.embed?.description
               ? `\n${options.embed?.description}`
               : ""),
-        );
+        )
 
-        elem = "0";
+        elem = "0"
 
         return await msg
           .edit({
             embeds: [emb1],
             components: row,
           })
-          .catch((err: string) => process.stdout.write(`${err}`));
+          .catch((err: string) => process.stdout.write(`${err}`))
       }
 
-      elem = elem + btnName.toString();
+      elem = elem + btnName.toString()
 
       if (btnName === "Delete")
         return await msg
           .delete()
-          .catch((err: string) => process.stdout.write(`${err}`));
-      else if (btnName === "Clear") elem = "0";
-      if (btnName === "⌫") elem = elem.slice(0, -2);
+          .catch((err: string) => process.stdout.write(`${err}`))
+      else if (btnName === "Clear") elem = "0"
+      if (btnName === "⌫") elem = elem.slice(0, -2)
 
       if (isNaN(Number(btnName)) && btnName !== "⌫") {
         emb1.setDescription(
@@ -213,13 +212,13 @@ export async function calculator(
             (options.embed?.description
               ? `\n${options.embed?.description}`
               : ""),
-        );
+        )
         return await msg
           .edit({
             embeds: [emb1],
             components: row,
           })
-          .catch((err: string) => process.stdout.write(`${err}`));
+          .catch((err: string) => process.stdout.write(`${err}`))
       }
 
       emb1.setDescription(
@@ -230,81 +229,79 @@ export async function calculator(
           .replaceAll("%", "/100")
           .replace(" ", "")}\n\`\`\`` +
           (options.embed?.description ? `\n${options.embed?.description}` : ""),
-      );
+      )
       await msg
         .edit({
           embeds: [emb1],
           components: row,
         })
-        .catch((err: string) => process.stdout.write(`${err}`));
-    });
+        .catch((err: string) => process.stdout.write(`${err}`))
+    })
 
     setTimeout(async () => {
-      if (!msg) return;
-      if (!msg.editable) return;
+      if (!msg) return
+      if (!msg.editable) return
 
       if (msg) {
         if (msg.editable) {
           emb1.setDescription(
             "Your Time for using the calculator ran out (30 seconds)",
-          );
-          emb1.setColor(0xc90000);
+          )
+          emb1.setColor(0xc90000)
           await msg
             .edit({ embeds: [emb1], components: [] })
-            .catch((err: string) => process.stdout.write(`${err}`));
+            .catch((err: string) => process.stdout.write(`${err}`))
         }
       }
-    }, time);
+    }, time)
 
     function addRow(btns: ButtonBuilder[]) {
-      const row1 = new ActionRowBuilder();
+      const row1 = new ActionRowBuilder()
       for (const btn of btns) {
-        row1.addComponents(btn);
+        row1.addComponents(btn)
       }
-      return row1;
+      return row1
     }
 
     function createButton(
       label: string,
       style: ButtonStyle | undefined = options.buttons?.numbers,
     ) {
-      if (label === "Clear") style = options.buttons?.delete;
-      else if (label === "Delete") style = options.buttons?.delete;
-      else if (label === "⌫") style = options.buttons?.delete;
-      else if (label === "π") style = options.buttons?.numbers;
-      else if (label === "%") style = options.buttons?.numbers;
-      else if (label === "^") style = options.buttons?.numbers;
-      else if (label === ".") style = options.buttons?.symbols;
-      else if (label === "=") style = ButtonStyle.Success;
-      else if (isNaN(Number(label))) style = options.buttons?.symbols;
+      if (label === "Clear") style = options.buttons?.delete
+      else if (label === "Delete") style = options.buttons?.delete
+      else if (label === "⌫") style = options.buttons?.delete
+      else if (label === "π") style = options.buttons?.numbers
+      else if (label === "%") style = options.buttons?.numbers
+      else if (label === "^") style = options.buttons?.numbers
+      else if (label === ".") style = options.buttons?.symbols
+      else if (label === "=") style = ButtonStyle.Success
+      else if (isNaN(Number(label))) style = options.buttons?.symbols
 
       return new ButtonBuilder()
         .setLabel(label)
         .setStyle(style as ButtonStyle)
-        .setCustomId("cal-" + label);
+        .setCustomId("cal-" + label)
     }
 
-    const evalRegex = /^[0-9π+%^\-*\/.()]*$/;
+    const evalRegex = /^[0-9π+%^\-*\/.()]*$/
     function mathEval(input: string, result = false) {
       try {
-        const matched = evalRegex.exec(input);
-        if (!matched) return "Invalid";
+        const matched = evalRegex.exec(input)
+        if (!matched) return "Invalid"
 
         if (!result) {
-          return `${Function(
-            `"use strict";let π=Math.PI;return (${input})`,
-          )()}`;
+          return `${Function(`"use strict";let π=Math.PI;return (${input})`)()}`
         } else
           return `${input
             .replaceAll("**", "^")
             .replaceAll("/100", "%")} = ${Function(
             `"use strict";let π=Math.PI;return (${input})`,
-          )()}`;
+          )()}`
       } catch {
-        return "Wrong Input";
+        return "Wrong Input"
       }
     }
   } catch (err) {
-    process.stdout.write(`An error occurred: ${err}`);
+    process.stdout.write(`An error occurred: ${err}`)
   }
 }

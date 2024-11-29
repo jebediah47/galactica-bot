@@ -1,9 +1,9 @@
-import ExtendedClient from "@/client";
+import ExtendedClient from "@/client"
 
 const resolvers = (client: ExtendedClient) => ({
   Mutation: {
     updatePresenceConfig: async (_: any, { input }: any) => {
-      const { botPresence, botPresenceType } = input;
+      const { botPresence, botPresenceType } = input
 
       if (
         typeof botPresenceType === "number" &&
@@ -11,21 +11,21 @@ const resolvers = (client: ExtendedClient) => ({
       ) {
         client.logger.error(
           "botPresenceType must be >= 0 and <= 6. Not updating presence.",
-        );
+        )
       } else {
-        client.configManager.set("botPresence", botPresence);
-        client.configManager.set("botPresenceType", botPresenceType);
+        client.configManager.set("botPresence", botPresence)
+        client.configManager.set("botPresenceType", botPresenceType)
 
         client.presenceManager.setPresence(
           client.configManager.get("botPresence"),
           client.configManager.get("botPresenceType"),
-        );
+        )
       }
 
       return {
         botPresence: client.configManager.get("botPresence"),
         botPresenceType: client.configManager.get("botPresenceType"),
-      };
+      }
     },
   },
   Query: {
@@ -33,9 +33,9 @@ const resolvers = (client: ExtendedClient) => ({
       return {
         botPresence: client.configManager.get("botPresence"),
         botPresenceType: client.configManager.get("botPresenceType"),
-      };
+      }
     },
   },
-});
+})
 
-export default resolvers;
+export default resolvers

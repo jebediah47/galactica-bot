@@ -1,5 +1,5 @@
-import { ApplicationCommandOptionType } from "discord.js";
-import { Command } from "@/interfaces";
+import { Command } from "@/interfaces"
+import { ApplicationCommandOptionType } from "discord.js"
 
 export const command: Command = {
   name: "echo",
@@ -12,7 +12,7 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
-    await interaction.reply({ content: `${args.getString("input")}` });
+  run: async (_client, interaction, args) => {
+    await interaction.reply({ content: `${args.getString("input")}` })
   },
-};
+}

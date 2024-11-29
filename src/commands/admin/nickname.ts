@@ -1,9 +1,9 @@
+import { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
   EmbedBuilder,
   GuildMember,
-} from "discord.js";
-import { Command } from "@/interfaces";
+} from "discord.js"
 
 export const command: Command = {
   name: "nickname",
@@ -22,29 +22,29 @@ export const command: Command = {
       required: true,
     },
   ],
-  run: async (client, interaction, args) => {
-    const user: GuildMember = args.getMember("user") as GuildMember;
-    const usr = args.getUser("user");
-    const nickname = args.getString("nickname");
-    if (!user || !nickname) return;
+  run: async (_client, interaction, args) => {
+    const user: GuildMember = args.getMember("user") as GuildMember
+    const usr = args.getUser("user")
+    const nickname = args.getString("nickname")
+    if (!user || !nickname) return
     if (
       !interaction.member.permissions.has("ChangeNickname") ||
       !interaction.member.permissions.has("Administrator")
     ) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
-      });
+      })
     } else if (user.permissions.has("Administrator")) {
       return interaction.reply({
         content: "You can't change the nickname of an administrator!",
-      });
+      })
     } else {
       const embed = new EmbedBuilder()
         .setColor("Random")
         .setDescription(`Changed the username of ${usr?.tag} to ${nickname}`)
-        .setTimestamp();
-      await interaction.reply({ embeds: [embed] });
-      await user.setNickname(nickname);
+        .setTimestamp()
+      await interaction.reply({ embeds: [embed] })
+      await user.setNickname(nickname)
     }
   },
-};
+}

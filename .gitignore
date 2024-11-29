@@ -115,3 +115,5 @@ dist
 *migrations/
 *.db-journal
 *.db
+
+*.env

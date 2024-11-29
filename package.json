@@ -8,12 +8,12 @@
     "dev": "bun --watch src/main.ts",
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
     "clean": "bun buildCleanup.mjs",
-    "lint": "eslint . --ext .ts",
+    "lint:check": "biome check --organize-imports-enabled=true ./src",
     "testbuild": "NODE_ENV=production tsc",
     "prisma:generate": "prisma generate",
     "prisma:planetscale": "prisma db push --schema=./prisma/schema.planetscale.prisma",
     "prisma:sqlite": "prisma db push",
-    "prepush": "bun run clean && bun run lint && bun run testbuild && bun run clean",
+    "prepush": "bun run clean && bun run lint:check && bun run testbuild && bun run clean",
     "prepare": "husky"
   },
   "repository": {
@@ -44,18 +44,12 @@
     "prisma": "^5.21.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/bun": "1.1.14",
     "@types/figlet": "1.7.0",
     "@types/node": "22.10.1",
-    "@typescript-eslint/eslint-plugin": "8.16.0",
-    "@typescript-eslint/parser": "8.16.0",
-    "eslint": "8.57.1",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "husky": "9.1.7",
+    "husky": "^9.1.7",
     "pino-pretty": "13.0.0",
-    "prettier": "3.4.1",
     "tsconfig-paths": "4.2.0",
     "tslib": "2.8.1",
     "typescript": "5.7.2"

@@ -1,6 +1,6 @@
-import { Guild } from "discord.js";
-import { Event } from "@/interfaces";
-import { refreshConfigCache } from "@/functions";
+import { refreshConfigCache } from "@/functions"
+import { Event } from "@/interfaces"
+import { Guild } from "discord.js"
 
 export const event: Event<"guildCreate"> = {
   name: "guildCreate",
@@ -12,14 +12,14 @@ export const event: Event<"guildCreate"> = {
       select: {
         guildID: true,
       },
-    });
-    if (data) return;
+    })
+    if (data) return
     await client.prisma.guildConfigs.create({
       data: {
         guildID: `${guild.id}`,
         guildName: `${guild.name}`,
       },
-    });
-    await refreshConfigCache(client);
+    })
+    await refreshConfigCache(client)
   },
-};
+}
