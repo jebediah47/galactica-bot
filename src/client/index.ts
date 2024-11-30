@@ -2,12 +2,13 @@ import { readdir } from "node:fs/promises"
 import path from "node:path"
 import { GalacticaBotAPI } from "@/api"
 import { ConfigManager, Leveling, Logger, PresenceManager } from "@/classes"
-import { Command, Event, RegisterCommandOptions } from "@/interfaces"
-import { GuildConfigs, PrismaClient } from "@prisma/client"
+import { GALACTICA_TOKEN } from "@/constants"
+import type { Command, Event, RegisterCommandOptions } from "@/interfaces"
+import { type GuildConfigs, PrismaClient } from "@prisma/client"
 import {
-  ApplicationCommandDataResolvable,
+  type ApplicationCommandDataResolvable,
   Client,
-  ClientEvents,
+  type ClientEvents,
   Collection,
   GatewayIntentBits,
 } from "discord.js"
@@ -47,7 +48,7 @@ class ExtendedClient extends Client {
   }
 
   public async init(): Promise<void> {
-    this.login(process.env.GALACTICA_TOKEN).then()
+    this.login(GALACTICA_TOKEN).then()
 
     const command_files = path.join(__dirname, "..", "commands")
     for (const dir of await readdir(command_files)) {
