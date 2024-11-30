@@ -1,5 +1,5 @@
 import util from "node:util"
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import { ApplicationCommandOptionType } from "discord.js"
 import figlet from "figlet"
 

@@ -1,5 +1,5 @@
-import { ClientEvents } from "discord.js"
-import Client from "../client"
+import type { ClientEvents } from "discord.js"
+import type Client from "../client"
 
 interface Run<T extends keyof ClientEvents> {
   (client: Client, ...args: ClientEvents[T]): void

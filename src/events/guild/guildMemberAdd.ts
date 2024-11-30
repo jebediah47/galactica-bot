@@ -1,5 +1,5 @@
-import { Event } from "@/interfaces"
-import { GuildMember, TextChannel } from "discord.js"
+import type { Event } from "@/interfaces"
+import type { GuildMember, TextChannel } from "discord.js"
 
 export const event: Event<"guildMemberAdd"> = {
   name: "guildMemberAdd",

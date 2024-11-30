@@ -1,8 +1,8 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
   EmbedBuilder,
-  GuildMember,
+  type GuildMember,
 } from "discord.js"
 
 export const command: Command = {

@@ -1,4 +1,4 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import { EmbedBuilder } from "discord.js"
 import * as pkg from "../../../package.json"
 

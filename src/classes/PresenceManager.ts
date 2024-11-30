@@ -1,5 +1,5 @@
-import ExtendedClient from "@/client"
-import { ActivityType } from "discord-api-types/payloads/v10"
+import type ExtendedClient from "@/client"
+import type { ActivityType } from "discord-api-types/payloads/v10"
 
 export class PresenceManager {
   private _client: ExtendedClient

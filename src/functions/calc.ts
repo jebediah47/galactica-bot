@@ -8,15 +8,15 @@
  * Thanks again to Rahul Marban for creating this package!
  */
 
-import { ExtendedInteraction } from "@/interfaces"
+import type { ExtendedInteraction } from "@/interfaces"
 import {
   ActionRowBuilder,
   ButtonBuilder,
-  ButtonInteraction,
+  type ButtonInteraction,
   ButtonStyle,
-  ColorResolvable,
+  type ColorResolvable,
   ComponentType,
-  EmbedAuthorOptions,
+  type EmbedAuthorOptions,
   EmbedBuilder,
 } from "discord.js"
 

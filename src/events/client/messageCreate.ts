@@ -1,5 +1,5 @@
-import { Event } from "@/interfaces"
-import { Message } from "discord.js"
+import type { Event } from "@/interfaces"
+import type { Message } from "discord.js"
 
 export const event: Event<"messageCreate"> = {
   name: "messageCreate",

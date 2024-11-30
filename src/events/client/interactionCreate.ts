@@ -1,5 +1,5 @@
-import { Event, ExtendedInteraction } from "@/interfaces"
-import { CommandInteractionOptionResolver, Interaction } from "discord.js"
+import type { Event, ExtendedInteraction } from "@/interfaces"
+import type { CommandInteractionOptionResolver, Interaction } from "discord.js"
 
 export const event: Event<"interactionCreate"> = {
   name: "interactionCreate",

@@ -1,9 +1,9 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
-  GuildChannel,
-  Role,
-  RoleResolvable,
+  type GuildChannel,
+  type Role,
+  type RoleResolvable,
 } from "discord.js"
 
 export const command: Command = {

@@ -1,6 +1,6 @@
 import { refreshConfigCache } from "@/functions"
-import { Event } from "@/interfaces"
-import { Guild } from "discord.js"
+import type { Event } from "@/interfaces"
+import type { Guild } from "discord.js"
 
 export const event: Event<"guildCreate"> = {
   name: "guildCreate",

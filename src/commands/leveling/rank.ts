@@ -1,4 +1,4 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 
 export const command: Command = {
   name: "rank",

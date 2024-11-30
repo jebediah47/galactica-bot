@@ -1,4 +1,4 @@
-import Conf, { Schema } from "conf"
+import Conf, { type Schema } from "conf"
 
 export class ConfigManager {
   private _config: Conf

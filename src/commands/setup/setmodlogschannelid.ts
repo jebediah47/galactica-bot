@@ -1,5 +1,5 @@
 import { refreshConfigCache } from "@/functions"
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
 
 export const command: Command = {

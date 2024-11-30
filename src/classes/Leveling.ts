@@ -1,7 +1,7 @@
-import ExtendedClient from "@/client"
-import { ExtendedInteraction } from "@/interfaces"
-import { LevelModel, PrismaClient } from "@prisma/client"
-import { Message, Snowflake } from "discord.js"
+import type ExtendedClient from "@/client"
+import type { ExtendedInteraction } from "@/interfaces"
+import type { LevelModel, PrismaClient } from "@prisma/client"
+import type { Message, Snowflake } from "discord.js"
 
 export class Leveling {
   private _prisma: PrismaClient

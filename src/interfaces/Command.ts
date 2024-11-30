@@ -1,10 +1,10 @@
-import {
+import type {
   ChatInputApplicationCommandData,
   CommandInteraction,
   CommandInteractionOptionResolver,
   GuildMember,
 } from "discord.js"
-import Client from "../client"
+import type Client from "../client"
 
 export interface ExtendedInteraction extends CommandInteraction {
   member: GuildMember

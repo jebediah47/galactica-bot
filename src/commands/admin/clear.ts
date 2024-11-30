@@ -1,4 +1,4 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
   ChannelType,

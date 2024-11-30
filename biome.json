@@ -11,7 +11,8 @@
     "lineEnding": "lf",
     "lineWidth": 80,
     "attributePosition": "auto",
-    "bracketSpacing": true
+    "bracketSpacing": true,
+    "include": ["src/"]
   },
   "organizeImports": { "enabled": true },
   "linter": {
@@ -45,7 +46,11 @@
       "include": ["**/*.ts"],
       "linter": {
         "rules": {
-          "style": { "noNonNullAssertion": "off" },
+          "style": {
+            "noNonNullAssertion": "off",
+            "useConst": "error",
+            "useImportType": "error"
+          },
           "suspicious": { "noConsole": "warn", "noExplicitAny": "off" },
           "correctness": {
             "noUnusedImports": "error",

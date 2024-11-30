@@ -1,6 +1,6 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import TicTacToe from "discord-tictactoe"
-import { ChatInputCommandInteraction } from "discord.js"
+import type { ChatInputCommandInteraction } from "discord.js"
 
 export const command: Command = {
   name: "tictactoe",

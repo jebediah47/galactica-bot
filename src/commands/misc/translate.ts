@@ -1,4 +1,4 @@
-import { Command } from "@/interfaces"
+import type { Command } from "@/interfaces"
 import translate from "@iamtraction/google-translate"
 import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
 
