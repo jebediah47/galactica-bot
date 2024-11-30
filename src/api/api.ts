@@ -1,9 +1,7 @@
-import resolvers from "@/api/resolvers"
-import { schema } from "@/api/schema"
-import ExtendedClient from "@/client"
-import { apollo } from "@elysiajs/apollo"
-import { bearer } from "@elysiajs/bearer"
-import { Elysia } from "elysia"
+import { createAuthRoutes } from "@/api/auth/routes"
+import type ExtendedClient from "@/client"
+import { GALACTICA_API_PORT } from "@/constants"
+import { Elysia, t } from "elysia"
 
 export class GalacticaBotAPI {
   private _client: ExtendedClient
@@ -14,43 +12,45 @@ export class GalacticaBotAPI {
   }
 
   public async start() {
-    if (!process.env.GALACTICA_API_BEARER) {
-      this._client.logger.fatal(
-        "No GALACTICA_API_BEARER provided in the environment, shutting down...",
-      )
-      process.exit(1)
-    }
+    this._api.use(createAuthRoutes(this._client))
+    this._api.post(
+      "/config/presence",
+      ({ body }) => {
+        const { bot_presence, bot_presence_type } = body
 
-    this._api.use(bearer()).onBeforeHandle(({ bearer, set, request }) => {
-      const url = new URL(request.url)
-      if (
-        process.env.NODE_ENV === "development" &&
-        url.pathname.startsWith("/api/graphql")
-      ) {
-        return
-      }
+        if (
+          typeof bot_presence_type === "number" &&
+          (bot_presence_type < 0 || bot_presence_type > 6)
+        ) {
+          this._client.logger.error(
+            "bot_presence_type must be >= 0 and <= 6. Not updating presence.",
+          )
+        } else {
+          this._client.configManager.set("botPresence", bot_presence)
+          this._client.configManager.set("botPresenceType", bot_presence_type)
 
-      const isAuthorized = bearer === process.env.GALACTICA_API_BEARER
+          this._client.presenceManager.setPresence(
+            this._client.configManager.get("botPresence"),
+            this._client.configManager.get("botPresenceType"),
+          )
+        }
 
-      if (!isAuthorized || !bearer) {
-        set.status = 400
-        set.headers["WWW-Authenticate"] =
-          `Bearer realm='sign', error="invalid_request"`
-        this._client.logger.error("Unauthorized")
-        throw new Error("Unauthorized")
-      }
-    })
-
-    this._api.use(
-      apollo({
-        typeDefs: schema,
-        resolvers: resolvers(this._client),
-      }),
+        return {
+          bot_presence: this._client.configManager.get("botPresence"),
+          bot_presence_type: this._client.configManager.get("botPresenceType"),
+        }
+      },
+      {
+        body: t.Object({
+          bot_presence: t.String(),
+          bot_presence_type: t.Number(),
+        }),
+      },
     )
 
     this._api.get("/", "If you're seeing this you're authorized")
 
-    const API_PORT = process.env.GALACTICA_API_PORT || 3000
+    const API_PORT = GALACTICA_API_PORT
 
     this._api.listen(API_PORT, () => {
       this._client.logger.info(`API listening on port ${API_PORT}`)
