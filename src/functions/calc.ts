@@ -18,6 +18,7 @@ import {
   ComponentType,
   type EmbedAuthorOptions,
   EmbedBuilder,
+  type Message,
 } from "discord.js"
 
 // ------------------------------
@@ -72,7 +73,7 @@ export async function calculator(
 ): Promise<void> {
   try {
     const button = [[], [], [], [], []]
-    const row: any[] = []
+    const row: ActionRowBuilder<ButtonBuilder>[] = []
     const text: string[] = [
       "Clear",
       "(",
@@ -121,7 +122,7 @@ export async function calculator(
 
     for (let i = 0; i < text.length; i++) {
       if (button[current].length === 5) current++
-      button[current].push(createButton(text[i]) as never)
+      button[current].push(createButton(text[i], options) as never)
       if (i === text.length - 1) {
         for (const btn of button) row.push(addRow(btn))
       }
@@ -141,7 +142,7 @@ export async function calculator(
       emb1.setTitle(options.embed.title)
     }
 
-    let msg: any
+    let msg: Message<boolean>
 
     const int = interaction as ExtendedInteraction
 
@@ -163,7 +164,8 @@ export async function calculator(
         (interaction.user ? interaction.user : interaction.member).id &&
       button.customId.startsWith("cal-")
 
-    const collect = msg.createMessageComponentCollector(filter, {
+    const collect = msg!.createMessageComponentCollector({
+      filter,
       componentType: ComponentType.Button,
       time: time,
     })
@@ -254,54 +256,55 @@ export async function calculator(
         }
       }
     }, time)
-
-    function addRow(btns: ButtonBuilder[]) {
-      const row1 = new ActionRowBuilder()
-      for (const btn of btns) {
-        row1.addComponents(btn)
-      }
-      return row1
-    }
-
-    function createButton(
-      label: string,
-      style: ButtonStyle | undefined = options.buttons?.numbers,
-    ) {
-      if (label === "Clear") style = options.buttons?.delete
-      else if (label === "Delete") style = options.buttons?.delete
-      else if (label === "⌫") style = options.buttons?.delete
-      else if (label === "π") style = options.buttons?.numbers
-      else if (label === "%") style = options.buttons?.numbers
-      else if (label === "^") style = options.buttons?.numbers
-      else if (label === ".") style = options.buttons?.symbols
-      else if (label === "=") style = ButtonStyle.Success
-      else if (isNaN(Number(label))) style = options.buttons?.symbols
-
-      return new ButtonBuilder()
-        .setLabel(label)
-        .setStyle(style as ButtonStyle)
-        .setCustomId("cal-" + label)
-    }
-
-    const evalRegex = /^[0-9π+%^\-*\/.()]*$/
-    function mathEval(input: string, result = false) {
-      try {
-        const matched = evalRegex.exec(input)
-        if (!matched) return "Invalid"
-
-        if (!result) {
-          return `${Function(`"use strict";let π=Math.PI;return (${input})`)()}`
-        } else
-          return `${input
-            .replaceAll("**", "^")
-            .replaceAll("/100", "%")} = ${Function(
-            `"use strict";let π=Math.PI;return (${input})`,
-          )()}`
-      } catch {
-        return "Wrong Input"
-      }
-    }
   } catch (err) {
     process.stdout.write(`An error occurred: ${err}`)
+  }
+}
+
+function addRow(btns: ButtonBuilder[]) {
+  const row1 = new ActionRowBuilder<ButtonBuilder>()
+  for (const btn of btns) {
+    row1.addComponents(btn)
+  }
+  return row1
+}
+
+function createButton(
+  label: string,
+  options: calcOptions,
+  style: ButtonStyle | undefined = options.buttons?.numbers,
+) {
+  if (label === "Clear") style = options.buttons?.delete
+  else if (label === "Delete") style = options.buttons?.delete
+  else if (label === "⌫") style = options.buttons?.delete
+  else if (label === "π") style = options.buttons?.numbers
+  else if (label === "%") style = options.buttons?.numbers
+  else if (label === "^") style = options.buttons?.numbers
+  else if (label === ".") style = options.buttons?.symbols
+  else if (label === "=") style = ButtonStyle.Success
+  else if (isNaN(Number(label))) style = options.buttons?.symbols
+
+  return new ButtonBuilder()
+    .setLabel(label)
+    .setStyle(style as ButtonStyle)
+    .setCustomId("cal-" + label)
+}
+
+const evalRegex = /^[0-9π+%^\-*\/.()]*$/
+function mathEval(input: string, result = false) {
+  try {
+    const matched = evalRegex.exec(input)
+    if (!matched) return "Invalid"
+
+    if (!result) {
+      return `${Function(`"use strict";let π=Math.PI;return (${input})`)()}`
+    } else
+      return `${input
+        .replaceAll("**", "^")
+        .replaceAll("/100", "%")} = ${Function(
+        `"use strict";let π=Math.PI;return (${input})`,
+      )()}`
+  } catch {
+    return "Wrong Input"
   }
 }
