@@ -29,3 +29,13 @@ model LevelModel {
   @@unique([userID, guildID])
   @@index([userID, guildID])
 }
+
+model PanelUsers {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  password     String
+  is_genesis   Boolean  @default(false)
+  refreshToken String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
