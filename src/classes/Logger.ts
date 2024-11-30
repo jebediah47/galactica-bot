@@ -4,7 +4,7 @@ export class Logger {
   private logger: pino.Logger
 
   public constructor() {
-    const isDevelopment = process.env.NODE_ENV === "development"
+    const isDevelopment = Bun.env.NODE_ENV === "development"
 
     this.logger = pino({
       level: isDevelopment ? "debug" : "info",
