@@ -274,15 +274,24 @@ function createButton(
   options: calcOptions,
   style: ButtonStyle | undefined = options.buttons?.numbers,
 ) {
-  if (label === "Clear") style = options.buttons?.delete
-  else if (label === "Delete") style = options.buttons?.delete
-  else if (label === "⌫") style = options.buttons?.delete
-  else if (label === "π") style = options.buttons?.numbers
-  else if (label === "%") style = options.buttons?.numbers
-  else if (label === "^") style = options.buttons?.numbers
-  else if (label === ".") style = options.buttons?.symbols
-  else if (label === "=") style = ButtonStyle.Success
-  else if (isNaN(Number(label))) style = options.buttons?.symbols
+  switch (label) {
+    case "Clear":
+    case "Delete":
+    case "⌫":
+      style = options.buttons?.delete
+      break
+    case "π":
+    case "%":
+    case "^":
+      style = options.buttons?.numbers
+      break
+    case ".":
+    case "=":
+      style = options.buttons?.symbols
+      break
+    default:
+      if (isNaN(Number(label))) style = options.buttons?.symbols
+  }
 
   return new ButtonBuilder()
     .setLabel(label)
