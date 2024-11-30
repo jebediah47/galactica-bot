@@ -3,8 +3,8 @@ import { rm } from "node:fs/promises";
 
 const buildDir = "./dist";
 if (existsSync(buildDir)) {
-  console.log("Build directory already exists, cleaning...");
-  rm(buildDir, {
+  console.log("Build directory found, cleaning...");
+  await rm(buildDir, {
     recursive: true,
   });
 }
