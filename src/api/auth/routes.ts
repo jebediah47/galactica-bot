@@ -95,7 +95,31 @@ export const createAuthRoutes = (client: ExtendedClient) => {
     )
     .post(
       "/sign-up",
-      async ({ body }) => {
+      async ({ body, cookie: { accessToken }, jwt, set }) => {
+        const genesisUser = await client.prisma.panelUsers.findFirst({
+          where: {
+            is_genesis: true,
+          },
+        })
+
+        if (genesisUser) {
+          if (!accessToken.value) {
+            set.status = "Unauthorized"
+            throw new Error("Genesis access token is required for signup")
+          }
+
+          const jwtPayload = await jwt.verify(accessToken.value)
+          if (!jwtPayload || jwtPayload.sub !== genesisUser.id) {
+            set.status = "Forbidden"
+            throw new Error("Invalid genesis access token")
+          }
+
+          if (body.is_genesis) {
+            set.status = "Forbidden"
+            throw new Error("Genesis user cannot create another genesis user")
+          }
+        }
+
         const password = await Bun.password.hash(body.password, {
           algorithm: "bcrypt",
           cost: 10,
