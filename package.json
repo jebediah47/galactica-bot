@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/bun": "1.1.14",
+    "@types/bun": "1.1.16",
     "@types/figlet": "1.7.0",
     "@types/node": "22.10.6",
     "cross-env": "7.0.3",
