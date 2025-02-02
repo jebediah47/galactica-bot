@@ -27,17 +27,16 @@
   },
   "homepage": "https://galacticabot.vercel.app/",
   "dependencies": {
-    "@elysiajs/jwt": "^1.1.1",
     "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^5.21.1",
-    "axios": "^1.7.7",
-    "conf": "^13.0.1",
+    "axios": "^1.7.9",
+    "conf": "^13.1.0",
     "discord-tictactoe": "^4.2.0",
-    "discord.js": "^14.16.3",
-    "elysia": "^1.1.24",
+    "discord.js": "^14.17.3",
+    "elysia": "^1.2.11",
     "figlet": "^1.7.0",
-    "mathjs": "^14.0.0",
-    "pino": "^9.5.0",
+    "mathjs": "^14.2.0g",
+    "pino": "^9.6.0",
     "prisma": "^5.21.1"
   },
   "devDependencies": {
