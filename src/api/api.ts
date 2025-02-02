@@ -1,5 +1,3 @@
-import { authPlugin } from "@/api/auth/plugin"
-import { createAuthRoutes } from "@/api/auth/routes"
 import type ExtendedClient from "@/client"
 import { GALACTICA_API_PORT } from "@/constants"
 import { Elysia, t } from "elysia"
@@ -13,14 +11,12 @@ export class GalacticaBotAPI {
   }
 
   public async start() {
-    this._api.use(createAuthRoutes(this._client))
     this._api.get("/config/presence", () => {
       return {
         presence: this._client.configManager.get("botPresence"),
         presence_type: this._client.configManager.get("botPresenceType"),
       }
     })
-    this._api.use(authPlugin(this._client))
     this._api.post(
       "/config/presence",
       ({ body }) => {
