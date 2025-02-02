@@ -1,4 +1,4 @@
-FROM oven:1-alpine as base
+FROM oven/bun:alpine as base
 WORKDIR /usr/src/app
 COPY LICENSE .
 COPY tsconfig.json .
