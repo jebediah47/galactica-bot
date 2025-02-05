@@ -10,7 +10,7 @@ export class ConfigManager {
     },
     botPresenceType: {
       type: "number",
-      maximum: 6,
+      maximum: 5,
       minimum: 0,
       default: 3,
     },
