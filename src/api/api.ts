@@ -14,16 +14,16 @@ export class GalacticaBotAPI {
     this._api.get("/config/presence", () => {
       return {
         presence: this._client.configManager.get("botPresence"),
-        presence_type: this._client.configManager.get("botPresenceType"),
+        type: this._client.configManager.get("botPresenceType"),
       }
     })
     this._api.post(
       "/config/presence",
       ({ body }) => {
-        const { presence, presence_type } = body
+        const { presence, type } = body
 
         this._client.configManager.set("botPresence", presence)
-        this._client.configManager.set("botPresenceType", presence_type)
+        this._client.configManager.set("botPresenceType", type)
 
         this._client.presenceManager.setPresence(
           this._client.configManager.get("botPresence"),
@@ -38,7 +38,7 @@ export class GalacticaBotAPI {
       {
         body: t.Object({
           presence: t.String({ minLength: 1, maxLength: 96 }),
-          presence_type: t.Number({ minimum: 0, maximum: 6 }),
+          type: t.Number({ minimum: 0, maximum: 6 }),
         }),
       },
     )
