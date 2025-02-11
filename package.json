@@ -32,7 +32,7 @@
     "axios": "^1.7.9",
     "conf": "^13.1.0",
     "discord-tictactoe": "^4.2.0",
-    "discord.js": "^14.16.3",
+    "discord.js": "^14.18.0",
     "elysia": "^1.2.12",
     "figlet": "^1.7.0",
     "mathjs": "^14.2.1",
