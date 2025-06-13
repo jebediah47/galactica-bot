@@ -30,7 +30,7 @@
     "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^6.3.1",
     "axios": "^1.7.9",
-    "conf": "^13.1.0",
+    "conf": "^14.0.0",
     "discord-tictactoe": "^4.2.0",
     "discord.js": "^14.16.3",
     "elysia": "^1.2.13",
