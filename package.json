@@ -40,7 +40,7 @@
     "prisma": "^6.9.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.0.4",
     "@types/bun": "1.2.16",
     "@types/figlet": "1.7.0",
     "@types/node": "22.15.31",
