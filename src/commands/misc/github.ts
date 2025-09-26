@@ -1,6 +1,6 @@
-import type { Command } from "@/interfaces"
-import axios from "axios"
-import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
+import axios from "axios";
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "github",
@@ -14,11 +14,11 @@ export const command: Command = {
     },
   ],
   run: async (_client, interaction, args) => {
-    const name = args.getString("profile")
-    if (!name) return
+    const name = args.getString("profile");
+    if (!name) return;
 
     try {
-      const { data } = await axios.get(`https://api.github.com/users/${name}`)
+      const { data } = await axios.get(`https://api.github.com/users/${name}`);
       const embed = new EmbedBuilder()
         .setColor("Random")
         .setTitle(`${data.login}`)
@@ -54,16 +54,16 @@ export const command: Command = {
         )
         .setURL(data.html_url)
         .setThumbnail(data.avatar_url)
-        .setTimestamp()
+        .setTimestamp();
 
-      await interaction.reply({ embeds: [embed] })
+      await interaction.reply({ embeds: [embed] });
     } catch (err) {
       const errEmbed = new EmbedBuilder()
         .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
-        .setTimestamp()
-      return interaction.reply({ embeds: [errEmbed] })
+        .setTimestamp();
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
-}
+};

@@ -1,6 +1,6 @@
-import type { Command } from "@/interfaces"
-import { EmbedBuilder } from "discord.js"
-import * as pkg from "../../../package.json"
+import { EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
+import * as pkg from "../../../package.json";
 
 export const command: Command = {
   name: "stats",
@@ -13,24 +13,24 @@ export const command: Command = {
         hour: Math.floor((ms / (1000 * 60 * 60)) % 24),
         minute: Math.floor((ms / (1000 * 60)) % 60),
         second: Math.floor((ms / 1000) % 60),
-      }
+      };
 
-      let string = ""
+      let string = "";
 
       for (const [key, value] of noDetails === true
         ? Object.entries(times).filter(
-            (value: [string, any]) =>
-              value[0] != "hour" &&
-              value[0] != "minute" &&
-              value[0] != "second",
+            (value: [string, string]) =>
+              value[0] !== "hour" &&
+              value[0] !== "minute" &&
+              value[0] !== "second",
           )
         : Object.entries(times)) {
-        if (value > 0) string += ` ${value} ${key}${value > 1 ? "s, " : ","}`
+        if (value > 0) string += ` ${value} ${key}${value > 1 ? "s, " : ","}`;
       }
       return string
         .trim()
         .substring(0, string.trim().length - 1)
-        .replace(/ {2}/gi, " ")
+        .replace(/ {2}/gi, " ");
     }
     try {
       if (typeof client.uptime === "number") {
@@ -49,16 +49,16 @@ export const command: Command = {
             WebSocket Ping: \`${client.ws.ping}\`
             Bot Version: \`${pkg.version}\``,
           )
-          .setTimestamp()
-        await interaction.reply({ embeds: [embed] })
+          .setTimestamp();
+        await interaction.reply({ embeds: [embed] });
       }
     } catch (err) {
       const errEmbed = new EmbedBuilder()
         .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
-        .setTimestamp()
-      return interaction.reply({ embeds: [errEmbed] })
+        .setTimestamp();
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
-}
+};

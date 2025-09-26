@@ -1,2 +1,3 @@
-import Client from "@/client"
-new Client().init()
+import Client from "@/client";
+
+new Client().init();

@@ -1,9 +1,9 @@
-import type { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
   EmbedBuilder,
   type GuildMember,
-} from "discord.js"
+} from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "resetnickname",
@@ -17,19 +17,19 @@ export const command: Command = {
     },
   ],
   run: async (_client, interaction, args) => {
-    const user: GuildMember = args.getMember("user") as GuildMember
-    const usr = args.getUser("user")
-    if (!user) return
+    const user: GuildMember = args.getMember("user") as GuildMember;
+    const usr = args.getUser("user");
+    if (!user) return;
     if (!interaction.member.permissions.has("ManageNicknames")) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
-      })
+      });
     }
     const embed = new EmbedBuilder()
       .setColor("Random")
       .setDescription(`Resetted ${usr?.tag}'s nickname`)
-      .setTimestamp()
-    await interaction.reply({ embeds: [embed] })
-    await user.setNickname(null)
+      .setTimestamp();
+    await interaction.reply({ embeds: [embed] });
+    await user.setNickname(null);
   },
-}
+};

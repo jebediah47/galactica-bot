@@ -1,10 +1,10 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      GALACTICA_TOKEN: string
-      GALACTICA_API_PORT?: string | number
+      GALACTICA_TOKEN: string;
+      GALACTICA_API_PORT?: string | number;
     }
   }
 }
 
-export {}
+export {};

@@ -1,7 +1,7 @@
-import util from "node:util"
-import type { Command } from "@/interfaces"
-import { ApplicationCommandOptionType } from "discord.js"
-import figlet from "figlet"
+import util from "node:util";
+import { ApplicationCommandOptionType } from "discord.js";
+import figlet from "figlet";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "figlet",
@@ -15,13 +15,13 @@ export const command: Command = {
     },
   ],
   run: async (_client, interaction, args) => {
-    const fig = util.promisify(figlet)
-    const input = args.getString("input")
+    const fig = util.promisify(figlet);
+    const input = args.getString("input");
     if (!input || input.length > 20) {
       return interaction.reply({
         content: "Input must be up to `20` characters!",
-      })
+      });
     }
-    await interaction.reply({ content: `\`\`\`${await fig(input)}\`\`\`` })
+    await interaction.reply({ content: `\`\`\`${await fig(input)}\`\`\`` });
   },
-}
+};

@@ -1,5 +1,5 @@
-import type { Command } from "@/interfaces"
-import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "avatar",
@@ -13,14 +13,14 @@ export const command: Command = {
     },
   ],
   run: async (_client, interaction, args) => {
-    const user = args.getUser("user") || interaction.user
+    const user = args.getUser("user") || interaction.user;
     const embed = new EmbedBuilder()
       .setAuthor({
         name: `${user.tag} 's avatar`,
       })
       .setTimestamp()
       .setImage(user.displayAvatarURL({ size: 4096, forceStatic: false }))
-      .setTimestamp()
-    await interaction.reply({ embeds: [embed] })
+      .setTimestamp();
+    await interaction.reply({ embeds: [embed] });
   },
-}
+};

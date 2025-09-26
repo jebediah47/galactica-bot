@@ -1,10 +1,10 @@
-import type { Command } from "@/interfaces"
 import {
   ApplicationCommandOptionType,
   type GuildChannel,
   type Role,
   type RoleResolvable,
-} from "discord.js"
+} from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "unlock",
@@ -21,18 +21,18 @@ export const command: Command = {
     if (!interaction.member.permissions.has("ManageChannels")) {
       return interaction.reply({
         content: "You are not permitted to use this command!",
-      })
+      });
     }
     const everyone: Role | undefined = interaction.guild?.roles.cache.find(
       (r) => r.name === "@everyone",
-    )
-    let channel: GuildChannel = args.getChannel("channel") as GuildChannel
-    if (!channel) (channel as typeof interaction.channel) = interaction.channel
+    );
+    let channel: GuildChannel = args.getChannel("channel") as GuildChannel;
+    if (!channel) (channel as typeof interaction.channel) = interaction.channel;
     await channel.permissionOverwrites.edit(everyone as RoleResolvable, {
       SendMessages: true,
-    })
+    });
     await interaction.reply({
       content: "🔓 The channel has been unlocked",
-    })
+    });
   },
-}
+};

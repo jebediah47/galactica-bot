@@ -1,6 +1,6 @@
-import type { Command } from "@/interfaces"
-import { EmbedBuilder } from "discord.js"
-import { stdout } from "process"
+import { stdout } from "node:process";
+import { EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "ping",
@@ -9,9 +9,9 @@ export const command: Command = {
     const embed = new EmbedBuilder()
       .setColor("Random")
       .setDescription(`The bot's ping is **${client.ws.ping}**`)
-      .setTimestamp()
+      .setTimestamp();
     await interaction
       .reply({ embeds: [embed] })
-      .catch((err) => stdout.write(err))
+      .catch((err) => stdout.write(err));
   },
-}
+};

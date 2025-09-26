@@ -1,11 +1,12 @@
-import type { ClientEvents } from "discord.js"
-import type Client from "../client"
+import type { ClientEvents } from "discord.js";
+import type Client from "../client";
 
-interface Run<T extends keyof ClientEvents> {
-  (client: Client, ...args: ClientEvents[T]): void
-}
+type Run<T extends keyof ClientEvents> = (
+  client: Client,
+  ...args: ClientEvents[T]
+) => void;
 
 export interface Event<T extends keyof ClientEvents> {
-  name: T
-  run: Run<T>
+  name: T;
+  run: Run<T>;
 }

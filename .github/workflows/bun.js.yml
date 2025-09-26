@@ -22,10 +22,10 @@ jobs:
       run: bun install
 
     - name: Run biome lint
-      run: bun run lint:check
+      run: bun run lint
       
     - name: Generate Prisma client
-      run: bunx prisma generate
+      run: bun run prisma generate
 
     - name: Build TypeScript
       run: bun run testbuild

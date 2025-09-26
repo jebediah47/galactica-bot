@@ -1,3 +1,3 @@
-export { RegisterCommandOptions } from "./RegisterCommandOptions"
-export { ExtendedInteraction, Command } from "./Command"
-export { Event } from "./Event"
+export { Command, ExtendedInteraction } from "./Command";
+export { Event } from "./Event";
+export { RegisterCommandOptions } from "./RegisterCommandOptions";

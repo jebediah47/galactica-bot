@@ -1,5 +1,5 @@
-export { refreshConfigCache } from "./refreshConfigCache"
-export { getExpTimestamp } from "./getExpTimestamp"
-export { commaFormatter } from "./commaFormatter"
-export { calculator as calc } from "./calc"
-export { capitalize } from "./capitalize"
+export { calculator as calc } from "./calc";
+export { capitalize } from "./capitalize";
+export { commaFormatter } from "./commaFormatter";
+export { getExpTimestamp } from "./getExpTimestamp";
+export { refreshConfigCache } from "./refreshConfigCache";

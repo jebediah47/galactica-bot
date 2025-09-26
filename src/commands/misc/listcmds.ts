@@ -1,5 +1,5 @@
-import type { Command } from "@/interfaces"
-import { EmbedBuilder } from "discord.js"
+import { EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "listcmds",
@@ -14,6 +14,6 @@ export const command: Command = {
             client.commands.map((cmd) => `\`${cmd.name}\``).join(", "),
           ),
       ],
-    })
+    });
   },
-}
+};

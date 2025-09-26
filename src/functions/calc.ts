@@ -2,13 +2,11 @@
  * @author Rahul Marban creator of simply-djs
  * @author Christian Llupo (jebediah47) contributor of simply-djs
  * @license CC_BY-NC-NDv4.0 https://github.com/Rahuletto/simply-djs/blob/main/LICENSE
- * @copyright Rahul Marban 2021-2024
- * @copyright Christian Llupo 2024
+ * @copyright Rahul Marban 2021-2025
+ * @copyright Christian Llupo 2025
  * Modifications are licensed under the GNU Affero General Public License-v3.0
- * Thanks again to Rahul Marban for creating this package!
  */
 
-import type { ExtendedInteraction } from "@/interfaces"
 import {
   ActionRowBuilder,
   ButtonBuilder,
@@ -19,7 +17,8 @@ import {
   type EmbedAuthorOptions,
   EmbedBuilder,
   type Message,
-} from "discord.js"
+} from "discord.js";
+import type { ExtendedInteraction } from "@/interfaces";
 
 // ------------------------------
 // ------- T Y P I N G S --------
@@ -30,10 +29,10 @@ import {
  */
 
 interface CustomizableEmbed {
-  author?: EmbedAuthorOptions
-  title?: string
-  color?: ColorResolvable
-  description?: string
+  author?: EmbedAuthorOptions;
+  title?: string;
+  color?: ColorResolvable;
+  description?: string;
 }
 
 /**
@@ -41,15 +40,15 @@ interface CustomizableEmbed {
  */
 
 interface calcButtons {
-  numbers?: ButtonStyle
-  symbols?: ButtonStyle
-  delete?: ButtonStyle
+  numbers?: ButtonStyle;
+  symbols?: ButtonStyle;
+  delete?: ButtonStyle;
 }
 
 export type calcOptions = {
-  embed?: CustomizableEmbed
-  buttons?: calcButtons
-}
+  embed?: CustomizableEmbed;
+  buttons?: calcButtons;
+};
 
 // ------------------------------
 // ------ F U N C T I O N -------
@@ -72,8 +71,8 @@ export async function calculator(
   },
 ): Promise<void> {
   try {
-    const button = [[], [], [], [], []]
-    const row: ActionRowBuilder<ButtonBuilder>[] = []
+    const button = [[], [], [], [], []];
+    const row: ActionRowBuilder<ButtonBuilder>[] = [];
     const text: string[] = [
       "Clear",
       "(",
@@ -100,31 +99,26 @@ export async function calculator(
       "00",
       "=",
       "Delete",
-    ]
-    let current = 0
+    ];
+    let current = 0;
 
     if (!options.embed) {
       options.embed = {
         color: "#075FFF",
-      }
+      };
     }
 
     options.buttons = {
       numbers: options.buttons?.numbers,
       symbols: options.buttons?.symbols,
       delete: options.buttons?.delete,
-    }
-
-    let message
-    if (!interaction.commandId) {
-      message = interaction
-    }
+    };
 
     for (let i = 0; i < text.length; i++) {
-      if (button[current].length === 5) current++
-      button[current].push(createButton(text[i], options) as never)
+      if (button[current].length === 5) current++;
+      button[current].push(createButton(text[i], options) as never);
       if (i === text.length - 1) {
-        for (const btn of button) row.push(addRow(btn))
+        for (const btn of button) row.push(addRow(btn));
       }
     }
 
@@ -133,80 +127,85 @@ export async function calculator(
       .setDescription(
         "```js\n0\n// Result: 0\n```" +
           (options.embed?.description ? `\n${options.embed?.description}` : ""),
-      )
+      );
 
     if (options.embed.author) {
-      emb1.setAuthor(options.embed.author)
+      emb1.setAuthor(options.embed.author);
     }
     if (options.embed.title) {
-      emb1.setTitle(options.embed.title)
+      emb1.setTitle(options.embed.title);
     }
 
-    let msg: Message<boolean>
+    const int = interaction as ExtendedInteraction;
 
-    const int = interaction as ExtendedInteraction
+    let msg: Message;
 
-    if (!message) {
+    if (int?.deferred || int?.replied) {
       await int.followUp({
         embeds: [emb1],
         components: row,
-      })
-
-      msg = await int.fetchReply()
+      });
+    } else {
+      await int.reply({
+        embeds: [emb1],
+        components: row,
+      });
     }
 
-    const time = 30000
+    msg = await int.fetchReply();
 
-    let elem = "0"
+    const time = 30000;
+
+    let elem = "0";
 
     const filter = (button: ButtonInteraction) =>
       button.user.id ===
         (interaction.user ? interaction.user : interaction.member).id &&
-      button.customId.startsWith("cal-")
+      button.customId.startsWith("cal-");
 
-    const collect = msg!.createMessageComponentCollector({
+    const collect = msg.createMessageComponentCollector({
       filter,
       componentType: ComponentType.Button,
       time: time,
-    })
+    });
 
     collect.on("collect", async (button: ButtonInteraction) => {
-      await button.deferUpdate()
+      await button.deferUpdate();
 
-      const btnName: string = button.customId.replace("cal-", "")
+      const btnName: string = button.customId.replace("cal-", "");
 
-      if (elem === "0") elem = ""
+      if (elem === "0") elem = "";
 
       if (btnName === "=") {
-        elem = mathEval(elem, true)
+        elem = mathEval(elem, true);
 
         emb1.setDescription(
           `\`\`\`js\n${elem}\n\`\`\`` +
             (options.embed?.description
               ? `\n${options.embed?.description}`
               : ""),
-        )
+        );
 
-        elem = "0"
+        elem = "0";
 
         return await msg
           .edit({
             embeds: [emb1],
             components: row,
           })
-          .catch((err: string) => process.stdout.write(`${err}`))
+          .catch((err: string) => process.stdout.write(`${err}`));
       }
 
-      elem = elem + btnName.toString()
+      elem = elem + btnName.toString();
 
       if (btnName === "Delete")
         return await msg
           .delete()
-          .catch((err: string) => process.stdout.write(`${err}`))
-      else if (btnName === "Clear") elem = "0"
-      if (btnName === "⌫") elem = elem.slice(0, -2)
+          .catch((err: string) => process.stdout.write(`${err}`));
+      else if (btnName === "Clear") elem = "0";
+      if (btnName === "⌫") elem = elem.slice(0, -2);
 
-      if (isNaN(Number(btnName)) && btnName !== "⌫") {
+      if (Number.isNaN(Number(btnName)) && btnName !== "⌫") {
         emb1.setDescription(
           `\`\`\`js\n${elem
             .replaceAll("+", " + ")
@@ -214,13 +213,13 @@ export async function calculator(
             (options.embed?.description
               ? `\n${options.embed?.description}`
               : ""),
-        )
+        );
         return await msg
           .edit({
             embeds: [emb1],
             components: row,
           })
-          .catch((err: string) => process.stdout.write(`${err}`))
+          .catch((err: string) => process.stdout.write(`${err}`));
       }
 
       emb1.setDescription(
@@ -231,42 +230,42 @@ export async function calculator(
           .replaceAll("%", "/100")
           .replace(" ", "")}\n\`\`\`` +
           (options.embed?.description ? `\n${options.embed?.description}` : ""),
-      )
+      );
       await msg
         .edit({
           embeds: [emb1],
           components: row,
         })
-        .catch((err: string) => process.stdout.write(`${err}`))
-    })
+        .catch((err: string) => process.stdout.write(`${err}`));
+    });
 
     setTimeout(async () => {
-      if (!msg) return
-      if (!msg.editable) return
+      if (!msg) return;
+      if (!msg.editable) return;
 
       if (msg) {
         if (msg.editable) {
           emb1.setDescription(
             "Your Time for using the calculator ran out (30 seconds)",
-          )
-          emb1.setColor(0xc90000)
+          );
+          emb1.setColor(0xc90000);
           await msg
             .edit({ embeds: [emb1], components: [] })
-            .catch((err: string) => process.stdout.write(`${err}`))
+            .catch((err: string) => process.stdout.write(`${err}`));
         }
       }
-    }, time)
+    }, time);
   } catch (err) {
-    process.stdout.write(`An error occurred: ${err}`)
+    process.stdout.write(`An error occurred: ${err}`);
   }
 }
 
 function addRow(btns: ButtonBuilder[]) {
-  const row1 = new ActionRowBuilder<ButtonBuilder>()
+  const row1 = new ActionRowBuilder<ButtonBuilder>();
   for (const btn of btns) {
-    row1.addComponents(btn)
+    row1.addComponents(btn);
   }
-  return row1
+  return row1;
 }
 
 function createButton(
@@ -278,42 +277,42 @@ function createButton(
     case "Clear":
     case "Delete":
     case "⌫":
-      style = options.buttons?.delete
-      break
+      style = options.buttons?.delete;
+      break;
     case "π":
     case "%":
     case "^":
-      style = options.buttons?.numbers
-      break
+      style = options.buttons?.numbers;
+      break;
     case ".":
     case "=":
-      style = options.buttons?.symbols
-      break
+      style = options.buttons?.symbols;
+      break;
     default:
-      if (isNaN(Number(label))) style = options.buttons?.symbols
+      if (Number.isNaN(Number(label))) style = options.buttons?.symbols;
   }
 
   return new ButtonBuilder()
     .setLabel(label)
     .setStyle(style as ButtonStyle)
-    .setCustomId("cal-" + label)
+    .setCustomId(`cal-${label}`);
 }
 
-const evalRegex = /^[0-9π+%^\-*\/.()]*$/
+const evalRegex = /^[0-9π+%^\-*/.()]*$/;
 function mathEval(input: string, result = false) {
   try {
-    const matched = evalRegex.exec(input)
-    if (!matched) return "Invalid"
+    const matched = evalRegex.exec(input);
+    if (!matched) return "Invalid";
 
     if (!result) {
-      return `${Function(`"use strict";let π=Math.PI;return (${input})`)()}`
+      return `${Function(`"use strict";let π=Math.PI;return (${input})`)()}`;
     } else
       return `${input
         .replaceAll("**", "^")
         .replaceAll("/100", "%")} = ${Function(
         `"use strict";let π=Math.PI;return (${input})`,
-      )()}`
+      )()}`;
   } catch {
-    return "Wrong Input"
+    return "Wrong Input";
   }
 }

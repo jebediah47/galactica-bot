@@ -1,5 +1,5 @@
-import type { Command } from "@/interfaces"
-import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "qr",
@@ -13,27 +13,27 @@ export const command: Command = {
     },
   ],
   run: async (_client, interaction, args) => {
-    let text = args.getString("data")
-    if (!text) return
+    let text = args.getString("data");
+    if (!text) return;
     try {
       await interaction.reply(
         "Please wait while your text is converted to QR-code",
-      )
-      text = encodeURIComponent(text)
+      );
+      text = encodeURIComponent(text);
       const embed1 = new EmbedBuilder()
         .setImage(
           `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`,
         )
         .setColor("Random")
-        .setTimestamp()
-      await interaction.editReply({ embeds: [embed1] })
+        .setTimestamp();
+      await interaction.editReply({ embeds: [embed1] });
     } catch (err) {
       const errEmbed = new EmbedBuilder()
         .setColor("Random")
         .setTitle("❌ Error!")
         .setDescription(`${err}`)
-        .setTimestamp()
-      return interaction.reply({ embeds: [errEmbed] })
+        .setTimestamp();
+      return interaction.reply({ embeds: [errEmbed] });
     }
   },
-}
+};

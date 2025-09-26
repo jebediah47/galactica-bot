@@ -1,6 +1,6 @@
-import { refreshConfigCache } from "@/functions"
-import type { Command } from "@/interfaces"
-import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js"
+import { ApplicationCommandOptionType, EmbedBuilder } from "discord.js";
+import { refreshConfigCache } from "@/functions";
+import type { Command } from "@/interfaces";
 
 export const command: Command = {
   name: "setmodlogschannelid",
@@ -14,30 +14,30 @@ export const command: Command = {
     },
   ],
   run: async (client, interaction, args) => {
-    if (!interaction.member.permissions.has("ManageChannels")) {
-      return interaction.reply("You are not permitted to use this command!")
+    if (!interaction.member?.permissions.has("ManageChannels")) {
+      return interaction.reply("You are not permitted to use this command!");
     }
     const embed = new EmbedBuilder()
       .setColor("Random")
       .setDescription(`Set modlogsChannelID to \`${args.getString("name")}\``)
-      .setTimestamp()
+      .setTimestamp();
 
-    if (client.configs.get(interaction.guildId!)?.modLogsIsEnabled) {
+    if (client.configs.get(interaction.guildId ?? "")?.modLogsIsEnabled) {
       await client.prisma.guildConfigs.update({
         where: {
-          guildID: `${interaction.guild?.id}`,
+          guildID: interaction.guildId ?? "",
         },
         data: {
           modLogsChannelID: args.getString("name"),
         },
-      })
-      await refreshConfigCache(client)
-      await interaction.reply({ embeds: [embed] })
+      });
+      await refreshConfigCache(client);
+      await interaction.reply({ embeds: [embed] });
     } else {
       return interaction.reply({
         content:
           "modLogsIsEnabled database value is false, to enable run `/setmodlogs`",
-      })
+      });
     }
   },
-}
+};

@@ -1,1 +1,1 @@
-export { GalacticaBotAPI } from "./api"
+export { GalacticaBotAPI } from "./api";

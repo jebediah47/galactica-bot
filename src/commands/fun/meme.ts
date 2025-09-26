@@ -1,14 +1,15 @@
-import type { Command } from "@/interfaces"
-import axios from "axios"
-import { EmbedBuilder } from "discord.js"
+import axios from "axios";
+import { EmbedBuilder } from "discord.js";
+import type { Command } from "@/interfaces";
 
 function randomInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min)) + min
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: Reddit be wierd
 function getRandomPost(posts: string | any[]) {
-  const randomIndex = randomInt(0, posts.length)
-  return posts[randomIndex].data
+  const randomIndex = randomInt(0, posts.length);
+  return posts[randomIndex].data;
 }
 
 export const command: Command = {
@@ -22,23 +23,23 @@ export const command: Command = {
       "r/dankmemes",
       "r/PewdiepieSubmissions",
       "r/MemeEconomy",
-    ]
-    const randomIndex = randomInt(0, subReddits.length)
+    ];
+    const randomIndex = randomInt(0, subReddits.length);
 
     await axios
       .get(`https://reddit.com/${subReddits[randomIndex]}/.json`)
       .then(async (response) => {
         const { url, ups, title, permalink, num_comments } = getRandomPost(
           response.data.data.children,
-        )
+        );
         const meme = new EmbedBuilder()
           .setTitle(`${title}`)
           .setURL(`https://reddit.com${permalink}`)
           .setColor("Random")
           .setImage(`${url}`)
-          .setFooter({ text: `👍 ${ups} 💬 ${num_comments}` })
+          .setFooter({ text: `👍 ${ups} 💬 ${num_comments}` });
 
-        await interaction.reply({ embeds: [meme] })
-      })
+        await interaction.reply({ embeds: [meme] });
+      });
   },
-}
+};
