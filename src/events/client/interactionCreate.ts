@@ -4,7 +4,7 @@ import type { Event, ExtendedInteraction } from "@/interfaces";
 export const event: Event<"interactionCreate"> = {
   name: "interactionCreate",
   run: (client, message: Interaction) => {
-    if (message.isCommand()) {
+    if (message.isChatInputCommand()) {
       const command = client.commands.get(message.commandName);
       if (!command)
         return message.followUp("You have used a non existent command");
