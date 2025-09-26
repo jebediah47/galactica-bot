@@ -23,7 +23,8 @@ export class ConfigManager {
     });
   }
 
-  public get(key: string) {
+  // biome-ignore lint/suspicious/noExplicitAny: Stuff be wierd at times
+  public get(key: string): any {
     return this._config.get(key);
   }
 
