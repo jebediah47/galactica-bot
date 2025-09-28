@@ -34,7 +34,7 @@
     "elysia": "^1.4.8",
     "figlet": "^1.9.3",
     "mathjs": "^14.8.1",
-    "pino": "^9.11.0",
+    "pino": "^9.12.0",
     "prisma": "^6.16.2"
   },
   "devDependencies": {
