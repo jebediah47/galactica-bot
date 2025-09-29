@@ -42,7 +42,7 @@
     "@types/bun": "1.2.22",
     "@types/figlet": "1.7.0",
     "@types/node": "24.5.2",
-    "cross-env": "10.0.0",
+    "cross-env": "10.1.0",
     "husky": "9.1.7",
     "pino-pretty": "13.1.1",
     "tsconfig-paths": "4.2.0",
