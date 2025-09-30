@@ -47,6 +47,6 @@
     "pino-pretty": "13.1.1",
     "tsconfig-paths": "4.2.0",
     "tslib": "2.8.1",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   }
 }
