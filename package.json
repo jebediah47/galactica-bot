@@ -28,7 +28,7 @@
     "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^6.16.2",
     "axios": "^1.12.2",
-    "conf": "^15.0.0",
+    "conf": "^15.0.1",
     "discord-tictactoe": "^4.2.1",
     "discord.js": "^14.22.1",
     "elysia": "^1.4.8",
