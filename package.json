@@ -41,7 +41,7 @@
     "@biomejs/biome": "^2.2.4",
     "@types/bun": "1.2.22",
     "@types/figlet": "1.7.0",
-    "@types/node": "24.5.2",
+    "@types/node": "24.6.2",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
     "pino-pretty": "13.1.1",
