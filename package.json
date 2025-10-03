@@ -31,7 +31,7 @@
     "conf": "^15.0.1",
     "discord-tictactoe": "^4.2.1",
     "discord.js": "^14.22.1",
-    "elysia": "^1.4.8",
+    "elysia": "^1.4.9",
     "figlet": "^1.9.3",
     "mathjs": "^14.8.1",
     "pino": "^9.13.0",
