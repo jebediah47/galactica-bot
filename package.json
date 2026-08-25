@@ -26,7 +26,7 @@
   "homepage": "https://galacticabot.vercel.app/",
   "dependencies": {
     "@iamtraction/google-translate": "^2.0.1",
-    "@prisma/client": "^6.16.3",
+    "@prisma/client": "^6.19.3",
     "axios": "^1.12.2",
     "conf": "^15.0.1",
     "discord-tictactoe": "^4.2.1",
